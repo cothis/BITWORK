@@ -1,0 +1,23 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}
+
+#aside {
+    dispaly : inline-block;
+    float: left;
+}
+
+main {
+	box-sizing: border-box;
+	padding: 10px; 
+	display: inline-block;
+	width: 950px;
+	height: 530px;
+	background-color: AliceBlue;
+	overflow: auto;
+}

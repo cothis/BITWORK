@@ -10,6 +10,6 @@
 <body>
     <jsp:include page="commons/nav.jsp"/>
     <jsp:include page="commons/aside.jsp"/>
-    <a href="hello-servlet">Hello Servlet</a>
+  
 </body>
 </html>
