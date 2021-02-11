@@ -12,7 +12,7 @@
             });
 
             $("#join").click(function () {
-                alert("join clicked");
+                location.href = "join";
             });
         });
     </script>
