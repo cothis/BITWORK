@@ -6,11 +6,31 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script>
+
         function callInputFile() {
             $("#user_picture")[0].click();
         }
 
         $(function () {
+            $("#join").click(function () {
+                let fileForm = $("#file_form")[0];
+                let formData = new FormData(fileForm);
+                $.ajax("join", {
+                    processData: false,
+                    contentType: false,
+                    type: "post",
+                    data: formData,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.success === "fail") {
+                            alert("가입에 실패했습니다.");
+                        } else {
+                            alert("가입되었습니다.");
+                        }
+                    }
+                })
+            })
+
             $("#user_picture").change(function (event) {
                 let reader = new FileReader();
                 reader.addEventListener("load", function (event) {
@@ -143,7 +163,7 @@
             </div>
             <div class="form-buttons">
                 <button type="button" name="cancel" id="cancel">취소</button>
-                <button type="submit" name="join" id="join" disabled>가입 신청</button>
+                <button type="button" name="join" id="join" disabled>가입 신청</button>
             </div>
         </form>
     </main>

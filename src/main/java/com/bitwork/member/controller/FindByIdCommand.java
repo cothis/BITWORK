@@ -13,14 +13,11 @@ public class FindByIdCommand implements MemberCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        System.out.println("id = " + id);
 
         MemberDAO dao = new MemberDAO();
         MemberVO vo = dao.findById(id);
-        System.out.println("vo = " + vo);
 
         String gson = new Gson().toJson(vo);
-        System.out.println("gson = " + gson);
 
         response.setContentType("application/json");
         response.getWriter().write(gson);

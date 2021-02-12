@@ -15,13 +15,11 @@ public class MemberApi extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         String command = request.getParameter("command");
-        System.out.println("command = " + command);
 
         MemberCommand memberCommand = null;
 
         switch (command) {
             case "findById" : {
-                System.out.println("findById 처리");
                 memberCommand = new FindByIdCommand();
                 memberCommand.execute(request, response);
                 break;
