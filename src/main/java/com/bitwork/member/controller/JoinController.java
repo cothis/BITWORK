@@ -51,6 +51,19 @@ public class JoinController extends HttpServlet {
 
                 String newName = userId + ext;
 
+                // 기존 파일 지우기
+                File parent = userPicture.getParentFile();
+                File jpgFile = new File(parent, userId + ".jpg");
+                File pngFile = new File(parent, userId + ".png");
+                try {
+                    Files.deleteIfExists(jpgFile.toPath());
+                } catch (IOException ignore) {
+                }
+                try {
+                    Files.deleteIfExists(pngFile.toPath());
+                } catch (IOException ignore) {
+                }
+
                 File newFile = new File(userPicture.getParent(), newName);
                 Files.move(userPicture.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
