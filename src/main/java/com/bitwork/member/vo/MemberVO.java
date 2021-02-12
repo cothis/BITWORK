@@ -22,4 +22,14 @@ public class MemberVO {
     private Integer companyIdx;
     private Date joindate;
     private Integer grade;
+
+    public MemberVO(String id, String pw, String name, Integer picture, String phone, String email, String position) {
+        this.id = id;
+        this.pw = pw;
+        this.name = name;
+        this.picture = picture;
+        this.phone = phone;
+        this.email = email;
+        this.position = position;
+    }
 }
