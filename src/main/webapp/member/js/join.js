@@ -1,8 +1,8 @@
-function callInputFile() {
-    $("#user_picture")[0].click();
-}
-
 $(function () {
+    $("#uploadPicture").click(function () {
+        $("#user_picture")[0].click();
+    });
+
     $("#join").click(function () {
         let fileForm = $("#file_form")[0];
         let formData = new FormData(fileForm);
@@ -17,6 +17,7 @@ $(function () {
                     alert("가입에 실패했습니다.");
                 } else {
                     alert("가입되었습니다.");
+                    location.href = "/member/login.jsp";
                 }
             }
         })

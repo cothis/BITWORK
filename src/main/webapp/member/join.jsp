@@ -19,7 +19,7 @@
                     </div>
                     <div>
                         <input type="file" name="user_picture" id="user_picture" accept="image/jpeg, image/png">
-                        <button id="uploadPicture" type="button" onclick="callInputFile()">사진 등록</button>
+                        <button id="uploadPicture" type="button">사진 등록</button>
                     </div>
                 </div>
                 <div class="text-form">
