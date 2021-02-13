@@ -4,9 +4,9 @@
     <title>BitWork - Join</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/join.css">
+    <link rel="stylesheet" href="css/member.css">
     <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/join.js"></script>
+    <script src="js/member.js"></script>
     <style>
         .red-important {
             border: 1px solid red !important;

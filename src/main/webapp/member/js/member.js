@@ -17,13 +17,12 @@ $(function () {
         });
     }
 
-    $("#join").click(function (e) {
+    $("#join").click(function () {
         for (let obj of validTargets) {
             let valid = obj.checkValidity();
             if (valid) {
                 obj.classList.remove("red-important");
             } else {
-                //alert(obj.title);
                 obj.reportValidity();
                 obj.focus();
                 obj.classList.add("red-important");
@@ -47,8 +46,40 @@ $(function () {
                 }
             }
         });
+    });
 
-    })
+    $("#update").click(function () {
+        for (let obj of validTargets) {
+            let valid = obj.checkValidity();
+            if (valid) {
+                obj.classList.remove("red-important");
+            } else {
+                obj.reportValidity();
+                obj.focus();
+                obj.classList.add("red-important");
+                return;
+            }
+        }
+        let fileForm = $("#file_form")[0];
+        let formData = new FormData(fileForm);
+        $.ajax("update", {
+            processData: false,
+            contentType: false,
+            type: "post",
+            data: formData,
+            dataType: "json",
+            success: function (result) {
+                if (result.success === "fail") {
+                    alert("정보 수정에 실패했습니다.");
+                } else {
+                    alert("회원정보가 수정되었습니다.");
+                    location.href = "/main.jsp";
+                }
+            }
+        });
+    });
+
+
 
     $("#user_picture").change(function (event) {
         let reader = new FileReader();
