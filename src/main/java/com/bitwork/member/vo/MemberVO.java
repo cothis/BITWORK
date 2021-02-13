@@ -2,7 +2,13 @@ package com.bitwork.member.vo;
 
 import lombok.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
+import java.util.stream.Stream;
 
 @Getter
 @Setter
@@ -31,5 +37,28 @@ public class MemberVO {
         this.phone = phone;
         this.email = email;
         this.position = position;
+    }
+
+    public String getImgPath(HttpServletRequest request) throws IOException {
+        String folderPath = request.getServletContext().getRealPath("/data/member");
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            boolean isNewFolder = folder.mkdirs();
+            if (isNewFolder) {
+                System.out.println("데이터 폴더가 생성되었습니다.");
+            }
+        }
+
+        Stream<Path> pathStream = Files.find(folder.toPath(), 5, ((path, attr) -> {
+            String filename = path.getFileName().toString();
+            return filename.equals(id + ".png") || filename.equals(id + ".jpg");
+        }));
+
+        if (pathStream.findAny().isPresent()) {
+            Path path = pathStream.findAny().get();
+            return path.toString();
+        }
+
+        return null;
     }
 }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>BitWork - Update</title>
@@ -22,7 +23,10 @@
             <div class="input-form">
                 <div class="picture-form">
                     <div class="picture-img">
-                        <img src="" alt="프로필사진" width="250px" height="250px">
+                        <c:if test="${sessionScope.user.picture eq 1}">
+                            <c:set var="imgPath" value="${sessionScope.user.name}"/>
+                        </c:if>
+                        <img src="${sessionScope.user.picture}" alt="프로필사진" width="250px" height="250px">
                     </div>
                     <div>
                         <input type="file" name="user_picture" id="user_picture" accept="image/jpeg, image/png">
