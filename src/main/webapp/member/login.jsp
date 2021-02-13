@@ -6,9 +6,29 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        let testData;
         $(function () {
             $("#login").click(function () {
-                alert("login clicked");
+                let formData = $("form").serialize();
+                $.ajax({
+                    url: "login",
+                    method: "post",
+                    data: formData,
+                    dataType: "json",
+                    success: function (res) {
+                        if (res) {
+                            if (res.result) {
+                                alert("login 성공");
+                                location.href = "../main";
+                            } else {
+                                alert("login 실패");
+                            }
+                        }
+                    },
+                    error: function () {
+                        alert("서버와 통신에 실패했습니다.");
+                    }
+                });
             });
 
             $("#join").click(function () {
