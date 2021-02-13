@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <html>
 <head>
-    <title>BitWork - Join</title>
+    <title>BitWork - Update</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/join.css">
@@ -64,7 +64,7 @@
             </div>
             <div class="form-buttons">
                 <button type="button" id="cancel">취소</button>
-                <button type="button" id="join" disabled>가입 신청</button>
+                <button type="button" id="update" disabled>정보 수정</button>
             </div>
         </form>
     </main>
