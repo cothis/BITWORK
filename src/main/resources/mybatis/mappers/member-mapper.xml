@@ -13,4 +13,10 @@
         INSERT INTO MEMBER(ID, PW, NAME, PHONE, EMAIL, POSITION, REGDATE, COMPANY_IDX, JOINDATE, GRADE, FILE_NAME, ORI_NAME)
         VALUES (#{id}, #{pw}, #{name}, #{phone}, #{email}, #{position}, SYSDATE, null, null, 0, #{fileName}, #{oriName})
     </insert>
+
+    <update id="updateMemberInfo" parameterType="com.bitwork.member.dto.JoinForm">
+        UPDATE MEMBER SET
+        PW = #{pw}, NAME = #{name}, EMAIL = #{email}, POSITION = #{position}, FILE_NAME = #{fileName}, ORI_NAME = #{oriName}
+        WHERE ID = #{id}
+    </update>
 </mapper>

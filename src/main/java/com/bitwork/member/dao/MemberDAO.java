@@ -20,4 +20,11 @@ public class MemberDAO {
             return mapper.addMember(joinForm);
         }
     }
+
+    public int updateMemberInfo(JoinForm joinForm) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
+            MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+            return mapper.updateMemberInfo(joinForm);
+        }
+    }
 }
