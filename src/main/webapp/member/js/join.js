@@ -3,7 +3,33 @@ $(function () {
         $("#user_picture")[0].click();
     });
 
-    $("#join").click(function () {
+    let validTargets = document.querySelectorAll("input[pattern]");
+    for (let target of validTargets) {
+        target.validationMessage = target.title;
+        target.addEventListener("change", function () {
+            let valid = this.checkValidity();
+            if (valid) {
+                this.classList.remove("red-important");
+            } else {
+                this.classList.add("red-important");
+                this.reportValidity();
+            }
+        });
+    }
+
+    $("#join").click(function (e) {
+        for (let obj of validTargets) {
+            let valid = obj.checkValidity();
+            if (valid) {
+                obj.classList.remove("red-important");
+            } else {
+                //alert(obj.title);
+                obj.reportValidity();
+                obj.focus();
+                obj.classList.add("red-important");
+                return;
+            }
+        }
         let fileForm = $("#file_form")[0];
         let formData = new FormData(fileForm);
         $.ajax("join", {
@@ -20,7 +46,8 @@ $(function () {
                     location.href = "/member/login.jsp";
                 }
             }
-        })
+        });
+
     })
 
     $("#user_picture").change(function (event) {
