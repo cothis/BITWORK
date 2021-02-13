@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitwork.member.vo.MemberMapper">
     <select id="findById" resultType="com.bitwork.member.vo.MemberVO" parameterType="string">
-        SELECT ID, PW, NAME, PICTURE, PHONE, EMAIL, POSITION, REGDATE, COMPANY_IDX, JOINDATE, GRADE
+        SELECT ID, PW, NAME, PHONE, EMAIL, POSITION, REGDATE, COMPANY_IDX, JOINDATE, GRADE, FILE_NAME, ORI_NAME
         FROM MEMBER
         WHERE ID = #{id}
     </select>
     
     <insert id="addMember" parameterType="com.bitwork.member.dto.JoinForm">
-        INSERT INTO MEMBER(ID, PW, NAME, PICTURE, PHONE, EMAIL, POSITION, REGDATE, COMPANY_IDX, JOINDATE, GRADE)
-        VALUES (#{id}, #{pw}, #{name}, #{picture}, #{phone}, #{email}, #{position}, SYSDATE, null, null, 0)
+        INSERT INTO MEMBER(ID, PW, NAME, PHONE, EMAIL, POSITION, REGDATE, COMPANY_IDX, JOINDATE, GRADE, FILE_NAME, ORI_NAME)
+        VALUES (#{id}, #{pw}, #{name}, #{phone}, #{email}, #{position}, SYSDATE, null, null, 0, #{fileName}, #{oriName})
     </insert>
 </mapper>
