@@ -21,3 +21,39 @@ main {
 	background-color: AliceBlue;
 	overflow: auto;
 }
+
+.paging {
+	list-style: none;
+}
+
+.paging li {
+	float: left;
+	margin-right: 8px;
+}
+
+.paging li a {
+	text-decoration: none;
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #7562ca;
+	font-weight: bold;
+	color: black;
+}
+
+.paging .disable {
+	border: 1px solid silver;
+	padding: 3px 7px;
+	color: silver;
+}
+
+.paging .now {
+	border: 1px solid #7562ca;
+	padding: 3px 7px;
+	background-color: #7562ca;
+	color: white;
+}
+
+.paging li a:hover {
+	background-color: #00B3DC;
+	color: white;
+}
