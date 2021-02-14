@@ -12,5 +12,7 @@
     <jsp:include page="commons/aside.jsp"/>
     <h2>Main 페이지</h2>
     <a href="member/update">회원정보 수정</a>
+    <a href="member/logout">로그아웃</a>
+    <a href="member/leave">회원탈퇴</a>
 </body>
 </html>

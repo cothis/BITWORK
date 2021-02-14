@@ -6,6 +6,8 @@ import com.bitwork.member.vo.MemberMapper;
 import com.bitwork.member.vo.MemberVO;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.Map;
+
 public class MemberDAO {
     public MemberVO findById(String id) {
         try (SqlSession sqlSession = DBService.getFactory().openSession()) {
@@ -25,6 +27,13 @@ public class MemberDAO {
         try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
             MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
             return mapper.updateMemberInfo(joinForm);
+        }
+    }
+
+    public int deleteMember(Map<String, String> map) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
+            MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+            return mapper.deleteMember(map);
         }
     }
 }
