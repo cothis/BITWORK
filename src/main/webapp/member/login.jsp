@@ -17,11 +17,18 @@
                     dataType: "json",
                     success: function (res) {
                         if (res) {
-                            if (res.result) {
-                                alert("login 성공");
-                                location.href = "../main";
-                            } else {
+                            if (!res) {
                                 alert("login 실패");
+                                return;
+                            } else {
+                                alert("login 성공");
+                                if (res.hasCompany) {
+                                    alert("가입된 회사가 있습니다");
+                                    location.href = "../main";
+                                } else {
+                                    alert("가입된 회사가 없습니다");
+                                    location.href = "noCompany";
+                                }
                             }
                         }
                     },

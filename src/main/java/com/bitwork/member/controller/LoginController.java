@@ -31,16 +31,16 @@ public class LoginController extends HttpServlet {
 
         MemberDAO dao = new MemberDAO();
         MemberVO vo = dao.findById(userId);
+        String result = "";
         if (vo != null && userPw.equals(vo.getPw())) {
             vo.setPw(null);
             request.getSession().setAttribute("user", vo);
-            resultMap.put("result", true);
+
+            resultMap.put("hasCompany", vo.getCompanyIdx() != null);
+            result = new Gson().toJson(resultMap);
         } else {
             resultMap.put("result", false);
         }
-
-        String gson = new Gson().toJson(resultMap);
-
-        response.getWriter().write(gson);
+        response.getWriter().write(result);
     }
 }
