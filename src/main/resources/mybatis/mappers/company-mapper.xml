@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitwork.company.vo.CompanyMapper">
-    <select id="findByName" parameterType="string" resultType="list">
+    <select id="findByName" parameterType="string" resultType="com.bitwork.company.vo.CompanyVO">
         SELECT COMPANY_IDX, COMPANY_NAME, COMPANY_PHONE, COMPANY_EMAIL
         FROM COMPANY
         WHERE COMPANY_NAME = #{companyName}
