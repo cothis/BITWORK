@@ -1,4 +1,4 @@
-package com.bitwork.member.controller;
+package com.bitwork.member.command;
 
 import com.bitwork.member.dao.MemberDAO;
 import com.bitwork.member.vo.MemberVO;

@@ -1,4 +1,4 @@
-package com.bitwork.member.controller;
+package com.bitwork.member.command;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -12,7 +12,7 @@ public class MemberApi extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
 
         String command = request.getParameter("command");
 
@@ -23,6 +23,10 @@ public class MemberApi extends HttpServlet {
                 memberCommand = new FindByIdCommand();
                 memberCommand.execute(request, response);
                 break;
+            }
+            case "searchCompany" : {
+                memberCommand = new SearchCompanyCommand();
+                memberCommand.execute(request, response);
             }
             default: {
                 break;
