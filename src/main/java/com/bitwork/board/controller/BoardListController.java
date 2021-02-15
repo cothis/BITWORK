@@ -16,51 +16,46 @@ import com.bitwork.board.dao.BoardDAO;
 import com.bitwork.board.vo.BoardVO;
 import com.bitwork.board.vo.PagingVO;
 
-@WebServlet("/boardList")
+@WebServlet("/board/list")
 public class BoardListController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
+	String search_option;
+	String keyword;
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(">>> BoardController doGet()");
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		// 검색할 때 옵션이랑 키워드
+		search_option = request.getParameter("search_option");
+		keyword = request.getParameter("keyword");
 		
 		String cPage = request.getParameter("cPage");
-		Map<String, Integer> map = Paging(cPage, request);
+		Map<String, Object> map = Paging(cPage, request);
 		
 		// DB 데이터 조회
 		List<BoardVO> list = BoardDAO.getList(map);
 		System.out.println("현재 페이지 글 목록(list) : " + list);
 		
+		request.setAttribute("list",  list);
 		
-		String result = "{\"list\" : [";
-		for (BoardVO vo : list) {
-			result += "{";
-			result += "\"boardIdx\" : \"" + vo.getBoardIdx() + "\"," ;
-			result += "\"subject\" : \"" + vo.getSubject() + "\",";
-			result += "\"name\" : \"" + vo.getName() + "\",";
-			result += "\"regdate\" : \"" + vo.getRegdate() + "\",";
-			result += "\"hit\" : \"" + vo.getHit() + "\"";
-			result += "},";
-		}
-		
-		//문자열 맨 마지막 문제 제거하기
-		result = result.substring(0, result.length()-1);
-		result += "]}";
-		System.out.println(result);
-		
-		//JSON 문자열 출력
-		out.print(result);
+		request.getRequestDispatcher("boardList.jsp").forward(request, response);
 		
 	}
 	
-	public Map<String, Integer> Paging(String cPage, HttpServletRequest request) {
+	public Map<String, Object> Paging(String cPage, HttpServletRequest request) {
 		// 페이징 처리를 위한 Paging 객체 생성해서 값을 읽고 설정
 		PagingVO p = new PagingVO();
+	
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
+		
 		
 		// DB 전체 게시물 수 구하기
-		p.setTotalRecord(BoardDAO.getTotalCount());
+		p.setTotalRecord(BoardDAO.getTotalCount(map));
 		p.setTotalPage();
 		System.out.println("> 전체 게시글 수 : " + p.getTotalRecord());
 		System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
@@ -68,9 +63,11 @@ public class BoardListController extends HttpServlet {
 		// 2. 현재 페이지 구하기
 		
 		System.out.println("cPage : " + cPage);
-		if (cPage != null) {
-			p.setNowPage(Integer.parseInt(cPage));
-		}
+		if (cPage == null || cPage.length() == 0) {
+			cPage = "1";
+		} 
+		p.setNowPage(Integer.parseInt(cPage));
+		
 		
 		// 3. 현재 페이지에 표시할 게시글 시작번호(begin), 끝번호(end) 구하기
 		p.setEnd(p.getNowPage() * p.getNumPerPage()); //현재페이지번호 * 페이지당 글수
@@ -96,10 +93,10 @@ public class BoardListController extends HttpServlet {
 		// =====================================
 		// 현재 페이지 기준으로 DB데이터(게시글) 가져오기
 		// 시작글번호, 끝글번호 저장용 Map 만들기(전달할 파라미터 저장용)
-		Map<String, Integer> map = new HashMap<>();
 		map.put("begin", p.getBegin());
 		map.put("end", p.getEnd());
 		
+		request.getSession().setAttribute("search", map);				
 		request.getSession().setAttribute("pvo", p);
 		
 		return map;

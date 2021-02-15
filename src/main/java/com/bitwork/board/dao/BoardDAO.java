@@ -6,25 +6,35 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bitwork.board.vo.BoardVO;
+import com.bitwork.board.vo.CommentsVO;
 import com.bitwork.common.DBService;
 
 public class BoardDAO {
 	
 	// 게시글 전체 건수 조회
-	
-	public static int getTotalCount() {
-		SqlSession ss = DBService.getFactory().openSession();
-		int totalCount = ss.selectOne("board.totalCount");
-		ss.close();
-		return totalCount;
+	public static int getTotalCount(Map<String, Object> map) {
+		try {
+			SqlSession ss = DBService.getFactory().openSession();
+			int totalCount = ss.selectOne("board.totalCount", map);
+			ss.close();
+			return totalCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 	
-	// 게시판 전체글 조회
-	public static List<BoardVO> getList(Map<String, Integer> map) {
+	// 게시판 리스트 조회
+	public static List<BoardVO> getList(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<BoardVO> list = ss.selectList("board.list", map);
-		ss.close();
-		return list;
+		try {
+			List<BoardVO> list = ss.selectList("board.list", map);			
+			ss.close();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	// 게시글 번호에 해당하는 게시글 하나 조회
@@ -34,5 +44,15 @@ public class BoardDAO {
 		ss.close();
 		return vo;
 	}
+	
+	// =============== 댓글관련 ===============
+		// 댓글 목록 조회
+		public static List<CommentsVO> getCmtList(String boardIdx) {
+			SqlSession ss = DBService.getFactory().openSession();
+			List<CommentsVO> cmt_list = ss.selectList("board.cmtList", boardIdx);
+			ss.close();
+			
+			return cmt_list;
+		}
 
 }

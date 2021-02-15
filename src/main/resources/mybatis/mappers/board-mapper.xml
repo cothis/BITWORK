@@ -4,15 +4,41 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
+	<sql id="searchOption">
+		 <if test="search_option == '0'.toString()">
+	          WHERE NAME LIKE '%' || #{keyword} || '%'
+	             OR SUBJECT LIKE '%' || #{keyword} || '%'
+	     </if>
+	     <if test="search_option == '1'.toString()">
+	          WHERE SUBJECT LIKE '%' || #{keyword} || '%'
+	     </if>
+	     <if test="search_option == '2'.toString()">
+	          WHERE NAME LIKE '%' || #{keyword} || '%'
+	     </if>
+	</sql>
+	
+
 	<!-- 전체 게시글 수 조회 -->
-	<select id="totalCount" resultType="int">
-		SELECT COUNT(*) AS CNT FROM BOARD
+	<select id="totalCount" resultType="int" parameterType="map">
+		SELECT COUNT(*) AS CNT 
+          FROM (SELECT ROWNUM AS R_NUM, B.*
+          
+                  FROM (SELECT BOARD_IDX, SUBJECT, NAME, B.REGDATE, HIT
+                          FROM BOARD B, MEMBER M
+                         WHERE B.MEMBER_ID = M.ID 
+            	         ORDER BY STATUS DESC, BOARD_IDX DESC
+		               ) B
+		               <include refid="searchOption"/>
+		               <!-- <if test="search_option == '1'.toString()">
+	          				WHERE SUBJECT LIKE '%' || #{keyword} || '%'
+	   				  </if> -->
+        	   )
 	</select>
 
 	<!-- 페이지에 표시할 데이터 조회
 		parameterType="Map" : begin, end 값 전달 용도
 		key-value 형태의 Map 사용 바인드변수명 key가 됨 -->
-	<select id="list" resultType="com.bitwork.board.vo.BoardVO" parameterType="Map">
+	<select id="list" resultType="com.bitwork.board.vo.BoardVO" parameterType="map">
 		SELECT *
           FROM (SELECT ROWNUM AS R_NUM, B.*
                   FROM (SELECT BOARD_IDX, SUBJECT, NAME, B.REGDATE, HIT
@@ -20,6 +46,7 @@
                          WHERE B.MEMBER_ID = M.ID
             	         ORDER BY STATUS DESC, BOARD_IDX DESC
                        ) B
+                       <include refid="searchOption"/>
                )
          WHERE R_NUM BETWEEN #{begin} AND #{end}	 
 	</select>
@@ -33,4 +60,21 @@
                ) B
          WHERE BOARD_IDX = #{board_idx}	  
 	</select> 
+	
+	<!-- ===== 댓글처리 ===== -->
+	<!-- 게시글에 딸린 댓글 조회 -->
+	<select id="cmtList" parameterType="string" resultType="com.bitwork.board.vo.CommentsVO">
+		SELECT *
+          FROM (SELECT CMT_IDX, NAME, POSITION, CMT_CONTENT, CMT_DATE, BOARD_IDX
+                  FROM COMMENTS C, MEMBER M
+                 WHERE C.MEMBER_ID = M.ID
+               )
+         WHERE BOARD_IDX = #{board_idx}
+         ORDER BY CMT_IDX
+	</select>
+	
+	
+
+	
+	
 </mapper>
