@@ -6,6 +6,26 @@
     <title>BitWork - Join Company</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+
+        th {
+            background-color: #16A085;
+            color: white;
+        }
+
+        tr {
+            cursor: pointer;
+        }
+
+        tr:hover {
+            background-color: #5ab194;
+        }
+
+        .selected {
+            background-color: #16A085;
+            color: white;
+        }
+    </style>
     <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -31,9 +51,40 @@
                     dataType: "json"
                 }).then(function (res) {
                     console.log(res);
+                    if (res) {
+                        let table = document.createElement("table");
+                        let thead_tr = table.createTHead().insertRow();
+                        thead_tr.insertCell(-1).outerHTML = "<th>NO</th><th>회사명</th><th>사원수</th>"
+                        table.createTBody();
+                        let i = 0;
+                        for (let company of res) {
+                            i++;
+                            let tr = table.tBodies[0].insertRow(-1);
+                            tr.insertCell(-1).innerText = i + "";
+                            tr.insertCell(-1).innerText = company.companyName;
+                            tr.insertCell(-1).innerText = company.companyEmpCnt;
+                        }
+                        document.querySelector("#container").innerHTML = table.outerHTML;
+                        document.querySelectorAll("tbody > tr").forEach(function (tr) {
+                            console.log(tr);
+                            tr.addEventListener("click", selectEventHandler);
+                        })
+                    }
                 });
             });
 
+            // 회사명 선택
+            function selectEventHandler() {
+                if (this.classList.contains("selected")) {
+                    return;
+                }
+                let trArr = document.querySelectorAll("tbody > tr");
+
+                for (let all of trArr) {
+                    all.classList.remove("selected");
+                }
+                this.classList.add("selected");
+            }
         });
     </script>
 </head>
@@ -45,6 +96,8 @@
             <label for="companyName"></label>
             <input type="text" name="companyName" id="companyName" placeholder="회사명" required>
             <button type="button" id="searchCompany">검색</button>
+        </div>
+        <div id="container">
         </div>
         <div class="form-buttons">
             <button type="submit" id="joinCompany" disabled>가입 신청</button>
