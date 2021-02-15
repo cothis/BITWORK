@@ -23,7 +23,7 @@
             // 검색 클릭 시, 회사명 검색
             searchCompany.addEventListener("click", function () {
                 $.ajax({
-                    url: "member/api",
+                    url: "api",
                     data: {
                         command: "searchCompany",
                         companyName: companyName.value
