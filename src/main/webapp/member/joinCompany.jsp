@@ -99,6 +99,7 @@
                 }).then(function (res) {
                     if (res) {
                         alert("신청되었습니다");
+                        location.href = "waitCompany";
                     } else {
                         alert("가입 실패입니다");
                     }
