@@ -35,11 +35,10 @@ public class LoginController extends HttpServlet {
         if (vo != null && userPw.equals(vo.getPw())) {
             vo.setPw(null);
             request.getSession().setAttribute("user", vo);
-
-            resultMap.put("hasCompany", vo.getCompanyIdx() != null);
+            resultMap.put("grade", vo.getGrade());
             result = new Gson().toJson(resultMap);
         } else {
-            resultMap.put("result", false);
+            result = "false";
         }
         response.getWriter().write(result);
     }

@@ -17,19 +17,19 @@
                     dataType: "json",
                     success: function (res) {
                         if (res) {
-                            if (!res) {
-                                alert("login 실패");
-                                return;
-                            } else {
-                                alert("login 성공");
-                                if (res.hasCompany) {
-                                    alert("가입된 회사가 있습니다");
-                                    location.href = "../main";
-                                } else {
-                                    alert("가입된 회사가 없습니다");
-                                    location.href = "noCompany";
-                                }
+                            alert("login 성공");
+                            if (res.grade === 0) {
+                                alert("가입된 회사 없음");
+                                location.href = "noCompany";
+                            } else if (res.grade === 1) {
+                                alert("가입 대기중");
+                                location.href = "waitCompany";
+                            } else if (res.grade > 1) {
+                                alert("직원 또는 사장");
+                                location.href = "../main";
                             }
+                        } else {
+                            alert("로그인 실패");
                         }
                     },
                     error: function () {

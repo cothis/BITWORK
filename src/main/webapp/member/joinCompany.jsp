@@ -86,23 +86,41 @@
                 companyIdx.setAttribute("value", this.firstElementChild.textContent);
                 joinCompany.removeAttribute("disabled");
             }
+
+            // 가입 요청
+            joinCompany.addEventListener("click", function () {
+                $.ajax({
+                    url: "joinCompany",
+                    method: "post",
+                    data: {
+                        companyIdx: companyIdx.getAttribute("value")
+                    },
+                    dataType: "json"
+                }).then(function (res) {
+                    if (res) {
+                        alert("신청되었습니다");
+                    } else {
+                        alert("가입 실패입니다");
+                    }
+                })
+            })
         });
     </script>
 </head>
 <body>
     <jsp:include page="../commons/nav.jsp"/>
     <jsp:include page="../commons/aside.jsp"/>
-        <div class="form-group">
-            <label for="companyName"></label>
-            <input type="text" id="companyName" placeholder="회사명">
-            <button type="button" id="searchCompany">검색</button>
-        </div>
-        <div id="container">
-        </div>
-    <form action="joinCompany" method="post">
+    <div class="form-group">
+        <label for="companyName"></label>
+        <input type="text" id="companyName" placeholder="회사명">
+        <button type="button" id="searchCompany">검색</button>
+    </div>
+    <div id="container">
+    </div>
+    <form>
         <div class="form-buttons">
             <input type="hidden" name="companyIdx" id="companyIdx">
-            <button type="submit" id="joinCompany" disabled>가입 신청</button>
+            <button type="button" id="joinCompany" disabled>가입 신청</button>
         </div>
     </form>
 </body>
