@@ -84,6 +84,7 @@
                     all.classList.remove("selected");
                 }
                 this.classList.add("selected");
+                joinCompany.removeAttribute("disabled");
             }
         });
     </script>
