@@ -33,6 +33,7 @@
             let searchCompany = document.querySelector("#searchCompany");
             let joinCompany = document.querySelector("#joinCompany");
             let companyName = document.querySelector("#companyName");
+            let companyIdx = document.querySelector("#companyIdx");
 
             // 회사명 변경 -> 가입신청(비활성화), 검색(활성화)
             document.querySelector("#companyName").addEventListener("change", function () {
@@ -50,7 +51,6 @@
                     },
                     dataType: "json"
                 }).then(function (res) {
-                    console.log(res);
                     if (res) {
                         let table = document.createElement("table");
                         let thead_tr = table.createTHead().insertRow();
@@ -66,7 +66,6 @@
                         }
                         document.querySelector("#container").innerHTML = table.outerHTML;
                         document.querySelectorAll("tbody > tr").forEach(function (tr) {
-                            console.log(tr);
                             tr.addEventListener("click", selectEventHandler);
                         })
                     }
@@ -81,9 +80,10 @@
                 let trArr = document.querySelectorAll("tbody > tr");
 
                 for (let all of trArr) {
-                    all.classList.remove("selected");
+                    all.removeAttribute("class");
                 }
                 this.classList.add("selected");
+                companyIdx.setAttribute("value", this.firstElementChild.textContent);
                 joinCompany.removeAttribute("disabled");
             }
         });
@@ -92,15 +92,16 @@
 <body>
     <jsp:include page="../commons/nav.jsp"/>
     <jsp:include page="../commons/aside.jsp"/>
-    <form action="joinCompany" method="post">
         <div class="form-group">
             <label for="companyName"></label>
-            <input type="text" name="companyName" id="companyName" placeholder="회사명" required>
+            <input type="text" id="companyName" placeholder="회사명">
             <button type="button" id="searchCompany">검색</button>
         </div>
         <div id="container">
         </div>
+    <form action="joinCompany" method="post">
         <div class="form-buttons">
+            <input type="hidden" name="companyIdx" id="companyIdx">
             <button type="submit" id="joinCompany" disabled>가입 신청</button>
         </div>
     </form>
