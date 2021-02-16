@@ -12,4 +12,6 @@ public interface MemberMapper {
     int updateMemberInfo(JoinForm joinForm);
 
     int deleteMember(Map<String, String> map);
+
+    int updateCompanyInfo(Map<String, Object> parameterMap);
 }

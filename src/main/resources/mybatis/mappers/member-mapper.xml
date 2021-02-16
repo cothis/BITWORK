@@ -43,4 +43,16 @@
             ORI_NAME  = #{oriName}
         WHERE ID = #{id}
     </update>
+
+    <update id="updateCompanyInfo" parameterType="map">
+        UPDATE MEMBER
+        <set>
+            COMPANY_IDX = #{company_idx},
+            GRADE = #{grade}
+            <if test="grade > 1">
+                JOINDATE = SYSDATE
+            </if>
+        </set>
+        WHERE ID = #{id}
+    </update>
 </mapper>
