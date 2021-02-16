@@ -5,43 +5,86 @@
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/webjars/axios/0.21.1/dist/axios.js"></script>
     <script>
-        let testData;
-        $(function () {
-            $("#login").click(function () {
-                let formData = $("form").serialize();
-                $.ajax({
-                    url: "login",
-                    method: "post",
-                    data: formData,
-                    dataType: "json",
-                    success: function (res) {
-                        if (res) {
-                            alert("login 성공");
-                            if (res.grade === 0) {
-                                alert("가입된 회사 없음");
-                                location.href = "noCompany";
-                            } else if (res.grade === 1) {
-                                alert("가입 대기중");
-                                location.href = "waitCompany";
-                            } else if (res.grade > 1) {
-                                alert("직원 또는 사장");
-                                location.href = "../main";
-                            }
-                        } else {
-                            alert("로그인 실패");
-                        }
-                    },
-                    error: function () {
-                        alert("서버와 통신에 실패했습니다.");
-                    }
-                });
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("login").addEventListener("click", function () {
+                login(this);
             });
 
-            $("#join").click(function () {
+            document.getElementById("join").addEventListener("click", function () {
                 location.href = "join";
-            });
+            })
         });
+
+        function login(btn) {
+            const user_id = btn.form.user_id.value;
+            const user_pw = btn.form.user_pw.value;
+            const options = {
+                user_id: user_id,
+                user_pw: user_pw
+            };
+            const params = new URLSearchParams(options);
+            axios.post("login", params)
+                .then(res => {
+                    const data = res.data;
+                    if (data) {
+                        if (data.grade === 0) {
+                            location.href = "noCompany";
+                        } else if (data.grade === 1) {
+                            location.href = "invite";
+                        } else if (data.grade === 2) {
+                            location.href = "waitCompany";
+                        } else if (data.grade > 2) {
+                            location.href = "../main";
+                        }
+                    } else {
+                        alert("로그인 실패");
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("서버와 통신에 실패했습니다.");
+                });
+        }
+
+        /*
+                $(function () {
+                    $("#login").click(function () {
+                        let formData = $("form").serialize();
+                        $.ajax({
+                            url: "login",
+                            method: "post",
+                            data: formData,
+                            dataType: "json",
+                            success: function (res) {
+                                if (res) {
+                                    alert("login 성공");
+                                    if (res.grade === 0) {
+                                        alert("가입된 회사 없음");
+                                        location.href = "noCompany";
+                                    } else if (res.grade === 1) {
+                                        alert("가입 대기중");
+                                        location.href = "waitCompany";
+                                    } else if (res.grade > 1) {
+                                        alert("직원 또는 사장");
+                                        location.href = "../main";
+                                    }
+                                } else {
+                                    alert("로그인 실패");
+                                }
+                            },
+                            error: function () {
+                                alert("서버와 통신에 실패했습니다.");
+                            }
+                        });
+                    });
+
+                    $("#join").click(function () {
+                        location.href = "join";
+                    });
+                });
+                */
     </script>
 </head>
 <body>
