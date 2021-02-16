@@ -48,8 +48,9 @@ public class UpdateController extends HttpServlet {
             String fileName = mr.getFilesystemName("user_picture");
             String oriName = mr.getOriginalFileName("user_picture");
             
-            //filename이 null이 아니고 기존 파일이 있으면 삭제
             MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+
+            //filename이 null이 아니고 기존 파일이 있으면 삭제
             if (fileName != null && fileName.length() > 0 && user.getFileName() != null) {
                 File oldFile = new File(folder, user.getFileName());
                 boolean delete = oldFile.delete();

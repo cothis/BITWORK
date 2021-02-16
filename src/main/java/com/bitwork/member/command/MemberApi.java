@@ -23,6 +23,10 @@ public class MemberApi extends HttpServlet {
                 memberCommand.execute(request, response);
                 break;
             }
+            case "findByLikeId" : {
+                memberCommand = new FIndByLikeIdCommand();
+                memberCommand.execute(request, response);
+            }
             case "searchCompany" : {
                 memberCommand = new SearchCompanyCommand();
                 memberCommand.execute(request, response);

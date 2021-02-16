@@ -69,4 +69,12 @@ public class MemberDAO {
             return mapper.findMembersByCompanyId(companyIdx);
         }
     }
+
+    public List<MemberVO> findListById(String id) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+            MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+
+            return mapper.findListById(id);
+        }
+    }
 }

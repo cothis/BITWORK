@@ -18,8 +18,7 @@
 <body>
     <jsp:include page="../commons/nav.jsp"/>
     <main>
-        <form id="file_form" action="${pageContext.request.contextPath}/member/join" method="post"
-              enctype="multipart/form-data">
+        <form id="file_form" method="post" enctype="multipart/form-data">
             <div class="input-form">
                 <div class="picture-form">
                     <div class="picture-img">
