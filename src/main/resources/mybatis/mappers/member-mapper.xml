@@ -47,7 +47,7 @@
     <update id="updateCompanyInfo" parameterType="map">
         UPDATE MEMBER
         <set>
-            COMPANY_IDX = #{company_idx},
+            COMPANY_IDX = #{companyIdx},
             GRADE = #{grade}
             <if test="grade > 1">
                 JOINDATE = SYSDATE

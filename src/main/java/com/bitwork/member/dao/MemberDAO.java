@@ -39,10 +39,22 @@ public class MemberDAO {
         }
     }
 
-    public boolean updateCompanyInfo(Map<String, Object> map) {
+    public boolean updateCompanyInfo(Integer companyIdx, MemberGrade grade, MemberVO user) {
         try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
             MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-            return mapper.updateCompanyInfo(map) > 0;
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("companyIdx", companyIdx);
+            map.put("grade", grade.ordinal());
+            map.put("id", user.getId());
+
+            boolean result = mapper.updateCompanyInfo(map) > 0;
+            if (result) {
+                user.setCompanyIdx(companyIdx);
+                user.setGrade(grade.ordinal());
+            }
+
+            return result;
         }
     }
 }

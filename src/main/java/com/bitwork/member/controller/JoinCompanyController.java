@@ -20,16 +20,12 @@ public class JoinCompanyController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String companyIdx = request.getParameter("companyIdx");
+        Integer companyIdx = Integer.parseInt(request.getParameter("companyIdx"));
+        System.out.println("companyIdx = " + companyIdx);
         MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 
-        Map<String, Object> parameterMap = new HashMap<>();
-        parameterMap.put("companyIdx", companyIdx);
-        parameterMap.put("grade", MemberGrade.APPLY.ordinal());
-        parameterMap.put("id", user.getId());
-
         MemberDAO dao = new MemberDAO();
-        boolean result = dao.updateCompanyInfo(parameterMap);
+        boolean result = dao.updateCompanyInfo(companyIdx, MemberGrade.APPLY, user);
 
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");

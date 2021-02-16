@@ -14,4 +14,11 @@ public class CompanyDAO {
             return mapper.findByName(companyName);
         }
     }
+
+    public static CompanyVO findById(Integer companyIdx) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+            CompanyMapper mapper = sqlSession.getMapper(CompanyMapper.class);
+            return mapper.findById(companyIdx);
+        }
+    }
 }

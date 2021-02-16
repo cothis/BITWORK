@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface CompanyMapper {
     List<CompanyVO> findByName(String companyName);
+
+    CompanyVO findById(Integer companyIdx);
 }

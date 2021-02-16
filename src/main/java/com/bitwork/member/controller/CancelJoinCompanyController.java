@@ -1,7 +1,7 @@
 package com.bitwork.member.controller;
 
-import com.bitwork.company.dao.CompanyDAO;
-import com.bitwork.company.vo.CompanyVO;
+import com.bitwork.member.dao.MemberDAO;
+import com.bitwork.member.enumdef.MemberGrade;
 import com.bitwork.member.vo.MemberVO;
 
 import javax.servlet.*;
@@ -9,15 +9,18 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "WaitCompanyController", value = "/member/waitCompany")
-public class WaitCompanyController extends HttpServlet {
+@WebServlet(name = "CancelJoinCompanyController", value = "/member/cancelJoinCompany")
+public class CancelJoinCompanyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        MemberDAO dao = new MemberDAO();
         MemberVO user = (MemberVO) request.getSession().getAttribute("user");
-        CompanyVO companyVO = CompanyDAO.findById(user.getCompanyIdx());
 
-        request.setAttribute("company", companyVO);
-        request.getRequestDispatcher("waitCompany.jsp").forward(request, response);
+        boolean result = dao.updateCompanyInfo(null, MemberGrade.EMPTY, user);
+
+        response.setContentType("application/json;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.getWriter().write(String.valueOf(result));
     }
 
     @Override
