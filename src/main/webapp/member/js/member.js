@@ -29,12 +29,12 @@ $(function () {
                 return;
             }
         }
-        let fileForm = $("#file_form")[0];
+        let fileForm = document.querySelector("#file_form");
         let formData = new FormData(fileForm);
         $.ajax("join", {
             processData: false,
             contentType: false,
-            type: "post",
+            method: "post",
             data: formData,
             dataType: "json",
             success: function (result) {
@@ -65,7 +65,7 @@ $(function () {
         $.ajax("update", {
             processData: false,
             contentType: false,
-            type: "post",
+            method: "post",
             data: formData,
             dataType: "json",
             success: function (result) {
