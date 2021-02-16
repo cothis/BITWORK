@@ -49,7 +49,7 @@
         <set>
             COMPANY_IDX = #{companyIdx},
             GRADE = #{grade},
-            <if test="grade > 1">
+            <if test="grade > 2">
                 JOINDATE = SYSDATE
             </if>
         </set>
