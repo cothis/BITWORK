@@ -54,13 +54,11 @@
                     if (res) {
                         let table = document.createElement("table");
                         let thead_tr = table.createTHead().insertRow();
-                        thead_tr.insertCell(-1).outerHTML = "<th>NO</th><th>회사명</th><th>사원수</th>"
+                        thead_tr.insertCell(-1).outerHTML = "<th>회사코드</th><th>회사명</th><th>사원수</th>"
                         table.createTBody();
-                        let i = 0;
                         for (let company of res) {
-                            i++;
                             let tr = table.tBodies[0].insertRow(-1);
-                            tr.insertCell(-1).innerText = i + "";
+                            tr.insertCell(-1).innerText = company.companyIdx;
                             tr.insertCell(-1).innerText = company.companyName;
                             tr.insertCell(-1).innerText = company.companyEmpCnt;
                         }

@@ -48,7 +48,7 @@
         UPDATE MEMBER
         <set>
             COMPANY_IDX = #{companyIdx},
-            GRADE = #{grade}
+            GRADE = #{grade},
             <if test="grade > 1">
                 JOINDATE = SYSDATE
             </if>

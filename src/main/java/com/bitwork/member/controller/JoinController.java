@@ -39,7 +39,7 @@ public class JoinController extends HttpServlet {
 
         MultipartRequest mr = new MultipartRequest(request, folderPath, 1024 * 1024 * 100, "UTF-8", new DefaultFileRenamePolicy());
 
-        String resultStr = "fail";
+        boolean result = false;
         // 데이터 처리
         try {
             String userId = mr.getParameter("user_id");
@@ -53,14 +53,13 @@ public class JoinController extends HttpServlet {
 
             JoinForm joinForm = new JoinForm(userId, userPw, userName, userPhone, userEmail, userPosition, fileName, oriName);
             MemberDAO memberDAO = new MemberDAO();
-            int result = memberDAO.addMember(joinForm);
-            if (result > 0) {
-                resultStr = "ok";
-            }
+            result = memberDAO.addMember(joinForm) > 0;
         } catch (Exception ignore) {
         }
 
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("{\"success\":\"" + resultStr + "\"}");
+        response.setContentType("application/json;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.getWriter().write(String.valueOf(result));
     }
 }

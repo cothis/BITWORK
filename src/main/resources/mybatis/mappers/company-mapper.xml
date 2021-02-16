@@ -14,4 +14,13 @@
         FROM COMPANY
         WHERE COMPANY_IDX = #{companyIdx}
     </select>
+
+    <insert id="addCompany" parameterType="com.bitwork.company.dto.MakeCompanyForm">
+        INSERT INTO COMPANY(COMPANY_IDX, COMPANY_NAME, COMPANY_PHONE, COMPANY_EMAIL)
+        VALUES (COMPANY_SEQ.nextval, #{companyName}, #{companyPhone}, #{companyEmail})
+    </insert>
+
+    <select id="currval" resultType="int">
+        SELECT COMPANY_SEQ.currval FROM DUAL
+    </select>
 </mapper>

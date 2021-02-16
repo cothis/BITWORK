@@ -13,7 +13,7 @@
     <jsp:include page="../commons/aside.jsp"/>
     <div id="container">
         <a href="joinCompany">가입 신청</a>
-        <a href="makeCompany">회사 생성</a>
+        <a href="../company/makeCompany">회사 생성</a>
     </div>
 </body>
 </html>

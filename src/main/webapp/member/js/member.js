@@ -105,7 +105,7 @@ $(function () {
         };
         if (id) {
             $.ajax("api?command=findById", {
-                type: "post",
+                method: "post",
                 data: data,
                 dataType: "json",
                 success: function (data) {
