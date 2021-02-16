@@ -2,6 +2,7 @@ package com.bitwork.member.vo;
 
 import com.bitwork.member.dto.JoinForm;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MemberMapper {
@@ -14,4 +15,6 @@ public interface MemberMapper {
     int deleteMember(Map<String, String> map);
 
     int updateCompanyInfo(Map<String, Object> parameterMap);
+
+    List<MemberVO> findMembersByCompanyId(Integer companyIdx);
 }

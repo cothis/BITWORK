@@ -8,6 +8,7 @@ import com.bitwork.member.vo.MemberVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MemberDAO {
@@ -55,6 +56,17 @@ public class MemberDAO {
             }
 
             return result;
+        }
+    }
+
+    public List<MemberVO> findMembersByCompanyId(Integer companyIdx) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+            MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+
+            System.out.println("companyIdx = " + companyIdx);
+
+
+            return mapper.findMembersByCompanyId(companyIdx);
         }
     }
 }

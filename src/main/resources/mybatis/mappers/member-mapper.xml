@@ -55,4 +55,21 @@
         </set>
         WHERE ID = #{id}
     </update>
+
+    <select id="findMembersByCompanyId" parameterType="int" resultType="com.bitwork.member.vo.MemberVO">
+        SELECT ID,
+               PW,
+               NAME,
+               PHONE,
+               EMAIL,
+               POSITION,
+               REGDATE,
+               COMPANY_IDX,
+               JOINDATE,
+               GRADE,
+               FILE_NAME,
+               ORI_NAME
+        FROM MEMBER
+        WHERE COMPANY_IDX = #{companyIdx}
+    </select>
 </mapper>
