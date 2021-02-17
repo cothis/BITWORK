@@ -72,4 +72,53 @@
         FROM MEMBER
         WHERE COMPANY_IDX = #{companyIdx}
     </select>
+
+    <select id="findListById" parameterType="string" resultType="com.bitwork.member.vo.MemberVO">
+        SELECT ID,
+               PW,
+               NAME,
+               PHONE,
+               EMAIL,
+               POSITION,
+               REGDATE,
+               COMPANY_IDX,
+               JOINDATE,
+               GRADE,
+               FILE_NAME,
+               ORI_NAME
+        FROM MEMBER
+        WHERE ID LIKE '%' || #{id} || '%'
+    </select>
+
+    <select id="findApplyList" parameterType="int" resultType="com.bitwork.member.vo.MemberVO">
+        SELECT ID,
+               PW,
+               NAME,
+               PHONE,
+               EMAIL,
+               POSITION,
+               REGDATE,
+               COMPANY_IDX,
+               JOINDATE,
+               GRADE,
+               FILE_NAME,
+               ORI_NAME
+        FROM MEMBER
+        WHERE COMPANY_IDX = #{companyIdx}
+          AND GRADE = 2
+    </select>
+
+    <update id="updateGrade" parameterType="map">
+        UPDATE MEMBER
+        <if test="isApply">
+            SET GRADE = 3
+        </if>
+        <if test="!isApply">
+            SET GRADE = 0
+        </if>
+        WHERE ID IN
+        <foreach collection="memberIdList" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
 </mapper>

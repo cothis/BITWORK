@@ -14,6 +14,7 @@ public class MemberApi extends HttpServlet {
         response.setHeader("Access-Control-Allow-Origin", "*");
 
         String command = request.getParameter("command");
+        System.out.println("command = " + command);
 
         MemberCommand memberCommand = null;
 
@@ -24,12 +25,19 @@ public class MemberApi extends HttpServlet {
                 break;
             }
             case "findByLikeId" : {
-                memberCommand = new FIndByLikeIdCommand();
+                memberCommand = new FindListByIdCommand();
                 memberCommand.execute(request, response);
+                break;
+            }
+            case "findApplyList" : {
+                memberCommand = new FindApplyListCommand();
+                memberCommand.execute(request, response);
+                break;
             }
             case "searchCompany" : {
                 memberCommand = new SearchCompanyCommand();
                 memberCommand.execute(request, response);
+                break;
             }
             default: {
                 break;

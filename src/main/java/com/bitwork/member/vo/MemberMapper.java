@@ -1,5 +1,6 @@
 package com.bitwork.member.vo;
 
+import com.bitwork.member.dao.MemberDAO;
 import com.bitwork.member.dto.JoinForm;
 
 import java.util.List;
@@ -19,4 +20,8 @@ public interface MemberMapper {
     List<MemberVO> findMembersByCompanyId(Integer companyIdx);
 
     List<MemberVO> findListById(String id); // mapper만들기
+
+    List<MemberDAO> findApplyList(int companyIdx);
+
+    int updateGrade(Map<String, Object> map);
 }

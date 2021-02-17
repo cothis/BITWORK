@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/webjars/axios/0.21.1/dist/axios.js"></script>
     <style>
-        #invite {
+        #inviteForm {
             box-sizing: border-box;
             background-color: #E0E0E0;
             width: 400px;
-            padding: 10px;
         }
 
         .form-group {
@@ -28,69 +28,153 @@
         }
 
         .form-group button {
-            box-sizing: border-box;
             width: 20%;
+        }
+
+        section {
+            padding: 15px;
+        }
+
+        #userTable {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 5px;
+            border-collapse: collapse;
+        }
+
+        #userTable tr {
             height: 30px;
-            background: none;
-            border: none;
+            border: 1px solid #d3d3d3;
         }
 
-        #userList {
-            box-sizing: border-box;
-            border: 1px solid gray;
-            border-radius: 3px;
-            box-shadow: 0 0 5px #000808;
-            padding: 0;
-            background-color: white;
-            list-style: none;
+        #userTable thead {
+            background-color: #16A085;
         }
 
-        #userList > li {
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-around;
-            line-height: 30px;
-            border: 1px solid #F0F0F0;
-            border-radius: 3px;
-
+        #userTable th:not(:last-child) {
+            text-align: left;
+            width: 40%;
         }
 
-        #userList span {
-            box-sizing: border-box;
-            height: 30px;
-            width: 80%;
+        #userTable th:last-child {
+            width: 20%;
+        }
+
+        #userTable th,
+        #userTable td {
             padding-left: 10px;
         }
 
-        #userList a {
+        .transparent {
             box-sizing: border-box;
-            height: 30px;
-            width: 20%;
-            color: #16A085;
+            margin: 0;
+            width: 100%;
+            background: none;
+            border: none;
             cursor: pointer;
-            text-align: center;
+        }
+
+        .invite {
+            color: #16A085;
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelector("#searchUserBtn").addEventListener("click", function () {
-                let xhr = new XMLHttpRequest();
-                let data = {
-                    command: "findByLikeId",
-                    id: document.querySelector("#userId").value
-                }
-                xhr.onload = function () {
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        let idList = JSON.parse(xhr.responseText);
-                        if (idList.length) {
-                            console.log(idList)
-                        }
-                    }
-                }
+        function invite(id) {
+            console.log("invite parameter : " + id);
+        }
 
-                xhr.open("post", "../member/api");
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.send(JSON.stringify(data));
+        function makeTableRow(tbody, data) {
+            tbody.innerHTML = "";
+            if (data.length === 0) {
+                alert("검색된 결과가 없습니다");
+            }
+            data.forEach(function (el) {
+                const tr = document.createElement("tr");
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "transparent invite";
+                button.innerText = "초대";
+                button.addEventListener("click", () => invite(el.id));
+
+                tr.insertCell(-1);
+                tr.insertCell(-1);
+                tr.insertCell(-1);
+                tr.cells[0].textContent = el.id;
+                tr.cells[1].textContent = el.name;
+                tr.cells[2].appendChild(button);
+                tbody.appendChild(tr);
+            });
+        }
+
+        function gradeHandler(isApply, ...memberIdList) {
+            let payload = {
+                isApply: isApply,
+                memberIdList: memberIdList
+            }
+            axios.post("../member/updateGrade", payload).then(function (res) {
+                payload.memberIdList.forEach(function (memberId) {
+                    document.querySelector("#memberId_"+memberId).remove();
+                })
+                alert(res.data + "건 처리되었습니다");
+            });
+        }
+
+        let tbodyTargetGlobal;
+        let tbodyGlobal;
+
+        function loadApplyList() {
+            const tbodyTarget = document.querySelector("#applyTbody");
+            axios.get("../member/api?command=findApplyList").then(function (res) {
+                const tbody = document.createElement("tbody");
+                tbody.id = "applyTbody";
+                if (res.data.result) {
+                    const list = res.data.list;
+                    list.forEach(function (member, idx) {
+                        const tr = tbody.insertRow(-1);
+                        tr.id = "memberId_" + member.id;
+                        const tdNo = tr.insertCell(-1);
+                        const tdId = tr.insertCell(-1);
+                        const tdName = tr.insertCell(-1);
+                        const tdPosition = tr.insertCell(-1);
+                        const tdApply = tr.insertCell(-1);
+                        const applyBtn = document.createElement("button");
+                        const refuseBtn = document.createElement("button");
+                        tdNo.innerText = idx + 1;
+                        tdId.innerText = member.id;
+                        tdName.innerText = member.name;
+                        tdPosition.innerText = member.position;
+                        applyBtn.innerText = "승인";
+                        applyBtn.type = "button";
+                        applyBtn.addEventListener("click", () => gradeHandler(true, member.id));
+                        refuseBtn.innerText = "거절";
+                        refuseBtn.type = "button";
+                        refuseBtn.addEventListener("click", () => gradeHandler(false, member.id));
+                        tdApply.appendChild(applyBtn);
+                        tdApply.appendChild(refuseBtn);
+                    });
+                    tbodyTarget.replaceWith(tbody);
+                } else {
+                    alert("에러가 발생했습니다. 서버관리자에게 문의해주세요");
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadApplyList();
+
+            document.querySelector("#searchUserBtn").addEventListener("click", function () {
+                const tbody = document.getElementById("userTbody");
+                const id = this.form.userId.value;
+                axios.get("../member/api", {
+                    params: {
+                        command: "findByLikeId",
+                        id: id
+                    }
+                }).then(function (res) {
+                    const data = res.data;
+                    makeTableRow(tbody, data);
+                });
             });
         });
     </script>
@@ -98,42 +182,62 @@
 <body>
     <jsp:include page="../commons/nav.jsp"/>
     <jsp:include page="../commons/aside.jsp"/>
-    <div id="invite">
-        <div class="form-group">
-            <label for="userId"></label>
-            <input type="text" placeholder="아이디로 검색" name="userId" id="userId">
-            <button type="button" id="searchUserBtn">검색</button>
-        </div>
-        <ul id="userList">
-            <li>
-                <span>테스트1</span>
-                <a>초대</a>
-            </li>
-            <li>
-                <span>테스트2</span>
-                <a>초대</a>
-            </li>
-        </ul>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>번호</th>
-                <th>직급</th>
-                <th>이름</th>
-                <th>입사일</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="employee" items="${requestScope.employees}" varStatus="status">
-            <tr>
-                <td>${status.count}</td>
-                <td>${employee.position}</td>
-                <td>${employee.name}</td>
-                <td>${employee.joindate}</td>
-            </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+    <section id="inviteSection">
+        <form id="inviteForm">
+            <div class="form-group">
+                <label for="userId"></label>
+                <input type="text" placeholder="아이디로 검색" name="userId" id="userId">
+                <button type="button" id="searchUserBtn" class="transparent">검색</button>
+            </div>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>초대</th>
+                    </tr>
+                </thead>
+                <tbody id="userTbody">
+                    <tr>
+                        <td>테스트1 아이디</td>
+                        <td>테스트1 이름</td>
+                        <td>
+                            <button class="transparent invite">초대</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>테스트2 아이디</td>
+                        <td>테스트2 이름</td>
+                        <td>
+                            <button class="transparent invite">초대</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </section>
+    <section id="inviteList">
+        <table id="inviteTable">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>직급</th>
+                    <th>승인</th>
+                </tr>
+            </thead>
+            <tbody id="applyTbody">
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <button type="button" id="applyAll">모두 승인</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
 </body>
 </html>

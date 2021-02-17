@@ -63,9 +63,6 @@ public class MemberDAO {
         try (SqlSession sqlSession = DBService.getFactory().openSession()) {
             MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 
-            System.out.println("companyIdx = " + companyIdx);
-
-
             return mapper.findMembersByCompanyId(companyIdx);
         }
     }
@@ -75,6 +72,21 @@ public class MemberDAO {
             MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 
             return mapper.findListById(id);
+        }
+    }
+
+    public List<MemberDAO> findApplyList(int companyIdx) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+            MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+
+            return mapper.findApplyList(companyIdx);
+        }
+    }
+
+    public int updateGrade(Map<String, Object> map) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
+            MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+            return mapper.updateGrade(map);
         }
     }
 }
