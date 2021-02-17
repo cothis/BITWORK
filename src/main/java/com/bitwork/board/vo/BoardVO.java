@@ -12,6 +12,7 @@ import java.util.Date;
 @EqualsAndHashCode
 public class BoardVO {
     private Integer boardIdx;
+    private String memberId;
     private String name;
     private String position;
     private Integer status;
@@ -21,4 +22,8 @@ public class BoardVO {
     private String oriName;
     private String regdate;
     private Integer hit;
+    
+	
+    
+    
 }

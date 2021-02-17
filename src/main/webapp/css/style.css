@@ -4,8 +4,10 @@ body {
 	font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
     width: 100%;
-    height: 880px;
+    height: 100%;
     margin: 0 auto;
+    position: fixed;
+    overflow: hidden;
 }
 
 nav {
@@ -24,7 +26,7 @@ nav {
 	text-decoration: none;
 	font-size: 30px;
 	line-height: 70px;
-	margin-left: 100px;
+	margin-left: 110px;
 }
 
 nav ul {
@@ -59,4 +61,5 @@ nav li a:hover {
     width: 420px;
     height: 100%;
     background-color: #313131;
+    display: inline-block;
 }

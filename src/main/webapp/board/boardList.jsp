@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/board.css">
-    <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -43,7 +43,7 @@
 			<c:forEach var="article" items="${list}">
 				<tr>
 					<td>${article.boardIdx}</td>
-					<td><a href='content?boardIdx=${article.boardIdx}'>${article.subject}</a></td>
+					<td><a href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}</a></td>
 					<td>${article.name}</td>
 					<td>${article.regdate}</td>
 					<td>${article.hit}</td>
@@ -87,7 +87,8 @@
 						</ol>
 					</td>
 					<td>
-						<input type="button" value="글쓰기" onclick="javascript:location.href='boardWrite.jsp'">
+						<a href="write">글쓰기</a>
+						<!-- <input type="button" value="글쓰기" onclick="location.href='boardWrite.jsp'"> -->
 					</td>
 				</tr>
 			</tfoot>

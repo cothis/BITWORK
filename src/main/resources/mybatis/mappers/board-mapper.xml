@@ -29,11 +29,9 @@
             	         ORDER BY STATUS DESC, BOARD_IDX DESC
 		               ) B
 		               <include refid="searchOption"/>
-		               <!-- <if test="search_option == '1'.toString()">
-	          				WHERE SUBJECT LIKE '%' || #{keyword} || '%'
-	   				  </if> -->
         	   )
 	</select>
+
 
 	<!-- 페이지에 표시할 데이터 조회
 		parameterType="Map" : begin, end 값 전달 용도
@@ -44,25 +42,62 @@
                   FROM (SELECT BOARD_IDX, SUBJECT, NAME, B.REGDATE, HIT
                           FROM BOARD B, MEMBER M
                          WHERE B.MEMBER_ID = M.ID
-            	         ORDER BY STATUS DESC, BOARD_IDX DESC
+            	         ORDER BY STATUS, BOARD_IDX DESC
                        ) B
                        <include refid="searchOption"/>
                )
          WHERE R_NUM BETWEEN #{begin} AND #{end}	 
 	</select>
 	
+	
 	<!-- 게시글 하나 조회 (BOARD_IDX 값으로) -->
-	<select id="one" parameterType="String" resultType="com.bitwork.board.vo.BoardVO">
+	<select id="one" resultType="com.bitwork.board.vo.BoardVO" parameterType="String">
 		SELECT B.*
-          FROM (SELECT BOARD_IDX, NAME, POSITION, HIT, B.REGDATE, SUBJECT, CONTENT, B.FILE_NAME, B.ORI_NAME
+          FROM (SELECT BOARD_IDX, NAME, POSITION, HIT, B.REGDATE, STATUS, SUBJECT, CONTENT, B.FILE_NAME, B.ORI_NAME
                   FROM BOARD B, MEMBER M
                  WHERE B.MEMBER_ID = M.ID
                ) B
          WHERE BOARD_IDX = #{board_idx}	  
 	</select> 
 	
+	
+	<!-- 게시글 입력 -->
+	<insert id="insert" parameterType="com.bitwork.board.dto.BoardWriteForm">
+		INSERT INTO BOARD 
+			   (BOARD_IDX, MEMBER_ID, STATUS, SUBJECT, CONTENT, FILE_NAME, ORI_NAME)
+		VALUES (BOARD_SEQ.NEXTVAL, #{memberId}, #{status}, #{subject}, #{content}, #{fileName}, #{oriName})
+	</insert>
+	
+	<select id="currval" resultType="int">
+		SELECT BOARD_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="com.bitwork.board.dto.BoardUpdateForm">
+		UPDATE BOARD 
+		   SET STATUS = #{status},
+		   	   SUBJECT = #{subject},
+		   	   CONTENT = #{content},
+		   	   FILE_NAME = #{fileName},
+		   	   ORI_NAME = #{oriName}
+		 WHERE BOARD_IDX = #{boardIdx}	
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	
+	
+	<!-- 조회수 1증가 처리 -->
+	<update id="hit" parameterType="int">
+		UPDATE BOARD
+		   SET HIT = HIT + 1
+		 WHERE BOARD_IDX = #{board_idx}
+	</update>
+	
+	
+	
 	<!-- ===== 댓글처리 ===== -->
-	<!-- 게시글에 딸린 댓글 조회 -->
+	<!-- 게시글에 작성된 댓글 조회 -->
 	<select id="cmtList" parameterType="string" resultType="com.bitwork.board.vo.CommentsVO">
 		SELECT *
           FROM (SELECT CMT_IDX, NAME, POSITION, CMT_CONTENT, CMT_DATE, BOARD_IDX
@@ -70,11 +105,16 @@
                  WHERE C.MEMBER_ID = M.ID
                )
          WHERE BOARD_IDX = #{board_idx}
-         ORDER BY CMT_IDX
+         ORDER BY CMT_IDX DESC
 	</select>
 	
 	
-
+	<!-- 댓글입력 -->
+	<insert id="cmtInsert" parameterType="com.bitwork.board.vo.CommentsVO">
+		INSERT INTO COMMENTS
+		       (CMT_IDX, MEMBER_ID, CMT_CONTENT, BOARD_IDX)
+        VALUES (COMMENTS_SEQ.NEXTVAL, #{memberId}, #{cmtContent}, #{boardIdx})
 	
+	</insert>
 	
 </mapper>

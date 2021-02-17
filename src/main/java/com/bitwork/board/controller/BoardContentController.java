@@ -18,11 +18,15 @@ public class BoardContentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String b_idx = request.getParameter("boardIdx");
+		
+		String b_idx = request.getParameter("b_idx");
+		
+		BoardDAO.updateHit(Integer.parseInt(b_idx));
 
 		BoardVO bvo = BoardDAO.selectOne(b_idx);	
-		request.setAttribute("bvo", bvo);
-
+		request.getSession().setAttribute("bvo", bvo);
+		
+		// 댓글 가져오기
 		List<CommentsVO> cvo = BoardDAO.getCmtList(b_idx);
 		request.setAttribute("cvo", cvo);
 		
@@ -31,7 +35,7 @@ public class BoardContentController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 	}
 
 }

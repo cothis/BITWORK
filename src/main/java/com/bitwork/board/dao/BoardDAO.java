@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.bitwork.board.dto.BoardUpdateForm;
+import com.bitwork.board.dto.BoardWriteForm;
 import com.bitwork.board.vo.BoardVO;
 import com.bitwork.board.vo.CommentsVO;
 import com.bitwork.common.DBService;
@@ -45,14 +47,58 @@ public class BoardDAO {
 		return vo;
 	}
 	
-	// =============== 댓글관련 ===============
-		// 댓글 목록 조회
-		public static List<CommentsVO> getCmtList(String boardIdx) {
-			SqlSession ss = DBService.getFactory().openSession();
-			List<CommentsVO> cmt_list = ss.selectList("board.cmtList", boardIdx);
-			ss.close();
-			
-			return cmt_list;
+	// 게시글 입력
+	public static int insert(BoardWriteForm writeForm) {
+		SqlSession ss = DBService.getFactory().openSession(true); // 오토커밋
+		int result = ss.insert("board.insert", writeForm);
+		if (result > 0) {
+			result = ss.selectOne("board.currval");
 		}
+		ss.close();
+		return result;
+	}
+	
+	
+	// 게시글 수정
+	public static int update(BoardUpdateForm updateForm) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("board.update", updateForm);
+			
+		ss.close();
+		return result;
+	}
+	
+	
+	// 조회수 증가 처리
+	public static int updateHit(int boardIdx) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("board.hit", boardIdx);
+		ss.close();
+		
+		return result;
+	}
+	
+	
+	
+	// =============== 댓글관련 ===============
+	// 댓글 목록 조회
+	public static List<CommentsVO> getCmtList(String boardIdx) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<CommentsVO> cmt_list = ss.selectList("board.cmtList", boardIdx);
+		ss.close();
+		
+		return cmt_list;
+	}
+	
+	// 댓글 입력
+	public static int insertCmt(CommentsVO cvo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("board.cmtInsert", cvo);
+		ss.close();
+		
+		return result;
+	}
+	
+	
 
 }

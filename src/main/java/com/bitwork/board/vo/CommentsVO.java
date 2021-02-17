@@ -15,6 +15,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class CommentsVO {
 	private Integer cmtIdx;
+	private String memberId;
 	private String name;
 	private String position;
 	private String cmtContent;

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bitwork.board.dao.BoardDAO;
 import com.bitwork.board.vo.BoardVO;
 import com.bitwork.board.vo.PagingVO;
+import com.bitwork.member.vo.MemberVO;
 
 @WebServlet("/board/list")
 public class BoardListController extends HttpServlet {
@@ -26,6 +27,17 @@ public class BoardListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(">>> BoardController doGet()");
+		
+		// 임시 로그인 세션
+		MemberVO mvo = new MemberVO();
+		mvo.setId("potato");
+		mvo.setName("감자");
+		mvo.setPosition("부장");
+		
+		System.out.println("mvo : " + mvo);
+		
+		request.getSession().setAttribute("mvo", mvo);
+		
 		
 		// 검색할 때 옵션이랑 키워드
 		search_option = request.getParameter("search_option");

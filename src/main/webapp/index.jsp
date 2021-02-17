@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+String dd = request.getRealPath("data/board");
+System.out.println("realPath : " + dd);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +14,6 @@
 <body>
     <jsp:include page="commons/nav.jsp"/>
     <jsp:include page="commons/aside.jsp"/>
-  
+  	
 </body>
 </html>

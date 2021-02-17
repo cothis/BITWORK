@@ -1,3 +1,4 @@
+
 h1,
 h2,
 h3,
@@ -7,19 +8,16 @@ h6 {
 	margin: 0;
 }
 
-#aside {
-    dispaly : inline-block;
-    float: left;
-}
 
 main {
 	box-sizing: border-box;
-	padding: 10px; 
+	padding: 100px; 
 	display: inline-block;
-	width: 950px;
-	height: 530px;
+	width: 100vh;
+	height: 100%;
 	background-color: AliceBlue;
 	overflow: auto;
+	position: relative;
 }
 
 .paging {
