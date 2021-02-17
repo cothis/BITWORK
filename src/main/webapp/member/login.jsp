@@ -36,7 +36,6 @@
                         } else if (data.grade === 2) {
                             location.href = "waitCompany";
                         } else if (data.grade > 2) {
-                            alert("stop");
                             location.href = "../main";
                         }
                     } else {
@@ -48,44 +47,6 @@
                     alert("서버와 통신에 실패했습니다.");
                 });
         }
-
-        /*
-                $(function () {
-                    $("#login").click(function () {
-                        let formData = $("form").serialize();
-                        $.ajax({
-                            url: "login",
-                            method: "post",
-                            data: formData,
-                            dataType: "json",
-                            success: function (res) {
-                                if (res) {
-                                    alert("login 성공");
-                                    if (res.grade === 0) {
-                                        alert("가입된 회사 없음");
-                                        location.href = "noCompany";
-                                    } else if (res.grade === 1) {
-                                        alert("가입 대기중");
-                                        location.href = "waitCompany";
-                                    } else if (res.grade > 1) {
-                                        alert("직원 또는 사장");
-                                        location.href = "../main";
-                                    }
-                                } else {
-                                    alert("로그인 실패");
-                                }
-                            },
-                            error: function () {
-                                alert("서버와 통신에 실패했습니다.");
-                            }
-                        });
-                    });
-
-                    $("#join").click(function () {
-                        location.href = "join";
-                    });
-                });
-                */
     </script>
 </head>
 <body>
