@@ -36,6 +36,7 @@
                         } else if (data.grade === 2) {
                             location.href = "waitCompany";
                         } else if (data.grade > 2) {
+                            alert("stop");
                             location.href = "../main";
                         }
                     } else {
