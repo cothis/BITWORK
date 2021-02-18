@@ -58,7 +58,6 @@
 
     <select id="findMembersByCompanyId" parameterType="int" resultType="com.bitwork.member.vo.MemberVO">
         SELECT ID,
-               PW,
                NAME,
                PHONE,
                EMAIL,
