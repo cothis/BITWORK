@@ -10,7 +10,7 @@ nav {
     background-color: #5ab194;
 }
 
-#aside {
+aside {
     width: 250px;
     /*height: calc(100% - 70px);*/
     height: 530px;

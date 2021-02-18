@@ -34,8 +34,6 @@
     </script>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <form>
         <div class="form-group">
             <label for="pw">비밀번호 확인</label>

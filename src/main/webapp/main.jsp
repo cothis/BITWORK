@@ -9,8 +9,6 @@
     <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <jsp:include page="commons/nav.jsp"/>
-    <jsp:include page="commons/aside.jsp"/>
     <h2>Main 페이지</h2>
     <a href="member/update">회원정보 수정</a>
     <a href="member/logout">로그아웃</a>

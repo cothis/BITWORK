@@ -16,7 +16,6 @@
     </style>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
     <main>
         <form id="file_form" method="post" enctype="multipart/form-data">
             <div class="input-form">

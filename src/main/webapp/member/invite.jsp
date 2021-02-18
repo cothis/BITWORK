@@ -3,15 +3,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>BitWork - No Company</title>
+    <title>BitWork - Invite</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/member.css">
     <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id="container">
-        <a href="joinCompany">가입 신청</a>
-        <a href="../company/makeCompany">회사 생성</a>
-    </div>
+    <h2>인바이트</h2>
 </body>
 </html>

@@ -199,8 +199,6 @@
     </script>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <section id="inviteSection">
         <form id="inviteForm">
             <div class="form-group">

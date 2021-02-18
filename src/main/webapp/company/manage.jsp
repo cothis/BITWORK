@@ -10,8 +10,6 @@
     <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <table>
         <thead>
             <tr>

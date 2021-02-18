@@ -107,8 +107,6 @@
     </script>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <div class="form-group">
         <label for="companyName"></label>
         <input type="text" id="companyName" placeholder="회사명">

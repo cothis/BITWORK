@@ -50,7 +50,6 @@
     </script>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
     <main>
         <form action="">
             <div class="form-group">

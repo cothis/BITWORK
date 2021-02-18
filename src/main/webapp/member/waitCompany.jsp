@@ -26,8 +26,6 @@
     </script>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <div id="container">
         <div>${requestScope.company.companyName}</div>
         <h2>가입 승인 대기중입니다</h2>

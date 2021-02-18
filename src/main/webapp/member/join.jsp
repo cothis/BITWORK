@@ -15,7 +15,6 @@
     </style>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
     <main>
         <form id="file_form" action="${pageContext.request.contextPath}/member/join" method="post"
               enctype="multipart/form-data">

@@ -16,8 +16,6 @@
     </style>
 </head>
 <body>
-    <jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <form action="">
         <div class="form-group">
             <label for="companyName"></label>
