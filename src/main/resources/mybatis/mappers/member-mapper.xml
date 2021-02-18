@@ -136,4 +136,9 @@
         SET COMPANY_IDX = #{companyIdx}, GRADE = 1
         WHERE ID = #{id}
     </update>
+
+    <!-- 토탈 행 갯수(이름, 회사이름으로 검색)
+    <select id="getTotalRowByMap" parameterType="map">
+
+    </select>-->
 </mapper>

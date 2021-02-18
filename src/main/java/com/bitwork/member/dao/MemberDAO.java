@@ -1,6 +1,7 @@
 package com.bitwork.member.dao;
 
 import com.bitwork.common.DBService;
+import com.bitwork.common.Paging;
 import com.bitwork.member.dto.JoinForm;
 import com.bitwork.member.enumdef.MemberGrade;
 import com.bitwork.member.vo.MemberMapper;
@@ -59,14 +60,22 @@ public class MemberDAO {
         }
     }
 
-    public List<MemberVO> findMembersByCompanyId(Integer companyIdx, String name) {
+    public Map<String, Object> findMembersByCompanyId(Integer companyIdx, String name, String page, Map<String, Object> result) {
         try (SqlSession sqlSession = DBService.getFactory().openSession()) {
             MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
             Map<String, Object> map = new HashMap<>();
             map.put("companyIdx", companyIdx);
             map.put("name", name);
 
-            return mapper.findMembersByCompanyId(map);
+            int totalRow = mapper.getTotalRowByMap(map);
+
+            Paging paging = new Paging(totalRow, Integer.parseInt(page));
+
+            List<MemberVO> employees = mapper.findMembersByCompanyId(map);
+
+            result.put("employees", employees);
+            result.put("paging", paging);
+            return result;
         }
     }
 

@@ -26,4 +26,6 @@ public interface MemberMapper {
     int updateGrade(Map<String, Object> map);
 
     int inviteMember(Map<String, Object> parameterMap);
+
+    int getTotalRowByMap(Map<String, Object> map);
 }

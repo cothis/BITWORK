@@ -1,5 +1,6 @@
 package com.bitwork.company.api;
 
+import com.bitwork.common.Paging;
 import com.bitwork.company.dao.CompanyDAO;
 import com.bitwork.company.vo.CompanyVO;
 import com.bitwork.member.dao.MemberDAO;
@@ -27,9 +28,11 @@ public class CompanyApi extends HttpServlet {
         switch (type) {
             case "employees" : {
                 String name = request.getParameter("name");
-                System.out.println("name = " + name);
-                List<MemberVO> employees = memberDAO.findMembersByCompanyId(user.getCompanyIdx(), name);
-                result.put("employees", employees);
+                String page = request.getParameter("page");
+                if (page == null) {
+                    page = "1";
+                }
+                result = memberDAO.findMembersByCompanyId(user.getCompanyIdx(), name, page, result);
                 break;
             }
         }
