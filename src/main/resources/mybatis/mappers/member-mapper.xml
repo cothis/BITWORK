@@ -121,4 +121,10 @@
             #{id}
         </foreach>
     </update>
+
+    <update id="inviteMember" parameterType="map">
+        UPDATE MEMBER
+        SET COMPANY_IDX = #{companyIdx} ,GRADE = 1
+        WHERE ID = #{id}
+    </update>
 </mapper>

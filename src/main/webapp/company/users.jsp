@@ -13,7 +13,8 @@
         #inviteForm {
             box-sizing: border-box;
             background-color: #E0E0E0;
-            width: 400px;
+            width: 600px;
+            padding: 15px;
         }
 
         .form-group {
@@ -72,16 +73,38 @@
             width: 100%;
             background: none;
             border: none;
+            outline: none;
             cursor: pointer;
         }
 
         .invite {
             color: #16A085;
         }
+
+        .invited {
+            color: #1290ff;
+            cursor: default;
+        }
     </style>
     <script>
-        function invite(id) {
-            console.log("invite parameter : " + id);
+        function invite(id, button) {
+            let params = {
+                command: "invite",
+                id: id
+            };
+            const payload = new URLSearchParams(params);
+
+            axios.post("../member/api", payload)
+                .then((response) => {
+                    if (response.data.result) {
+                        button.innerText = "초대완료";
+                        button.classList.remove("invite");
+                        button.classList.add("invited");
+                        button.removeEventListener();
+                    } else {
+                        alert("초대에 실패했습니다.");
+                    }
+                });
         }
 
         function makeTableRow(tbody, data) {
@@ -95,7 +118,7 @@
                 button.type = "button";
                 button.className = "transparent invite";
                 button.innerText = "초대";
-                button.addEventListener("click", () => invite(el.id));
+                button.addEventListener("click", () => invite(el.id, button));
 
                 tr.insertCell(-1);
                 tr.insertCell(-1);
@@ -114,17 +137,13 @@
             }
             axios.post("../member/updateGrade", payload).then(function (res) {
                 payload.memberIdList.forEach(function (memberId) {
-                    document.querySelector("#memberId_"+memberId).remove();
+                    document.querySelector("#memberId_" + memberId).remove();
                 })
                 alert(res.data + "건 처리되었습니다");
             });
         }
 
-        let tbodyTargetGlobal;
-        let tbodyGlobal;
-
         function loadApplyList() {
-            const tbodyTarget = document.querySelector("#applyTbody");
             axios.get("../member/api?command=findApplyList").then(function (res) {
                 const tbody = document.createElement("tbody");
                 tbody.id = "applyTbody";
@@ -153,7 +172,7 @@
                         tdApply.appendChild(applyBtn);
                         tdApply.appendChild(refuseBtn);
                     });
-                    tbodyTarget.replaceWith(tbody);
+                    document.querySelector("#inviteTable thead").insertAdjacentElement("afterend", tbody);
                 } else {
                     alert("에러가 발생했습니다. 서버관리자에게 문의해주세요");
                 }
@@ -227,9 +246,6 @@
                     <th>승인</th>
                 </tr>
             </thead>
-            <tbody id="applyTbody">
-
-            </tbody>
             <tfoot>
                 <tr>
                     <td colspan="5">

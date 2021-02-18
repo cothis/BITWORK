@@ -89,4 +89,14 @@ public class MemberDAO {
             return mapper.updateGrade(map);
         }
     }
+
+    public int inviteMember(Integer companyIdx, String id) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
+            MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+            Map<String, Object> parameterMap = new HashMap<>();
+            parameterMap.put("companyIdx", companyIdx);
+            parameterMap.put("id", id);
+            return mapper.inviteMember(parameterMap);
+        }
+    }
 }

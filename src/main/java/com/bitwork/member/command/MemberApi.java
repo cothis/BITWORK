@@ -39,6 +39,11 @@ public class MemberApi extends HttpServlet {
                 memberCommand.execute(request, response);
                 break;
             }
+            case "invite" : {
+                memberCommand = new InviteMemberCommand();
+                memberCommand.execute(request, response);
+                break;
+            }
             default: {
                 break;
             }

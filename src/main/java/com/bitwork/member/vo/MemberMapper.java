@@ -24,4 +24,6 @@ public interface MemberMapper {
     List<MemberDAO> findApplyList(int companyIdx);
 
     int updateGrade(Map<String, Object> map);
+
+    int inviteMember(Map<String, Object> parameterMap);
 }
