@@ -98,8 +98,7 @@
                 .then((response) => {
                     if (response.data.result) {
                         button.innerText = "초대완료";
-                        button.classList.remove("invite");
-                        button.classList.add("invited");
+                        button.className = "transparent invited";
                         button.removeEventListener();
                     } else {
                         alert("초대에 실패했습니다.");
@@ -116,10 +115,14 @@
                 const tr = document.createElement("tr");
                 const button = document.createElement("button");
                 button.type = "button";
-                button.className = "transparent invite";
-                button.innerText = "초대";
-                button.addEventListener("click", () => invite(el.id, button));
-
+                if (el.grade === 0) {
+                    button.className = "transparent invite";
+                    button.innerText = "초대";
+                    button.addEventListener("click", () => invite(el.id, button));
+                } else if (el.grade === 1) {
+                    button.className = "transparent invited";
+                    button.innerText = "초대완료";
+                }
                 tr.insertCell(-1);
                 tr.insertCell(-1);
                 tr.insertCell(-1);

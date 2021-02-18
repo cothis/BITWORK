@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="container">
-        <a href="joinCompany">가입 신청</a>
+        <a href="../member/joinCompany">가입 신청</a>
         <a href="../company/makeCompany">회사 생성</a>
     </div>
 </body>

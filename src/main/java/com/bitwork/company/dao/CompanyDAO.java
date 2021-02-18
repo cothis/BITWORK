@@ -59,4 +59,16 @@ public class CompanyDAO {
             return 0;
         }
     }
+
+    public static void upEmpCnt(Integer companyIdx) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+            CompanyMapper mapper = sqlSession.getMapper(CompanyMapper.class);
+            CompanyVO companyVO = mapper.findById(companyIdx);
+            Map<String, Integer> map = new HashMap<>();
+            map.put("companyIdx", companyIdx);
+            map.put("empCnt", companyVO.getCompanyEmpCnt() + 1);
+            mapper.upEmpCnt(map);
+            sqlSession.commit();
+        }
+    }
 }

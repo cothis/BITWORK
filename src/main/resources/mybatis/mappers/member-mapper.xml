@@ -87,7 +87,7 @@
                FILE_NAME,
                ORI_NAME
         FROM MEMBER
-        WHERE ID LIKE '%' || #{id} || '%' AND GRADE = 0
+        WHERE ID LIKE '%' || #{id} || '%' AND (GRADE = 0 OR GRADE = 1)
     </select>
 
     <select id="findApplyList" parameterType="int" resultType="com.bitwork.member.vo.MemberVO">
@@ -110,21 +110,28 @@
 
     <update id="updateGrade" parameterType="map">
         UPDATE MEMBER
-        <if test="isApply">
-            SET GRADE = 3
+        <if test="isApply == true">
+            SET GRADE = 3, JOINDATE = SYSDATE
         </if>
-        <if test="!isApply">
-            SET GRADE = 0
+        <if test="isApply == false">
+            SET GRADE = 0, COMPANY_IDX = NULL, JOINDATE = NULL
         </if>
-        WHERE ID IN
-        <foreach collection="memberIdList" item="id" open="(" close=")" separator=",">
-            #{id}
-        </foreach>
+        <where>
+            <if test="id != null">
+                ID = #{id}
+            </if>
+            <if test="memberIdList != null and id == null">
+                ID IN
+                <foreach collection="memberIdList" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
     </update>
 
     <update id="inviteMember" parameterType="map">
         UPDATE MEMBER
-        SET COMPANY_IDX = #{companyIdx} ,GRADE = 1
+        SET COMPANY_IDX = #{companyIdx}, GRADE = 1
         WHERE ID = #{id}
     </update>
 </mapper>

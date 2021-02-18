@@ -23,4 +23,10 @@
     <select id="currval" resultType="int">
         SELECT COMPANY_SEQ.currval FROM DUAL
     </select>
+
+    <update id="upEmpCnt" parameterType="map">
+        UPDATE COMPANY
+        SET COMPANY_EMP_CNT = #{empCnt}
+        WHERE COMPANY_IDX = #{companyIdx}
+    </update>
 </mapper>
