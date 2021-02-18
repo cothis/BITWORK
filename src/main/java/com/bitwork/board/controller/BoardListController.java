@@ -30,9 +30,9 @@ public class BoardListController extends HttpServlet {
 		
 		// 임시 로그인 세션
 		MemberVO mvo = new MemberVO();
-		mvo.setId("potato");
-		mvo.setName("감자");
-		mvo.setPosition("부장");
+		mvo.setId("goguma");
+		mvo.setName("고구마");
+		mvo.setPosition("차장");
 		
 		System.out.println("mvo : " + mvo);
 		
@@ -49,6 +49,17 @@ public class BoardListController extends HttpServlet {
 		// DB 데이터 조회
 		List<BoardVO> list = BoardDAO.getList(map);
 		System.out.println("현재 페이지 글 목록(list) : " + list);
+		
+		for (BoardVO bvo : list) {
+			if (bvo.getCmtCount().equals("0")) {
+				bvo.setCmtCount("");
+			} else {
+				bvo.setCmtCount(" [" + bvo.getCmtCount() + "]");
+			}
+		}
+		
+
+		
 		
 		request.setAttribute("list",  list);
 		

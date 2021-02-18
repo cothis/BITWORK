@@ -36,14 +36,13 @@
 					<th>작성자</th>
 					<th>작성일</th>
 					<th>조회수</th>
-					
 				</tr>
 			</thead>
 			<tbody id="tbody"> 
 			<c:forEach var="article" items="${list}">
 				<tr>
 					<td>${article.boardIdx}</td>
-					<td><a href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}</a></td>
+					<td><a href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject} ${article.cmtCount }</a></td>
 					<td>${article.name}</td>
 					<td>${article.regdate}</td>
 					<td>${article.hit}</td>

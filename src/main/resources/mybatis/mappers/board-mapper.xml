@@ -39,11 +39,13 @@
 	<select id="list" resultType="com.bitwork.board.vo.BoardVO" parameterType="map">
 		SELECT *
           FROM (SELECT ROWNUM AS R_NUM, B.*
-                  FROM (SELECT BOARD_IDX, SUBJECT, NAME, B.REGDATE, HIT
-                          FROM BOARD B, MEMBER M
-                         WHERE B.MEMBER_ID = M.ID
-            	         ORDER BY STATUS, BOARD_IDX DESC
-                       ) B
+                  FROM (SELECT BOARD_IDX, SUBJECT, NAME, B.REGDATE, HIT, CMT_COUNT
+                          FROM (SELECT B.BOARD_IDX, STATUS, SUBJECT, B.MEMBER_ID, REGDATE, HIT, COUNT(CMT_IDX) AS CMT_COUNT
+                                  FROM BOARD B LEFT JOIN COMMENTS C ON B.BOARD_IDX = C.BOARD_IDX
+                                 GROUP BY B.BOARD_IDX, STATUS, SUBJECT, B.MEMBER_ID, REGDATE, HIT) B, MEMBER M 
+                                 WHERE B.MEMBER_ID = M.ID
+                                 ORDER BY STATUS, BOARD_IDX DESC
+                       ) B   
                        <include refid="searchOption"/>
                )
          WHERE R_NUM BETWEEN #{begin} AND #{end}	 
@@ -51,13 +53,13 @@
 	
 	
 	<!-- 게시글 하나 조회 (BOARD_IDX 값으로) -->
-	<select id="one" resultType="com.bitwork.board.vo.BoardVO" parameterType="String">
+	<select id="one" resultType="com.bitwork.board.vo.BoardVO" parameterType="string">
 		SELECT B.*
-          FROM (SELECT BOARD_IDX, NAME, POSITION, HIT, B.REGDATE, STATUS, SUBJECT, CONTENT, B.FILE_NAME, B.ORI_NAME
+          FROM (SELECT BOARD_IDX, MEMBER_ID, NAME, POSITION, HIT, B.REGDATE, STATUS, SUBJECT, CONTENT, B.FILE_NAME, B.ORI_NAME
                   FROM BOARD B, MEMBER M
                  WHERE B.MEMBER_ID = M.ID
                ) B
-         WHERE BOARD_IDX = #{board_idx}	  
+         WHERE BOARD_IDX = #{boardIdx}	
 	</select> 
 	
 	
@@ -73,38 +75,57 @@
 	</select>
 	
 	
-	<!-- 게시글 수정 -->
-	<update id="update" parameterType="com.bitwork.board.dto.BoardUpdateForm">
+	<!-- 게시글 수정  (파일 변동 있을 때)-->
+	<update id="update_file" parameterType="com.bitwork.board.dto.BoardUpdateForm">
 		UPDATE BOARD 
 		   SET STATUS = #{status},
 		   	   SUBJECT = #{subject},
 		   	   CONTENT = #{content},
 		   	   FILE_NAME = #{fileName},
 		   	   ORI_NAME = #{oriName}
-		 WHERE BOARD_IDX = #{boardIdx}	
+		 WHERE BOARD_IDX = #{boardIdx}		
+	</update>
+	
+	<!-- 게시글 수정  (파일 변동 없을 때)-->
+	<update id="update_onlyText" parameterType="com.bitwork.board.dto.BoardUpdateForm">
+		UPDATE BOARD 
+		   SET STATUS = #{status},
+		   	   SUBJECT = #{subject},
+		   	   CONTENT = #{content}
+		 WHERE BOARD_IDX = #{boardIdx}		
 	</update>
 	
 	<!-- 게시글 삭제 -->
-	
+	<delete id="delete" parameterType="string">
+		DELETE FROM BOARD WHERE BOARD_IDX = #{boardIdx}		
+	</delete>
 	
 	<!-- 조회수 1증가 처리 -->
 	<update id="hit" parameterType="int">
 		UPDATE BOARD
 		   SET HIT = HIT + 1
-		 WHERE BOARD_IDX = #{board_idx}
+		 WHERE BOARD_IDX = #{boardIdx}	
 	</update>
 	
 	
 	
 	<!-- ===== 댓글처리 ===== -->
+	<!-- 댓글 갯수 구하기 -->
+	<select id="getCmtCount" parameterType="int">
+	SELECT COUNT(*) AS CNT 
+      FROM COMMENTS
+     WHERE BOARD_IDX = #{boardIdx}
+	</select>
+	
+	
 	<!-- 게시글에 작성된 댓글 조회 -->
 	<select id="cmtList" parameterType="string" resultType="com.bitwork.board.vo.CommentsVO">
 		SELECT *
-          FROM (SELECT CMT_IDX, NAME, POSITION, CMT_CONTENT, CMT_DATE, BOARD_IDX
+          FROM (SELECT CMT_IDX, MEMBER_ID, NAME, POSITION, CMT_CONTENT, CMT_DATE, BOARD_IDX
                   FROM COMMENTS C, MEMBER M
                  WHERE C.MEMBER_ID = M.ID
                )
-         WHERE BOARD_IDX = #{board_idx}
+         WHERE BOARD_IDX = #{boardIdx}
          ORDER BY CMT_IDX DESC
 	</select>
 	
@@ -116,5 +137,10 @@
         VALUES (COMMENTS_SEQ.NEXTVAL, #{memberId}, #{cmtContent}, #{boardIdx})
 	
 	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="cmtDelete" parameterType="string">
+		DELETE FROM COMMENTS WHERE CMT_IDX = #{cmt_idx}	
+	</delete>
 	
 </mapper>

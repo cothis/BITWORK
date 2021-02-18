@@ -22,8 +22,7 @@ public class BoardVO {
     private String oriName;
     private String regdate;
     private Integer hit;
-    
-	
+    private String cmtCount;
     
     
 }

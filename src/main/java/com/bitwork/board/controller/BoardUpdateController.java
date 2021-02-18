@@ -53,11 +53,8 @@ public class BoardUpdateController extends HttpServlet {
 		}
 		
 		MultipartRequest mr = new MultipartRequest(request, path, (1024 * 1024 * 10), "UTF-8", new DefaultFileRenamePolicy());
-		// 페이지 정보 값들
+		
 		String b_idx = mr.getParameter("b_idx");
-		System.out.println("b_idx : " + b_idx);
-		String cPage = mr.getParameter("cPage");
-		System.out.println("cPage : " + cPage);
 		
 		String option = mr.getParameter("update_option");
 		String subject = mr.getParameter("update_subject");
@@ -73,23 +70,22 @@ public class BoardUpdateController extends HttpServlet {
 		String fileName = "";
 		String oriName = "";
 	
-		int deleteState = 0;
+		int fileUpdate = 1;
 		
-		if (mr.getOriginalFileName("update_file") != null)	 {
+		System.out.println(">>>>>>>>mr.getOriginalFileName(\"update_file\") : " + mr.getOriginalFileName("update_file"));
+		System.out.println(">>>>>>>>mr.getParameter(\"update_file\") : " + mr.getParameter("update_file"));
+		
+		
+		if (mr.getOriginalFileName("update_file") != null) {
 			fileName = mr.getFilesystemName("update_file");
 			oriName = mr.getOriginalFileName("update_file");
-		} else if(mr.getParameter("update_file").equals("delete"))  {
-			fileName = "";
-			oriName = "";
 		} else {
-			//TODO
-			deleteState = 1; 
+			fileUpdate = 0; 
 		}
 		
-		BoardUpdateForm updateForm = new BoardUpdateForm(Integer.parseInt(b_idx), Integer.parseInt(option), subject, content, fileName, oriName);
+		BoardUpdateForm updateForm = new BoardUpdateForm(Integer.parseInt(option), subject, content, fileName, oriName, b_idx);
 		
-		
-		int result = BoardDAO.update(updateForm);
+		int result = BoardDAO.update(updateForm, fileUpdate);
 		
 		response.setContentType("application/json;charset=UTF-8");
 		response.setHeader("Access-Control-Allow-Origin", "*");

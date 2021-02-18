@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/board.css">
     <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	function deleteGo() {
+		var isDelete = confirm("정말 삭제하시겠습니까?");
+		if (isDelete) {
+			location.href = "delete?b_idx=" + ${bvo.boardIdx };
+		}
+	}
+
+</script>    
 </head>
 <body>
 	<jsp:include page="../commons/nav.jsp"/>
@@ -25,6 +34,9 @@
 	    <p>${bvo.regdate}</p>
 	    <hr>
 	    <p>${bvo.content}</p>
+	    <c:if test="${isImage }">
+	    <img src="../data/board/${bvo.fileName }">
+	    </c:if>
 	    <h4>첨부파일</h4>
 	    <c:if test="${empty bvo.fileName }">
 			첨부파일 없음
@@ -36,10 +48,12 @@
 		
 		<tr>
 			<td colspan="2" class="btn">
-			<!-- 세션아이디랑 글쓴이랑 동일해야 수정/삭제 버튼 생성 -->
-				<a href="update?b_idx=${bvo.boardIdx }&cPage=${pvo.nowPage}">수정</a>
-				<input type="button" value="삭제" onclick="">
+			<!-- 글쓴이 아이디랑 세션 아이디 동일해야 버튼 생성 -->
+			<c:if test="${mvo.id == bvo.memberId}">
+				<input type="button" value="수정" onclick="location.href='update?b_idx=${bvo.boardIdx }&cPage=${pvo.nowPage}'">
+				<input type="button" value="삭제" onclick="deleteGo()">
 				<input type="hidden" name="cPage" value="${cPage }">
+			</c:if>
 			</td>
 		</tr>
 		<hr>
@@ -58,16 +72,18 @@
 		<%-- 게시글에 작성된 댓글 표시 영역 --%>
 	<c:forEach var="cmtVO" items="${cvo }">
 	<div class="comment"> 
-		<form action="" method="post">
+		<form action="delete" method="post">
 			<p>${cmtVO.name }  ${cmtVO.position }</p>
 			<p>${cmtVO.cmtDate }</p>
 			<p>${cmtVO.cmtContent }</p>
-			<!------------------------------------- 세션 아이디랑 동일해야 버튼 생성 -->
-			<input type="submit" value="댓글삭제">
-			<input type="hidden" name="c_idx" value="${cmtVO.cmtIdx }">
-			
-			<%-- 댓글 삭제처리 후 게시글 상세페이지로 이동 시  --%>
-			<input type="hidden" name="b_idx" value="${cmtVO.boardIdx }">
+						
+			<c:if test="${(mvo.id == cmtVO.memberId) || (mvo.id == bvo.memberId)}">
+				<input type="submit" value="댓글삭제">
+				<input type="hidden" name="c_idx" value="${cmtVO.cmtIdx }">
+				<%-- 댓글 삭제처리 후 게시글 상세페이지로 이동 시  --%>
+				<input type="hidden" name="b_idx" value="${cmtVO.boardIdx }">
+				<input type="hidden" name="cPage" value="${cPage }">
+			</c:if>
 		</form>
 	</div>
 	<hr>

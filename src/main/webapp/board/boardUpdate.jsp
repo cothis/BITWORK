@@ -26,9 +26,9 @@
 			document.getElementById("fileName").innerText = fileName;
 		});
 		
-		document.getElementById("delete_file").onclick = function () {
-			document.getElementById("update_file").value = "delete";
-			document.getElementById("fileName").innerText = "파일이 없습니다";
+		document.getElementById("remove_file").onclick = function () {
+			document.getElementById("fileName").innerText = "첨부된 파일이 없습니다";
+			document.getElementById("update_file").value = "-";
 		};		
 				
 		document.querySelector("#sendData").addEventListener("click", function () {
@@ -43,7 +43,7 @@
 				dataType: "json",
 				success: function (result) {
 					alert("수정되었습니다.");
-					location.href = "content?b_idx=" + b_idx + "&cPage=" + cPage;
+					location.href = "content?b_idx=" + ${bvo.boardIdx } + "&cPage=" + ${cPage };
 				},
 				error: function () {
 					alert("수정이 실패하였습니다.");
@@ -59,11 +59,11 @@
     <jsp:include page="../commons/aside.jsp"/>
     <main>
     	<h2>게시글 수정</h2>
-	    <input type="button" value="목록" onclick="history.back()">
+	    <input type="button" value="목록" onclick="location.href='list?cPage=${cPage }'">
     	<hr>
 	    <form enctype="multipart/form-data">
-		    <input type="radio" name="update_option" value="1">일반글
-		    <input type="radio" name="update_option" value="0">공지글
+		    <input type="radio" name="update_option" value="1" ${bvo.status eq "1" ? "checked" : "" }>일반글
+		    <input type="radio" name="update_option" value="0" ${bvo.status eq "0" ? "checked" : "" }>공지글
 		    <table>
 		    	<tr>
 				    <th>제목</th>
@@ -81,15 +81,14 @@
 				    <th>첨부파일</th>
 				    <td>
 				    	<div id="fileName">${bvo.oriName }</div>
-				    	<button type="button" id="delete_file">삭제</button>
+				    	<button type="button" id="remove_file">삭제</button>
 				    	<button type="button" id="select_file">파일 선택</button>
 				    	<input type="file" name="update_file" id="update_file">
 				    </td>
 			    </tr>
 		    </table>
-		    <input type="button" value="수정" id="sendData">
 		    <input type="hidden" name="b_idx" value="${bvo.boardIdx }">
-		    <input type="hidden" name="cPage" value="${cPage }">
+		    <input type="button" value="수정" id="sendData">
 		</form>
     </main>
 </body>

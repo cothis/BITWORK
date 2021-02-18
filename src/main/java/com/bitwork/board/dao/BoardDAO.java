@@ -60,13 +60,31 @@ public class BoardDAO {
 	
 	
 	// 게시글 수정
-	public static int update(BoardUpdateForm updateForm) {
+	public static int update(BoardUpdateForm updateForm, int fileUpdate) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.update("board.update", updateForm);
-			
+		// 파일 변동 X, 텍스트만 수정
+		int result = ss.update("board.update_onlyText", updateForm);
+		// 파일 변동 O
+		if (fileUpdate == 1) {
+			result = ss.update("board.update_file", updateForm);
+		}
+		System.out.println("updateForm : " + updateForm);
+		System.out.println("result : " + result + ", fileUpdate : " + fileUpdate);
+		
 		ss.close();
 		return result;
 	}
+	
+	
+	// 게시글 삭제
+	public static int delete(String boardIdx) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.delete("board.delete", boardIdx);
+		ss.close();
+		
+		return result;
+	}
+	
 	
 	
 	// 조회수 증가 처리
@@ -81,6 +99,8 @@ public class BoardDAO {
 	
 	
 	// =============== 댓글관련 ===============
+
+	
 	// 댓글 목록 조회
 	public static List<CommentsVO> getCmtList(String boardIdx) {
 		SqlSession ss = DBService.getFactory().openSession();
@@ -99,6 +119,14 @@ public class BoardDAO {
 		return result;
 	}
 	
+	// 댓글 삭제
+	public static int cmtDelete(String cmtIdx) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.delete("board.cmtDelete", cmtIdx);
+		ss.close();
+		
+		return result;
+	}
 	
 
 }

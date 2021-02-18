@@ -26,6 +26,23 @@ public class BoardContentController extends HttpServlet {
 		BoardVO bvo = BoardDAO.selectOne(b_idx);	
 		request.getSession().setAttribute("bvo", bvo);
 		
+		if (bvo.getFileName() != null) {
+			String fileName = bvo.getFileName();
+			String fileType = "";
+			int i = fileName.lastIndexOf(".");
+			if (i > 0) {
+				fileType = fileName.substring(i + 1);
+			}
+			
+			boolean isImage = false;
+			
+			if (fileType.equals("jpg") || fileType.equals("png") || fileType.equals("jpge")) {
+				isImage = true;
+			}
+			
+			request.setAttribute("isImage", isImage);
+		}
+		
 		// 댓글 가져오기
 		List<CommentsVO> cvo = BoardDAO.getCmtList(b_idx);
 		request.setAttribute("cvo", cvo);
