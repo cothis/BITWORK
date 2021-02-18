@@ -24,8 +24,8 @@ public class MemberApi extends HttpServlet {
                 memberCommand.execute(request, response);
                 break;
             }
-            case "findByLikeId" : {
-                memberCommand = new FindListByIdCommand();
+            case "findInvitable" : {
+                memberCommand = new FindInvitableLikeIdCommand();
                 memberCommand.execute(request, response);
                 break;
             }

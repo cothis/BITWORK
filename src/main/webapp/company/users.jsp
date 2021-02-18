@@ -187,7 +187,7 @@
                 const id = this.form.userId.value;
                 axios.get("../member/api", {
                     params: {
-                        command: "findByLikeId",
+                        command: "findInvitable",
                         id: id
                     }
                 }).then(function (res) {

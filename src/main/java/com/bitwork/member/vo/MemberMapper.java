@@ -19,7 +19,7 @@ public interface MemberMapper {
 
     List<MemberVO> findMembersByCompanyId(Integer companyIdx);
 
-    List<MemberVO> findListById(String id); // mapper만들기
+    List<MemberVO> findInvitable(String id); // mapper만들기
 
     List<MemberDAO> findApplyList(int companyIdx);
 

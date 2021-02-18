@@ -67,11 +67,11 @@ public class MemberDAO {
         }
     }
 
-    public List<MemberVO> findListById(String id) {
+    public List<MemberVO> findInvitable(String id) {
         try (SqlSession sqlSession = DBService.getFactory().openSession()) {
             MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 
-            return mapper.findListById(id);
+            return mapper.findInvitable(id);
         }
     }
 

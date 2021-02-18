@@ -73,7 +73,7 @@
         WHERE COMPANY_IDX = #{companyIdx}
     </select>
 
-    <select id="findListById" parameterType="string" resultType="com.bitwork.member.vo.MemberVO">
+    <select id="findInvitable" parameterType="string" resultType="com.bitwork.member.vo.MemberVO">
         SELECT ID,
                PW,
                NAME,
@@ -87,7 +87,7 @@
                FILE_NAME,
                ORI_NAME
         FROM MEMBER
-        WHERE ID LIKE '%' || #{id} || '%'
+        WHERE ID LIKE '%' || #{id} || '%' AND GRADE = 0
     </select>
 
     <select id="findApplyList" parameterType="int" resultType="com.bitwork.member.vo.MemberVO">
