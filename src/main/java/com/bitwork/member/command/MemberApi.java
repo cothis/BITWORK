@@ -20,7 +20,7 @@ public class MemberApi extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
-        
+
         String command = request.getParameter("command");
         System.out.println("command = " + command);
 
@@ -64,21 +64,6 @@ public class MemberApi extends HttpServlet {
                 } else {
                     map.put("result", false);
                     map.put("cause", "companyVO가 null입니다");
-                }
-                response.getWriter().write(new Gson().toJson(map));
-                break;
-            }
-            case "applyRefuseInvite": {
-                if (user != null) {
-                    MemberDAO dao = new MemberDAO();
-                    Map<String, Object> parameterMap = new HashMap<>();
-                    parameterMap.put("isApply", request.getParameter("isApply"));
-                    parameterMap.put("id", user.getId());
-                    int result = dao.updateGrade(parameterMap);
-                    map.put("result", result);
-                } else {
-                    map.put("result", false);
-                    map.put("cause", "memberVO가 null입니다");
                 }
                 response.getWriter().write(new Gson().toJson(map));
                 break;
