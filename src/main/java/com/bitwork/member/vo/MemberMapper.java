@@ -17,7 +17,7 @@ public interface MemberMapper {
 
     int updateCompanyInfo(Map<String, Object> parameterMap);
 
-    List<MemberVO> findMembersByCompanyId(Integer companyIdx);
+    List<MemberVO> findMembersByCompanyId(Map<String, Object> map);
 
     List<MemberVO> findInvitable(String id); // mapper만들기
 

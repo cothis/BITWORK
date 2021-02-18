@@ -56,7 +56,7 @@
         WHERE ID = #{id}
     </update>
 
-    <select id="findMembersByCompanyId" parameterType="int" resultType="com.bitwork.member.vo.MemberVO">
+    <select id="findMembersByCompanyId" parameterType="map" resultType="com.bitwork.member.vo.MemberVO">
         SELECT ID,
                NAME,
                PHONE,
@@ -70,6 +70,9 @@
                ORI_NAME
         FROM MEMBER
         WHERE COMPANY_IDX = #{companyIdx}
+        <if test="name != null">
+            AND NAME LIKE '%' || #{name} || '%'
+        </if>
     </select>
 
     <select id="findInvitable" parameterType="string" resultType="com.bitwork.member.vo.MemberVO">

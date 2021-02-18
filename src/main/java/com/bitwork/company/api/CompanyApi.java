@@ -26,7 +26,9 @@ public class CompanyApi extends HttpServlet {
         String type = request.getParameter("type");
         switch (type) {
             case "employees" : {
-                List<MemberVO> employees = memberDAO.findMembersByCompanyId(user.getCompanyIdx());
+                String name = request.getParameter("name");
+                System.out.println("name = " + name);
+                List<MemberVO> employees = memberDAO.findMembersByCompanyId(user.getCompanyIdx(), name);
                 result.put("employees", employees);
                 break;
             }

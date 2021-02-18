@@ -59,11 +59,14 @@ public class MemberDAO {
         }
     }
 
-    public List<MemberVO> findMembersByCompanyId(Integer companyIdx) {
+    public List<MemberVO> findMembersByCompanyId(Integer companyIdx, String name) {
         try (SqlSession sqlSession = DBService.getFactory().openSession()) {
             MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+            Map<String, Object> map = new HashMap<>();
+            map.put("companyIdx", companyIdx);
+            map.put("name", name);
 
-            return mapper.findMembersByCompanyId(companyIdx);
+            return mapper.findMembersByCompanyId(map);
         }
     }
 
