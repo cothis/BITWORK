@@ -2,5 +2,49 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sign">
+<mapper namespace="com.bitwork.sign.vo.SignMapper">
+
+    <select id="totalRow" parameterType="map" resultType="int">
+        SELECT COUNT(DOC_NO) FROM SIGN
+        <where>
+            <if test="docStatus != null">
+                AND DOC_STATUS = #{docStatus}
+            </if>
+            <if test="grade == 3">
+                AND MEMBER_ID = #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByMap" parameterType="map" resultType="com.bitwork.sign.vo.SignVO">
+        SELECT DOC_NO,
+               DOC_TITLE,
+               MEMBER_ID,
+               INSERT_DATE,
+               SIGN_DATE,
+               DOC_STATUS,
+               DOC_CONTENT,
+               FILE_NAME,
+               ORI_NAME,
+               USER_READ,
+               BOSS_READ
+        FROM (
+                 SELECT ROW_NUMBER() over (ORDER BY DOC_NO DESC) AS RN, S.*
+                 FROM SIGN S
+                <where>
+                    <if test="docStatus != null">
+                        AND DOC_STATUS = #{docStatus}
+                    </if>
+                    <if test="grade == 3">
+                        AND MEMBER_ID = #{id}
+                    </if>
+                </where>
+             )
+        WHERE RN BETWEEN #{startRow} and #{endRow}
+    </select>
+
+    <insert id="insertDocument" parameterType="com.bitwork.sign.vo.SignWriteForm">
+        INSERT INTO SIGN(DOC_NO, DOC_TITLE, MEMBER_ID, WRITER_NAME, DOC_CONTENT, FILE_NAME, ORI_NAME)
+        VALUES (SIGN_SEQ.nextval, #{docTitle}, #{memberId}, #{writerName}, #{docContent}, #{fileName}, #{oriName})
+    </insert>
 </mapper>
