@@ -23,7 +23,13 @@ public class SignWriteController extends HttpServlet {
         SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
         request.setAttribute("date", sdf.format(date));
 
-        request.getRequestDispatcher("write.jsp").forward(request, response);
+        String docNo = request.getParameter("docNo");
+        if (docNo != null && docNo.length() > 0) {
+            SignVO vo = SignDAO.findByDocNo(Integer.parseInt(docNo));
+            request.setAttribute("vo", vo);
+        }
+
+        request.getRequestDispatcher("write_detail.jsp").forward(request, response);
     }
 
     @Override
@@ -38,19 +44,30 @@ public class SignWriteController extends HttpServlet {
             }
         }
 
-        MemberVO user = (MemberVO) request.getSession().getAttribute("user");
-
         MultipartRequest mr = new MultipartRequest(request, dataFolder, 10 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
 
+        MemberVO user = (MemberVO) request.getSession().getAttribute("user");
         String subject = mr.getParameter("subject");
         String content = mr.getParameter("content");
         String writer = mr.getParameter("writer");
         String fileName = mr.getFilesystemName("file");
         String oriName = mr.getOriginalFileName("file");
-        SignWriteForm formData = new SignWriteForm(user.getId(), user.getName(), subject, content, fileName, oriName);
 
-        int result = SignDAO.insertDocument(formData);
+        String sign = mr.getParameter("sign");
+        System.out.println("sign = " + sign);
+        String docNo = mr.getParameter("docNo");
+        System.out.println("docNo = " + docNo);
+        if (sign != null) {
+            // 업데이트 처리 (승인, 거절)
+            int result = SignDAO.updateSign(Integer.parseInt(docNo), sign);
+            response.sendRedirect("list?docStatus=완료");
+        } else {
+            // 작성 처리
+            SignWriteForm formData = new SignWriteForm(user.getId(), user.getName(), subject, content, fileName, oriName);
 
-        response.sendRedirect("list");
+            int result = SignDAO.insertDocument(formData);
+            response.sendRedirect("list");
+        }
+
     }
 }

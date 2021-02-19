@@ -48,4 +48,24 @@ public class SignDAO {
         }
 
     }
+
+    public static SignVO findByDocNo(int docNo) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+            SignMapper mapper = sqlSession.getMapper(SignMapper.class);
+
+            return mapper.findByDocNo(docNo);
+        }
+    }
+
+    public static int updateSign(int docNo, String sign) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
+            SignMapper mapper = sqlSession.getMapper(SignMapper.class);
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("docNo", docNo);
+            map.put("sign", sign);
+
+            return mapper.updateSign(map);
+        }
+    }
 }

@@ -7,7 +7,7 @@
     <select id="totalRow" parameterType="map" resultType="int">
         SELECT COUNT(DOC_NO) FROM SIGN
         <where>
-            <if test="docStatus != null">
+            <if test="docStatus != null and docStatus.length() > 0">
                 AND DOC_STATUS = #{docStatus}
             </if>
             <if test="grade == 3">
@@ -32,7 +32,7 @@
                  SELECT ROW_NUMBER() over (ORDER BY DOC_NO DESC) AS RN, S.*
                  FROM SIGN S
                 <where>
-                    <if test="docStatus != null">
+                    <if test="docStatus != null and docStatus.length() > 0">
                         AND DOC_STATUS = #{docStatus}
                     </if>
                     <if test="grade == 3">
@@ -47,4 +47,27 @@
         INSERT INTO SIGN(DOC_NO, DOC_TITLE, MEMBER_ID, WRITER_NAME, DOC_CONTENT, FILE_NAME, ORI_NAME)
         VALUES (SIGN_SEQ.nextval, #{docTitle}, #{memberId}, #{writerName}, #{docContent}, #{fileName}, #{oriName})
     </insert>
+
+    <select id="findByDocNo" resultType="com.bitwork.sign.vo.SignVO">
+        SELECT DOC_NO,
+               DOC_TITLE,
+               MEMBER_ID,
+               INSERT_DATE,
+               SIGN_DATE,
+               DOC_STATUS,
+               DOC_CONTENT,
+               FILE_NAME,
+               ORI_NAME,
+               USER_READ,
+               BOSS_READ,
+               WRITER_NAME
+        FROM SIGN
+        WHERE DOC_NO = #{docNo}
+    </select>
+
+    <update id="updateSign" parameterType="map">
+        UPDATE SIGN
+        SET DOC_STATUS = #{sign}
+        WHERE DOC_NO = #{docNo}
+    </update>
 </mapper>
