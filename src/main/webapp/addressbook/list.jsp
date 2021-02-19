@@ -48,9 +48,9 @@
             }
         }
 
-        function searchAddr(form) {
-            form.action = "list?name=" + form.name.value;
-            form.submit();
+        function searchAddr() {
+            let name = document.querySelector(".form-buttons > input").value;
+            location.href = "list?name=" + name;
         }
 
         function deleteAddr() {
@@ -76,19 +76,19 @@
                 });
         }
 
-        function addAddr(form) {
-            alert("추가");
+        function addAddr() {
+            location.href = "modify";
         }
     </script>
 </head>
 <body>
-    <form class="form-buttons" method="get">
-        <button type="button" onclick="addAddr(this.form)">추가</button>
+    <section class="form-buttons">
+        <button type="button" onclick="addAddr()">추가</button>
         <button type="button" onclick="deleteAddr()">삭제</button>
         <label for="name"></label>
         <input type="text" name="name" id="name" placeholder="이름" value="${param.name}">
-        <button type="button" onclick="searchAddr(this.form)">검색</button>
-    </form>
+        <button type="button" onclick="searchAddr()">검색</button>
+    </section>
     <section id="bbs">
         <table>
             <thead>
@@ -111,7 +111,7 @@
                             <input type="checkbox" name="selectRows" value="${vo.addressbookIdx}" onclick="checkOthers()">
                         </label>
                     </td>
-                    <td>${vo.name}</td>
+                    <td><a href="modify?idx=${vo.addressbookIdx}&nowPage=${param.nowPage}">${vo.name}</a></td>
                     <td>${vo.email}</td>
                     <td>${vo.company}</td>
                     <td>${vo.phone}</td>

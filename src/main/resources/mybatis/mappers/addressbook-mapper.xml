@@ -28,6 +28,23 @@
             #{idx}
         </foreach>
     </delete>
+
+    <insert id="insertAddress" parameterType="com.bitwork.addressbook.vo.AddressBookVO">
+        INSERT INTO ADDRESSBOOK(ADDRESSBOOK_IDX, NAME, PHONE, EMAIL, COMPANY, COMPANY_IDX)
+        VALUES (ADDRESSBOOK_SEQ.nextval, #{name}, #{phone}, #{email}, #{company}, #{companyIdx})
+    </insert>
+
+    <select id="findByIdx" parameterType="int" resultType="com.bitwork.addressbook.vo.AddressBookVO">
+        SELECT ADDRESSBOOK_IDX, NAME, PHONE, EMAIL, COMPANY, COMPANY_IDX
+        FROM ADDRESSBOOK
+        WHERE ADDRESSBOOK_IDX = #{idx}
+    </select>
+
+    <update id="updateAddress" parameterType="com.bitwork.addressbook.vo.AddressBookVO">
+        UPDATE ADDRESSBOOK
+        SET NAME = #{name}, EMAIL = #{email}, COMPANY = #{company}, PHONE = #{phone}
+        WHERE ADDRESSBOOK_IDX = #{addressbookIdx}
+    </update>
 </mapper>
 
 

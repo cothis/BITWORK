@@ -1,6 +1,7 @@
 package com.bitwork.addressbook.dao;
 
 import com.bitwork.addressbook.vo.AddressBookMapper;
+import com.bitwork.addressbook.vo.AddressBookVO;
 import com.bitwork.common.DBService;
 import com.bitwork.common.Paging;
 import org.apache.ibatis.session.SqlSession;
@@ -39,6 +40,36 @@ public class AddressBookDAO {
 
             return mapper.deleteByIdxList(list);
 
+        }
+    }
+
+    public static int insertAddress(AddressBookVO vo) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
+            AddressBookMapper mapper = sqlSession.getMapper(AddressBookMapper.class);
+
+            return mapper.insertAddress(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public static AddressBookVO findByIdx(int idx) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+            AddressBookMapper mapper = sqlSession.getMapper(AddressBookMapper.class);
+
+            return mapper.findByIdx(idx);
+        }
+    }
+
+    public static int updateAddress(AddressBookVO vo) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
+            AddressBookMapper mapper = sqlSession.getMapper(AddressBookMapper.class);
+
+            return mapper.updateAddress(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }

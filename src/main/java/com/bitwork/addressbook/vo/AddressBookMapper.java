@@ -9,4 +9,10 @@ public interface AddressBookMapper {
     int totalRow(Map<String, Object> map);
 
     int deleteByIdxList(List<Integer> list);
+
+    int insertAddress(AddressBookVO vo);
+
+    AddressBookVO findByIdx(int idx);
+
+    int updateAddress(AddressBookVO vo);
 }
