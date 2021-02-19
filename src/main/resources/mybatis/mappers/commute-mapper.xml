@@ -3,4 +3,41 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commute">
+	<!-- 이번달 출석 일수 집계 -->
+	<select id="thisMonth_good" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		  FROM (SELECT *
+                  FROM (SELECT *
+                          FROM (SELECT TO_CHAR(C_DATE, 'YY/MM') YYMM, MEMBER_ID, STATUS
+                                  FROM COMMUTE)
+                                 WHERE YYMM LIKE (SELECT TO_CHAR(SYSDATE,'YY/MM')
+                                                    FROM DUAL)
+                               )
+                 WHERE MEMBER_ID = #{memberId})
+         WHERE STATUS = 0
+	</select>
+
+
+	<!-- 이번달 지각 일수 집계 -->
+	<select id="thisMonth_late" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		  FROM (SELECT *
+                  FROM (SELECT *
+                          FROM (SELECT TO_CHAR(C_DATE, 'YY/MM') YYMM, MEMBER_ID, STATUS
+                                  FROM COMMUTE)
+                                 WHERE YYMM LIKE (SELECT TO_CHAR(SYSDATE,'YY/MM')
+                                                    FROM DUAL)
+                               )
+                 WHERE MEMBER_ID = #{memberId})
+         WHERE STATUS = 1
+	</select>
+	
+	
+	
+	<!-- 출석 -->
+	<insert id="inCheck" parameterType="com.bitwork.commute.vo.CommuteVO">
+		INSERT INTO COMMUTE (MEMBER_ID, STATUS)
+		VALUES (#{memberId}, #{status})
+	</insert>
+
 </mapper>

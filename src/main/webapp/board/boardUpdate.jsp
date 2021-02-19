@@ -24,11 +24,13 @@
 		document.getElementById("update_file").addEventListener("change", function () {
 			let fileName = this.files[0].name;
 			document.getElementById("fileName").innerText = fileName;
+			document.querySelector("#removed").value = "false";
 		});
 		
 		document.getElementById("remove_file").onclick = function () {
 			document.getElementById("fileName").innerText = "첨부된 파일이 없습니다";
-			document.getElementById("update_file").value = "-";
+			document.getElementById("update_file").value = "";
+			document.querySelector("#removed").value = "true";
 		};		
 				
 		document.querySelector("#sendData").addEventListener("click", function () {
@@ -84,6 +86,7 @@
 				    	<button type="button" id="remove_file">삭제</button>
 				    	<button type="button" id="select_file">파일 선택</button>
 				    	<input type="file" name="update_file" id="update_file">
+				    	<input type="hidden" name="removed" id="removed">
 				    </td>
 			    </tr>
 		    </table>

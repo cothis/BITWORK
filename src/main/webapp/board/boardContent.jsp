@@ -61,7 +61,7 @@
 		<form action="comments" method="post">
 			<!-- 댓글쓰는사람 이름 -->
 			<h5>${mvo.name } ${mvo.position }</h5>
-			<textarea name="content" rows="4" cols="55"></textarea>
+			<textarea name="content" rows="4" cols="55" required></textarea>
 			<input type="submit" value="댓글입력">
 			<input type="hidden" name="b_idx" value="${bvo.boardIdx }">
 		</form>

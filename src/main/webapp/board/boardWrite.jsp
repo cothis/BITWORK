@@ -14,6 +14,19 @@
 	
 	$(function(){
 		$("#sendData").on("click", function () {
+			/* let requiredList = this.form.querySelectorAll("[required]");
+			for (let item of requiredList) {
+				if (item.value == null || item.value.trim().length === 0){
+					alert(item.name + "에 값을 입력해주세요");
+					return;
+				}
+			} */
+			
+			if (!this.form.checkValidity()) {
+				this.form.reportValidity();
+				return;
+			}
+			
 			let formData = new FormData(this.form);
 			
 			$.ajax({
@@ -54,13 +67,13 @@
 		    	<tr>
 				    <th>제목</th>
 				    <td>
-				    	<input type="text" name="write_subject" id="write_subject" pattern="">
+				    	<input type="text" name="write_subject" id="write_subject" required>
 				    </td>
 			    </tr>
 			    <tr>
 				    <th>내용</th>
 				    <td>
-				    	<textarea name="write_content" id="write_content" cols="50" rows="10"></textarea>
+				    	<textarea name="write_content" id="write_content" cols="50" rows="10" required></textarea>
 				    </td>
 			    </tr>
 			    <tr>

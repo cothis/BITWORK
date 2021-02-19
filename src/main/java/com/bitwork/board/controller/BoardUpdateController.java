@@ -58,7 +58,7 @@ public class BoardUpdateController extends HttpServlet {
 		
 		String option = mr.getParameter("update_option");
 		String subject = mr.getParameter("update_subject");
-		
+				
 		// 공지 선택하면 앞에 문자열 붙여줌
 		if (option.equals("0")) { 
 		 subject = "[공지] " + subject;
@@ -67,16 +67,17 @@ public class BoardUpdateController extends HttpServlet {
 		System.out.println("subject: " + subject);
 		
 		String content = mr.getParameter("update_content");
+		String fileRemoved = mr.getParameter("removed");
+
 		String fileName = "";
 		String oriName = "";
 	
 		int fileUpdate = 1;
 		
-		System.out.println(">>>>>>>>mr.getOriginalFileName(\"update_file\") : " + mr.getOriginalFileName("update_file"));
-		System.out.println(">>>>>>>>mr.getParameter(\"update_file\") : " + mr.getParameter("update_file"));
-		
-		
-		if (mr.getOriginalFileName("update_file") != null) {
+		if (fileRemoved.equals("true")) {
+			fileName = null;
+			oriName = null;
+		} else if (mr.getOriginalFileName("update_file") != null) {
 			fileName = mr.getFilesystemName("update_file");
 			oriName = mr.getOriginalFileName("update_file");
 		} else {

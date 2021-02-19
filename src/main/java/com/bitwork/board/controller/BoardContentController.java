@@ -36,7 +36,7 @@ public class BoardContentController extends HttpServlet {
 			
 			boolean isImage = false;
 			
-			if (fileType.equals("jpg") || fileType.equals("png") || fileType.equals("jpge")) {
+			if (fileType.equals("jpg") || fileType.equals("png") || fileType.equals("jpeg")) {
 				isImage = true;
 			}
 			

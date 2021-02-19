@@ -30,9 +30,9 @@ public class BoardListController extends HttpServlet {
 		
 		// 임시 로그인 세션
 		MemberVO mvo = new MemberVO();
-		mvo.setId("goguma");
-		mvo.setName("고구마");
-		mvo.setPosition("차장");
+		mvo.setId("onion");
+		mvo.setName("양파");
+		mvo.setPosition("사원");
 		
 		System.out.println("mvo : " + mvo);
 		
