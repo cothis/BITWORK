@@ -7,8 +7,8 @@ import lombok.ToString;
 @ToString
 public class Paging {
     //Config
-    private static final int ROW_PER_PAGE = 10;
-    private static final int PAGE_PER_BLOCK = 5;
+    private int rowPerPage = 10;
+    private int pagePerBlock = 5;
 
     //전체 Data
     private final int totalRow;
@@ -32,13 +32,22 @@ public class Paging {
         calculation();
     }
 
-    private void calculation() {
-        totalPage = totalRow / ROW_PER_PAGE + 1;
-        startRow = (nowPage - 1) * ROW_PER_PAGE + 1;
-        endRow = Math.min(nowPage * ROW_PER_PAGE, totalRow);
+    public Paging(int totalRow, int nowPage, int rowPerPage, int pagePerBlock) {
+        this.rowPerPage = rowPerPage;
+        this.pagePerBlock = pagePerBlock;
+        this.totalRow = totalRow;
+        this.nowPage = nowPage;
+        calculation();
+    }
 
-        nowBlock = (nowPage - 1) / PAGE_PER_BLOCK + 1;
-        startPage = (nowBlock - 1) * PAGE_PER_BLOCK + 1;
-        endPage = Math.min(nowBlock * PAGE_PER_BLOCK, totalPage);
+    private void calculation() {
+        totalPage = (totalRow - 1) / rowPerPage + 1;
+        nowBlock = (nowPage - 1) / pagePerBlock + 1;
+
+        startRow = (nowPage - 1) * rowPerPage + 1;
+        endRow = Math.min(nowPage * rowPerPage, totalRow);
+
+        startPage = (nowBlock - 1) * pagePerBlock + 1;
+        endPage = Math.min(nowBlock * pagePerBlock, totalPage);
     }
 }

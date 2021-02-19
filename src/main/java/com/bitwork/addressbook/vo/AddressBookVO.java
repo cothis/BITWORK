@@ -15,5 +15,6 @@ public class AddressBookVO {
     private String phone;
     private String email;
     private String company;
-    private Integer picture;
+    private Integer companyIdx;
 }
+
