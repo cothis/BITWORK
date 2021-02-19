@@ -67,8 +67,12 @@
             }
 
             axios.post("delete", data)
-                .then(result => {
-                    console.log(result);
+                .then(response => {
+                    if (response.data.result) {
+                        location.href = "list?name=${param.name}&nowPage=${param.nowPage}";
+                    } else {
+                        alert("삭제 실패입니다");
+                    }
                 });
         }
 

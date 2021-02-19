@@ -21,7 +21,7 @@ public class AddressBookDAO {
 
             int totalRow = mapper.totalRow(map);
 
-            Paging paging = new Paging(totalRow, nowPage, 3, 3);
+            Paging paging = new Paging(totalRow, nowPage, 10, 5);
             map.put("startRow", paging.getStartRow());
             map.put("endRow", paging.getEndRow());
 

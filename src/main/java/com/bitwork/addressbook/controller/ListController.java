@@ -18,7 +18,7 @@ public class ListController extends HttpServlet {
         String name = request.getParameter("name");
         String nowPageStr = request.getParameter("nowPage");
         int nowPage = 1;
-        if (nowPageStr != null) {
+        if (nowPageStr != null && nowPageStr.trim().length() > 0) {
             nowPage = Integer.parseInt(nowPageStr);
         }
 

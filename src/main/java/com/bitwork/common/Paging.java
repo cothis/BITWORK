@@ -15,7 +15,7 @@ public class Paging {
     private int totalPage;
     
     //현재 Data
-    private final int nowPage;
+    private int nowPage;
     private int nowBlock;
     
     //현재 페이지에서 보일 시작, 끝 행번호
@@ -42,6 +42,7 @@ public class Paging {
 
     private void calculation() {
         totalPage = (totalRow - 1) / rowPerPage + 1;
+        nowPage = Math.min(nowPage, totalPage);
         nowBlock = (nowPage - 1) / pagePerBlock + 1;
 
         startRow = (nowPage - 1) * rowPerPage + 1;

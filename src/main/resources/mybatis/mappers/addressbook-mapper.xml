@@ -23,7 +23,10 @@
 
     <delete id="deleteByIdxList" parameterType="list">
         DELETE FROM ADDRESSBOOK
-        WHERE ADDRESSBOOK_IDX IN ()
+        WHERE ADDRESSBOOK_IDX IN 
+        <foreach collection="list" item="idx" open="(" close=")" separator=",">
+            #{idx}
+        </foreach>
     </delete>
 </mapper>
 
