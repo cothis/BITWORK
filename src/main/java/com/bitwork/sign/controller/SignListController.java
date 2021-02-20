@@ -14,9 +14,8 @@ import java.util.Map;
 public class SignListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // 테스트용 로그인 유저
-        request.getSession().setAttribute("user", new MemberVO("cothis", "1234", "민호", "010-1234-5678", "abc@abc.com", "사원", null, 15, null, 4, null, null));
+        // request.getSession().setAttribute("user", new MemberVO("cothis", "1234", "민호", "010-1234-5678", "abc@abc.com", "사원", null, 15, null, 4, null, null));
 
         MemberVO user = (MemberVO) request.getSession().getAttribute("user");
         String nowPageStr = request.getParameter("nowPage");

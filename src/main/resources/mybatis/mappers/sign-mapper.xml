@@ -17,17 +17,7 @@
     </select>
 
     <select id="findByMap" parameterType="map" resultType="com.bitwork.sign.vo.SignVO">
-        SELECT DOC_NO,
-               DOC_TITLE,
-               MEMBER_ID,
-               INSERT_DATE,
-               SIGN_DATE,
-               DOC_STATUS,
-               DOC_CONTENT,
-               FILE_NAME,
-               ORI_NAME,
-               USER_READ,
-               BOSS_READ
+        SELECT *
         FROM (
                  SELECT ROW_NUMBER() over (ORDER BY DOC_NO DESC) AS RN, S.*
                  FROM SIGN S
@@ -49,25 +39,14 @@
     </insert>
 
     <select id="findByDocNo" resultType="com.bitwork.sign.vo.SignVO">
-        SELECT DOC_NO,
-               DOC_TITLE,
-               MEMBER_ID,
-               INSERT_DATE,
-               SIGN_DATE,
-               DOC_STATUS,
-               DOC_CONTENT,
-               FILE_NAME,
-               ORI_NAME,
-               USER_READ,
-               BOSS_READ,
-               WRITER_NAME
+        SELECT *
         FROM SIGN
         WHERE DOC_NO = #{docNo}
     </select>
 
     <update id="updateSign" parameterType="map">
         UPDATE SIGN
-        SET DOC_STATUS = #{sign}
+        SET DOC_STATUS = #{sign}, SIGN_DATE = SYSDATE
         WHERE DOC_NO = #{docNo}
     </update>
 </mapper>

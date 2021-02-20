@@ -29,15 +29,15 @@
             <div class="form-group">
                 <label for="subject">제목</label>
                 <input type="text" name="subject" id="subject"
-                       value="${requestScope.vo.docTitle}" ${empty requestScope.vo ? "" : "readonly"}> <!-- 디테일일때는 readonly-->
+                       value="${requestScope.vo.docTitle}" ${empty requestScope.vo ? "" : "readonly"}>
             </div>
             <div class="form-group">
                 <label for="content">내용</label>
-                <textarea type="text" name="content" id="content" ${empty requestScope.vo ? "" : "readonly"}>${requestScope.vo.docContent}</textarea> <!-- 디테일일때는 readonly-->
+                <textarea type="text" name="content" id="content" ${empty requestScope.vo ? "" : "readonly"}>${requestScope.vo.docContent}</textarea>
             </div>
             <div class="form-group">
                 <label for="writer">기안자</label>
-                <input type="text" name="writer" id="writer" value="${sessionScope.user.name}" readonly> <!-- 작성일때는 세션에서 유저이름, detail일때는 글의 writerName -->
+                <input type="text" name="writer" id="writer" value="${empty requestScope.vo ? sessionScope.user.name : requestScope.vo.writerName}" readonly> <!-- 작성일때는 세션에서 유저이름, detail일때는 글의 writerName -->
             </div>
             <div class="form-group">
                 <label for="file">첨부파일</label>

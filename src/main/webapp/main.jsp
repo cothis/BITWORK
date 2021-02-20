@@ -18,5 +18,8 @@
         <a href="company/manage">조직관리</a>
         <a href="company/users">사용자관리</a>
     </c:if>
+    <c:if test="${sessionScope.user.grade >= 3}">
+        <a href="sign/list">전자결재</a>
+    </c:if>
 </body>
 </html>

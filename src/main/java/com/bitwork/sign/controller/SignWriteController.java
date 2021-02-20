@@ -12,6 +12,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -59,8 +60,14 @@ public class SignWriteController extends HttpServlet {
         System.out.println("docNo = " + docNo);
         if (sign != null) {
             // 업데이트 처리 (승인, 거절)
+            if ("true".equals(sign)) {
+                sign = "완료";
+            } else {
+                sign = "반려";
+            }
             int result = SignDAO.updateSign(Integer.parseInt(docNo), sign);
-            response.sendRedirect("list?docStatus=완료");
+            String encodedStatus = URLEncoder.encode(sign, "UTF-8");
+            response.sendRedirect("list?docStatus=" + encodedStatus);
         } else {
             // 작성 처리
             SignWriteForm formData = new SignWriteForm(user.getId(), user.getName(), subject, content, fileName, oriName);
