@@ -26,7 +26,8 @@ public class UpdateGradeController extends HttpServlet {
         if (!map.containsKey("memberIdList")) {
             map.put("id", user.getId());
         }
-/*
+
+
         MemberDAO dao = new MemberDAO();
         int result = dao.updateGrade(map);
         if (result > 0) {
@@ -38,6 +39,6 @@ public class UpdateGradeController extends HttpServlet {
 
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
-        response.getWriter().write(result + "");*/
+        response.getWriter().write(result + "");
     }
 }

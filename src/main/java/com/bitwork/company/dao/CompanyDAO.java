@@ -59,7 +59,8 @@ public class CompanyDAO {
             return 0;
         }
     }
-/*
+
+
     public static void upEmpCnt(Integer companyIdx) {
         try (SqlSession sqlSession = DBService.getFactory().openSession()) {
             CompanyMapper mapper = sqlSession.getMapper(CompanyMapper.class);
@@ -71,5 +72,4 @@ public class CompanyDAO {
             sqlSession.commit();
         }
     }
-*/
 }
