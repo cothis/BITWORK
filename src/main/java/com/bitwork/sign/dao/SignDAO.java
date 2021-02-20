@@ -68,4 +68,17 @@ public class SignDAO {
             return mapper.updateSign(map);
         }
     }
+
+    public static int updateReadStatus(Integer docNo, int grade) {
+        //grade 3 이면 USER_READ 1, grade 4이면 BOSS_READ 1
+        try (SqlSession sqlSession = DBService.getFactory().openSession(true)) {
+            SignMapper mapper = sqlSession.getMapper(SignMapper.class);
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("docNo", docNo);
+            map.put("grade", grade);
+
+            return mapper.updateReadStatus(map);
+        }
+    }
 }

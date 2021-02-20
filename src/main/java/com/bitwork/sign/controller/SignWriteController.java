@@ -27,6 +27,13 @@ public class SignWriteController extends HttpServlet {
         String docNo = request.getParameter("docNo");
         if (docNo != null && docNo.length() > 0) {
             SignVO vo = SignDAO.findByDocNo(Integer.parseInt(docNo));
+            MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+
+            if (user.getGrade() == 3 && vo.getUserRead() == 0) {
+                SignDAO.updateReadStatus(vo.getDocNo(), 3);
+            } else if (user.getGrade() == 4 && vo.getBossRead() == 0) {
+                SignDAO.updateReadStatus(vo.getDocNo(), 4);
+            }
             request.setAttribute("vo", vo);
         }
 
@@ -70,7 +77,7 @@ public class SignWriteController extends HttpServlet {
             response.sendRedirect("list?docStatus=" + encodedStatus);
         } else {
             // 작성 처리
-            SignWriteForm formData = new SignWriteForm(user.getId(), user.getName(), subject, content, fileName, oriName);
+            SignWriteForm formData = new SignWriteForm(user.getId(), user.getName(), subject, content, fileName, oriName, user.getGrade());
 
             int result = SignDAO.insertDocument(formData);
             response.sendRedirect("list");

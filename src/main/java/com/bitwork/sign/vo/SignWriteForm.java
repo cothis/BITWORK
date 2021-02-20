@@ -14,4 +14,5 @@ public class SignWriteForm {
     private String docContent;
     private String fileName;
     private String oriName;
+    private int grade;
 }

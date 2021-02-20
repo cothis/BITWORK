@@ -14,4 +14,6 @@ public interface SignMapper {
     SignVO findByDocNo(int docNo);
 
     int updateSign(Map<String, Object> map);
+
+    int updateReadStatus(Map<String, Object> map);
 }

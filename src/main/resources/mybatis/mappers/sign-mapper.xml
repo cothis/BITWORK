@@ -34,8 +34,15 @@
     </select>
 
     <insert id="insertDocument" parameterType="com.bitwork.sign.vo.SignWriteForm">
-        INSERT INTO SIGN(DOC_NO, DOC_TITLE, MEMBER_ID, WRITER_NAME, DOC_CONTENT, FILE_NAME, ORI_NAME)
-        VALUES (SIGN_SEQ.nextval, #{docTitle}, #{memberId}, #{writerName}, #{docContent}, #{fileName}, #{oriName})
+        INSERT INTO SIGN(DOC_NO, DOC_TITLE, MEMBER_ID, WRITER_NAME, DOC_CONTENT, FILE_NAME, ORI_NAME, USER_READ, BOSS_READ)
+        VALUES (SIGN_SEQ.nextval, #{docTitle}, #{memberId}, #{writerName}, #{docContent}, #{fileName}, #{oriName}, 1,
+        <if test="grade == 4">
+            1
+        </if>
+        <if test="grade != 4">
+            0
+        </if>
+        )
     </insert>
 
     <select id="findByDocNo" resultType="com.bitwork.sign.vo.SignVO">
@@ -47,6 +54,19 @@
     <update id="updateSign" parameterType="map">
         UPDATE SIGN
         SET DOC_STATUS = #{sign}, SIGN_DATE = SYSDATE
+        WHERE DOC_NO = #{docNo}
+    </update>
+
+    <update id="updateReadStatus" parameterType="map">
+        UPDATE SIGN
+        <set>
+            <if test="grade == 3">
+                USER_READ = 1
+            </if>
+            <if test="grade == 4">
+                BOSS_READ = 1
+            </if>
+        </set>
         WHERE DOC_NO = #{docNo}
     </update>
 </mapper>
