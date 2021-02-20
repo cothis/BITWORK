@@ -70,12 +70,17 @@ public class MemberDAO {
             int totalRow = mapper.getTotalRowByMap(map);
 
             Paging paging = new Paging(totalRow, Integer.parseInt(page));
+            map.put("startRow", paging.getStartRow());
+            map.put("endRow", paging.getEndRow());
 
             List<MemberVO> employees = mapper.findMembersByCompanyId(map);
 
             result.put("employees", employees);
             result.put("paging", paging);
             return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

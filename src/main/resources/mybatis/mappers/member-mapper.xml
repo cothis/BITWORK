@@ -57,37 +57,20 @@
     </update>
 
     <select id="findMembersByCompanyId" parameterType="map" resultType="com.bitwork.member.vo.MemberVO">
-        SELECT ID,
-               NAME,
-               PHONE,
-               EMAIL,
-               POSITION,
-               REGDATE,
-               COMPANY_IDX,
-               JOINDATE,
-               GRADE,
-               FILE_NAME,
-               ORI_NAME
-        FROM MEMBER
-        WHERE COMPANY_IDX = #{companyIdx}
-        <if test="name != null">
-            AND NAME LIKE '%' || #{name} || '%'
-        </if>
+        SELECT ID, PW, NAME, PHONE, EMAIL, POSITION, REGDATE, COMPANY_IDX, JOINDATE, GRADE, FILE_NAME, ORI_NAME
+        FROM (
+            SELECT ROW_NUMBER() over (ORDER BY JOINDATE DESC) RN,M.*
+            FROM MEMBER M
+            WHERE COMPANY_IDX = #{companyIdx}
+            <if test="name != null">
+                AND NAME LIKE '%' || #{name} || '%'
+            </if>
+        )
+        WHERE RN BETWEEN #{startRow} AND #{endRow}
     </select>
 
     <select id="findInvitable" parameterType="string" resultType="com.bitwork.member.vo.MemberVO">
-        SELECT ID,
-               PW,
-               NAME,
-               PHONE,
-               EMAIL,
-               POSITION,
-               REGDATE,
-               COMPANY_IDX,
-               JOINDATE,
-               GRADE,
-               FILE_NAME,
-               ORI_NAME
+        SELECT *
         FROM MEMBER
         WHERE ID LIKE '%' || #{id} || '%' AND (GRADE = 0 OR GRADE = 1)
     </select>
@@ -137,8 +120,14 @@
         WHERE ID = #{id}
     </update>
 
-    <!-- 토탈 행 갯수(이름, 회사이름으로 검색)
-    <select id="getTotalRowByMap" parameterType="map">
-
-    </select>-->
+    <!-- 토탈 행 갯수(이름, 회사이름으로 검색) -->
+    <select id="getTotalRowByMap" parameterType="map" resultType="int">
+        SELECT COUNT(ID) FROM MEMBER
+        <where>
+            COMPANY_IDX = #{companyIdx}
+        <if test="name != null and name.length > 0">
+            AND NAME LIKE '%' || #{name} || '%'
+        </if>
+        </where>
+    </select>
 </mapper>
