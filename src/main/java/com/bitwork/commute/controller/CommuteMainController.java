@@ -1,6 +1,10 @@
 package com.bitwork.commute.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,16 +35,36 @@ public class CommuteMainController extends HttpServlet {
 		System.out.println("mvo : " + mvo);
 		System.out.println("mvo.getId() : " + mvo.getId());
 		
+		
+		// --------이번달 근태 현황--------
 		int good = CommuteDAO.goodSelect(mvo.getId());
 		int late = CommuteDAO.lateSelect(mvo.getId());
 		
 		System.out.println("good : " + good);
 		System.out.println("late : " + late);
-		
+
 		CommuteVO cvo = new CommuteVO();
 		cvo.setGood(good);
 		cvo.setLate(late);
 		cvo.setTotal(good + late);
+		System.out.println("cvo1 : " + cvo);
+		
+		// --------오늘 출퇴근 기록 가져오기 --------
+		// cDate에 넣어줄 오늘 날짜 구하기
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yy/MM/dd");
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("memberId", mvo.getId());
+		map.put("cDate", date.format(today));
+
+		String onTime = CommuteDAO.getOnTime(map);
+		String offTime = CommuteDAO.getOffTime(map);
+		if (onTime == null) onTime = "00:00:00";
+		if (offTime == null) offTime = "00:00:00";
+		cvo.setOnTime(onTime);		
+		cvo.setOffTime(offTime);
+				
 		
 		request.setAttribute("cvo", cvo);
 		
