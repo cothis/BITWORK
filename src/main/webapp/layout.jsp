@@ -60,9 +60,12 @@
     html,
     body {
         width: 100%;
+        min-width: 500px;
         height: 100%;
         padding: 0;
         margin: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     /* header */
@@ -70,8 +73,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
-        height: var(--header-height);
+        flex-basis: var(--header-height);
         background-color: khaki;
     }
 
@@ -98,14 +100,14 @@
     main {
         display: flex;
         width: 100%;
-        height: calc(100% - var(--header-height) - var(--footer-height));
+        flex: 1;
         background-color: lightblue;
     }
 
     /* main aside */
     aside {
         display: block;
-        width: var(--aside-width);
+        flex-basis: var(--aside-width);
         height: 100%;
         background-color: lawngreen;
     }
@@ -113,7 +115,7 @@
     /* main > #container */
     #container {
         display: block;
-        width: calc(100% - var(--aside-width));
+        flex-basis: calc(100% - var(--aside-width));
         height: 100%;
         background-color: lightgray;
         overflow: auto;
@@ -123,7 +125,7 @@
     footer {
         display: flex;
         width: 100%;
-        height: var(--footer-height);
+        flex-basis: var(--footer-height);
         background-color: khaki;
     }
 
@@ -132,13 +134,12 @@
 
         /* header */
         header {
-            height: auto;
+            flex-basis: auto;
             min-height: var(--header-height);
             flex-wrap: wrap;
         }
 
         header ul {
-            order: 3;
             flex-basis: 100%;
             flex-direction: column;
             align-items: center;
@@ -150,11 +151,13 @@
 
         header a {
             display: block;
+            position: relative;
+            right: 20px;
         }
 
         /* main */
         main {
-            height: auto;
+            /* flex: 1; */
         }
 
         /* main > aside*/
@@ -164,7 +167,7 @@
 
         /* main > #container */
         #container {
-            width: 100%;
+            flex-basis: 100%;
             overflow: initial;
         }
     }
