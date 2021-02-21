@@ -29,6 +29,17 @@
 
         <section id="container">
             <jsp:include page="#{param.dest}"/>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
+            <h1>내용</h1>
         </section>
     </main>
 
@@ -70,10 +81,10 @@
 
     /* header */
     header {
+        flex-basis: var(--header-height);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-basis: var(--header-height);
         background-color: khaki;
     }
 
@@ -98,25 +109,23 @@
 
     /* main */
     main {
+        height: calc(100% - var(--header-height) - var(--footer-height));
         display: flex;
         width: 100%;
-        flex: 1;
         background-color: lightblue;
     }
 
     /* main aside */
     aside {
-        display: block;
         flex-basis: var(--aside-width);
-        height: 100%;
+        display: block;
         background-color: lawngreen;
     }
 
     /* main > #container */
     #container {
+        flex: 1;
         display: block;
-        flex-basis: calc(100% - var(--aside-width));
-        height: 100%;
         background-color: lightgray;
         overflow: auto;
     }
@@ -157,7 +166,8 @@
 
         /* main */
         main {
-            /* flex: 1; */
+            flex: 1;
+            height: auto;
         }
 
         /* main > aside*/
@@ -167,7 +177,6 @@
 
         /* main > #container */
         #container {
-            flex-basis: 100%;
             overflow: initial;
         }
     }
