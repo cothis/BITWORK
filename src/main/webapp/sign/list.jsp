@@ -37,7 +37,7 @@
         <a href="list?nowPage=${requestScope.paging.nowPage}&docStatus=완료">완료문서</a>
         <a href="list?nowPage=${requestScope.paging.nowPage}&docStatus=반려">반려문서</a>
         <a href="list?nowPage=${requestScope.paging.nowPage}&docStatus=대기">대기문서</a>
-        <a href="write?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&type=write">결재상신</a>
+        <a href="detail?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&type=write">결재상신</a>
     </div>
     <h1>결재 ${empty requestScope.docStatus ? "전체" : requestScope.docStatus}</h1>
     <hr>
@@ -57,7 +57,7 @@
             <c:forEach var="vo" items="${requestScope.list}">
                 <tr>
                     <td>${vo.docNo}</td>
-                    <td><a href="write?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&docNo=${vo.docNo}">${vo.docTitle}</a></td>
+                    <td><a href="detail?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&docNo=${vo.docNo}">${vo.docTitle}</a></td>
                     <td>${vo.writerName}</td>
                     <td>${vo.insertDate}</td>
                     <td>${vo.signDate}</td>

@@ -50,29 +50,27 @@
     </script>
 </head>
 <body>
-    <main>
-        <form action="">
-            <div class="form-group">
-                <label for="user_id">
-                    <span class="user-icon"></span>
-                </label>
-                <input type="text" name="user_id" id="user_id" placeholder="ID를 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="user_pw">
-                    <span class="user-pw"></span>
-                </label>
-                <input type="text" name="user_pw" id="user_pw" placeholder="Password를 입력하세요">
-            </div>
-            <div class="form-buttons">
-                <button type="button" id="login">
-                    로그인
-                </button>
-                <button type="button" id="join">
-                    회원가입
-                </button>
-            </div>
-        </form>
-    </main>
+    <form action="">
+        <div class="form-group">
+            <label for="user_id">
+                <span class="user-icon"></span>
+            </label>
+            <input type="text" name="user_id" id="user_id" placeholder="ID를 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="user_pw">
+                <span class="user-pw"></span>
+            </label>
+            <input type="text" name="user_pw" id="user_pw" placeholder="Password를 입력하세요">
+        </div>
+        <div class="form-buttons">
+            <button type="button" id="login">
+                로그인
+            </button>
+            <button type="button" id="join">
+                회원가입
+            </button>
+        </div>
+    </form>
 </body>
 </html>

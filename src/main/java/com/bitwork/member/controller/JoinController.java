@@ -1,5 +1,6 @@
 package com.bitwork.member.controller;
 
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.dao.MemberDAO;
 import com.bitwork.member.dto.JoinForm;
 import com.bitwork.member.vo.MemberVO;
@@ -19,8 +20,7 @@ import java.nio.file.StandardCopyOption;
 public class JoinController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("JoinController.doGet");
-        request.getRequestDispatcher("join.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

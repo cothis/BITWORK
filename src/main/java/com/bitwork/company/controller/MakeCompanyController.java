@@ -2,6 +2,7 @@ package com.bitwork.company.controller;
 
 import com.bitwork.company.dao.CompanyDAO;
 import com.bitwork.company.dto.MakeCompanyForm;
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.vo.MemberVO;
 
 import javax.servlet.*;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class MakeCompanyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("makeCompany.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

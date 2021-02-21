@@ -2,6 +2,7 @@ package com.bitwork.member.controller;
 
 import com.bitwork.company.dao.CompanyDAO;
 import com.bitwork.company.vo.CompanyVO;
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.vo.MemberVO;
 
 import javax.servlet.*;
@@ -17,7 +18,7 @@ public class WaitCompanyController extends HttpServlet {
         CompanyVO companyVO = CompanyDAO.findById(user.getCompanyIdx());
 
         request.setAttribute("company", companyVO);
-        request.getRequestDispatcher("waitCompany.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

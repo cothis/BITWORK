@@ -1,5 +1,6 @@
 package com.bitwork.sign.controller;
 
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.vo.MemberVO;
 import com.bitwork.sign.dao.SignDAO;
 
@@ -35,7 +36,7 @@ public class SignListController extends HttpServlet {
         request.setAttribute("docStatus", docStatus);
 
         System.out.println("resultMap = " + resultMap);
-        request.getRequestDispatcher("list.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

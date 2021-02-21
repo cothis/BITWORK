@@ -1,5 +1,6 @@
 package com.bitwork.member.controller;
 
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.dao.MemberDAO;
 import com.bitwork.member.dto.JoinForm;
 import com.bitwork.member.vo.MemberVO;
@@ -16,8 +17,7 @@ import java.io.IOException;
 public class UpdateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("UpdateController.doGet");
-        request.getRequestDispatcher("update.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

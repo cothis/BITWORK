@@ -1,5 +1,6 @@
 package com.bitwork.company.controller;
 
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.dao.MemberDAO;
 import com.bitwork.member.vo.MemberVO;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class CompanyManageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("manage.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

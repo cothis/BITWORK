@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/normalize.css">
+    <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/webjars/axios/0.21.1/dist/axios.js"></script>
 </head>
 <body>
     <header>
@@ -22,7 +24,7 @@
     <main>
         <aside>
             <h1>aside 내용</h1>
-            <a href="test?testParam=testData">test</a>
+            <a href="${pageContext.request.contextPath}/test?testParam=testData">test</a>
         </aside>
 
         <section id="container">

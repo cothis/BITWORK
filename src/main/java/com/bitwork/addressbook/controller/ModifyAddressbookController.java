@@ -2,6 +2,7 @@ package com.bitwork.addressbook.controller;
 
 import com.bitwork.addressbook.dao.AddressBookDAO;
 import com.bitwork.addressbook.vo.AddressBookVO;
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.vo.MemberVO;
 
 import javax.servlet.*;
@@ -21,8 +22,7 @@ public class ModifyAddressbookController extends HttpServlet {
 
             request.setAttribute("vo", vo);
         }
-
-        request.getRequestDispatcher("modify.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

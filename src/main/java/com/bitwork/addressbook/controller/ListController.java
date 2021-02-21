@@ -2,6 +2,8 @@ package com.bitwork.addressbook.controller;
 
 import com.bitwork.addressbook.dao.AddressBookDAO;
 import com.bitwork.addressbook.vo.AddressBookVO;
+import com.bitwork.main.controller.RequestForwarder;
+import com.bitwork.member.vo.MemberVO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -22,12 +24,13 @@ public class ListController extends HttpServlet {
             nowPage = Integer.parseInt(nowPageStr);
         }
 
-        int companyIdx = 15;
+        MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+        int companyIdx = user.getCompanyIdx();
         Map<String, Object> returnMap = AddressBookDAO.findByCompanyIdx(companyIdx, name, nowPage);
 
         request.setAttribute("list", returnMap.get("list"));
         request.setAttribute("paging", returnMap.get("paging"));
-        request.getRequestDispatcher("list.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.bitwork.member.controller;
 
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.dao.MemberDAO;
 import com.bitwork.member.vo.MemberVO;
 
@@ -14,7 +15,7 @@ import java.util.Map;
 public class LeaveController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("leave.jsp").forward(request, response);
+        RequestForwarder.forward(request, response);
     }
 
     @Override

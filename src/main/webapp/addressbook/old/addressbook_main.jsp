@@ -101,7 +101,7 @@
     
     <td>
 		<input type="button" value="주소추가"
-			onclick="location.href='write_detail.jsp'">
+			onclick="location.href='detail.jsp'">
 	</td>
 	<td>
 		<input type="button" value="주소삭제"
