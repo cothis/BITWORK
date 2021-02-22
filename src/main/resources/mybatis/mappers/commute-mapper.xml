@@ -63,14 +63,22 @@
 	
 	<!-- 기간별 출퇴근 기록 뽑기 -->
 	<select id="list" resultType="com.bitwork.commute.vo.CommuteVO" parameterType="map">
-		SELECT TO_CHAR(C_DATE, 'YY/MM/DD') AS C_DATE, TO_CHAR(ON_TIME, 'hh24:mm:SS') AS ON_TIME, TO_CHAR(OFF_TIME, 'hh24:mm:SS') AS OFF_TIME, STATUS
-		  FROM COMMUTE
-		 WHERE MEMBER_ID = #{memberId}
-		   AND C_DATE BETWEEN #{startDay} AND #{endDay}
-		 ORDER BY C_DATE DESC
+		SELECT * FROM 
+		(
+			SELECT ROW_NUMBER() over (ORDER BY C_DATE DESC) as RN, TO_CHAR(C_DATE, 'YY/MM/DD') AS C_DATE, TO_CHAR(ON_TIME, 'hh24:mm:SS') AS ON_TIME, TO_CHAR(OFF_TIME, 'hh24:mm:SS') AS OFF_TIME, STATUS
+			  FROM COMMUTE
+			 WHERE MEMBER_ID = #{memberId}
+			   AND C_DATE BETWEEN #{startDay} AND #{endDay}
+	   )
+	   WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
 	
-	
+	<select id="totalCount" resultType="int" parameterType="map">
+		SELECT COUNT(MEMBER_ID)
+		FROM COMMUTE
+		WHERE MEMBER_ID = #{memberId}
+	      AND C_DATE BETWEEN #{startDay} AND #{endDay}
+	</select>
 	
 
 </mapper>

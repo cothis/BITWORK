@@ -10,13 +10,24 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/board.css">
     <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+    ul {
+    	list-style : none;
+    	margin: 0;
+    	padding: 0;
+    	display: flex;
+    }
+    li {
+    	padding: 0 10px;
+    }
+    </style>
 </head>
 <body>
 	<jsp:include page="../commons/nav.jsp"/>
     <jsp:include page="../commons/aside.jsp"/>
     <main>
 	    <h2>근태 현황 조회</h2>
-	    <form action="list" method="post">
+	    <form action="list">
 			<input type="date" id="startDay" name="startDay" value="${searchOption.start }">부터
 			<input type="date" id="endDay" name="endDay" value="${searchOption.end }">까지
 			<button type="submit">조회</button>
@@ -39,46 +50,27 @@
 					<td>${list.status}</td>
 				</tr>
 			</c:forEach>		
-			
 			</tbody>
-			<%--<tfoot id="tfoot">
-				<tr>
-					<td colspan="4">
-						 <ol class="paging">
-						[이전으로]에 대한 사용여부 처리 시작페이지번호가 1 인 경우 비활성화	
-							<c:choose>
-								<c:when test="${pvo.beginPage == 1 }">
-									<li class="disable">이전으로</li>
-								</c:when>
-								<c:otherwise>
-									<li><a href="list?cPage=${pvo.beginPage - 1}&search_option=${search.search_option }&keyword=${search.keyword }">이전으로</a></li>
-								</c:otherwise>	
-							</c:choose>
-							블록내에 표시할 페이지 태그 작성(시작페이지 ~ 끝페이지) 현재페이지와 페이지 번호가 같으면 현재페이지 처리
-							<c:forEach var="pageNo" begin="${pvo.beginPage }" end="${pvo.endPage }">
-								<c:if test="${pageNo == pvo.nowPage }">
-									<li class="now">${pageNo }</li>
-								</c:if>
-								<c:if test="${pageNo != pvo.nowPage }">
-									<li>
-										<a href="list?cPage=${pageNo }&search_option=${search.search_option }&keyword=${search.keyword }">${pageNo }</a>
-									</li>
-								</c:if>
-							</c:forEach>
-							[다음으로]에 대한 사용여부 처리 endPage가 전체페이지수(totalPage)보다 작은 경우 활성화
-							<c:if test="${pvo.endPage < pvo.totalPage }">
-								<li>
-									<a href="list?cPage=${pvo.endPage + 1 }&search_option=${search.search_option }&keyword=${search.keyword }">다음으로</a>
-								</li>
-							</c:if>
-							<c:if test="${pvo.endPage >= pvo.totalPage }">
-								<li class="disable">다음으로</li>
-							</c:if>
-						</ol>
-					</td>
-				</tr>
-			</tfoot> --%>
 	    </table>
+	    <ul>
+	    	<li>
+	    		<c:if test="${paging.nowBlock ne 1}">
+		    		<c:set var="prev" value="href='list?nowPage=${paging.startPage - 1}'"/>
+	    		</c:if>
+	    		<a ${prev}>이전</a>
+	    	</li>
+	    <c:forEach var="page" begin="${paging.startPage}" end="${paging.endPage}">
+	    	<li>
+	    		<a href="list?startDay=${searchOption.start}&endDay=${searchOption.end}&nowPage=${page}">${page}</a>
+	    	</li>
+	    </c:forEach>
+		    <li>
+		    <c:if test="${paging.endPage ne paging.totalPage}">
+		    	<c:set var="next" value="href='list?nowPage=${paging.endPage + 1}'"/>
+		    </c:if>
+	    		<a ${next}>다음</a>
+	    	</li>	    	
+	    </ul>
 	</main>
 </body>
 </html>

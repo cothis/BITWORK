@@ -31,7 +31,7 @@
 				url: "inCheck",
 				method: 'post',
 				data: {
-					"time" : document.getElementById("inTime").innerText
+					"time" : document.getElementById("timer").innerText
 				}
 			}).then(function (res) {
 				if (res == 0) {

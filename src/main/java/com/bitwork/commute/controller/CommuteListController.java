@@ -34,78 +34,48 @@ public class CommuteListController extends HttpServlet {
 		mvo.setPosition("부장");
 		request.getSession().setAttribute("mvo", mvo);
 		
-		// 한달간 기록을 조회하기 위해서
-		// 오늘 날짜
-		Date d = new Date();
-		SimpleDateFormat date = new SimpleDateFormat("YYYY/MM/dd");
-		String today = date.format(d);
-		// 디폴트로 검색창에 넣을 값
-		String endDay = today.replace("/", "-");
-		
-		// 한달 전 날짜
-		Calendar mon = Calendar.getInstance();
-	    mon.add(Calendar.MONTH , -1);
-	    String beforeMonth = new java.text.SimpleDateFormat("YYYY/MM/DD").format(mon.getTime());
-	    // 디폴트로 검색창에 넣을 값
-	    String startDay = beforeMonth.replace("/", "-");
-	    
-		Map<String, Object> map = new HashMap<>();
-		map.put("endDay", today);
-		map.put("startDay", beforeMonth);
-		map.put("memberId", mvo.getId());
-		
-		List<CommuteVO> list = CommuteDAO.getCommuteList(map);
-		
-		for (CommuteVO cvo : list) {
-			if (cvo.getStatus().equals("0")) {
-				cvo.setStatus("정상");
-			} else {
-				cvo.setStatus("지각");
-			}
+		String nowPageStr = request.getParameter("nowPage");
+		int nowPage = 1;
+		if (nowPageStr != null && nowPageStr.length() > 0) {
+			nowPage = Integer.parseInt(nowPageStr);
 		}
-		// 아까 맵에 검색옵션 담아주기
-		map.put("end", endDay);
-		map.put("start", startDay);
-		request.setAttribute("searchOption", map);
 		
-		request.setAttribute("list",  list);
+		String start = request.getParameter("startDay");
+		String end = request.getParameter("endDay");
+		if (end == null || end.length() == 0) {
+			// 파라미터가 다 없을떄
+			Date _today = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/01");
+			start = sdf.format(_today);
+			
+			sdf = new SimpleDateFormat("YYYY/MM/dd");
+			end = sdf.format(_today);
+			
+		}
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("startDay", start);
+		paramMap.put("endDay", end);
+		paramMap.put("memberId", mvo.getId());
+		
+			
+		Map<String, Object> resultMap = CommuteDAO.getCommuteList(start, end, mvo.getId(), nowPage);
+		
+		String searchStart = start.replaceAll("/", "-");
+		String searchEnd = end.replaceAll("/", "-");
+		
+		Map<String, String> searchOption = new HashMap<>();
+		searchOption.put("start", searchStart);
+		searchOption.put("end", searchEnd);
+		request.setAttribute("searchOption", searchOption);
+		request.setAttribute("list", resultMap.get("list"));
+		request.setAttribute("paging", resultMap.get("paging"));
 		
 		request.getRequestDispatcher("commuteList.jsp").forward(request, response);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String startDay = request.getParameter("startDay").replace("-", "/");
-		String endDay = request.getParameter("endDay").replace("-", "/");
-		
-		System.out.println("startDay : " + startDay);
-		System.out.println("endDay : " + endDay);
-		
-		MemberVO mvo = (MemberVO) request.getSession().getAttribute("mvo");
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("startDay", startDay);
-		map.put("endDay", endDay);
-		map.put("memberId", mvo.getId());
-		
-		List<CommuteVO> list = CommuteDAO.getCommuteList(map);
-		
-		for (CommuteVO cvo : list) {
-			if (cvo.getStatus().equals("0")) {
-				cvo.setStatus("정상");
-			} else {
-				cvo.setStatus("지각");
-			}
-		}
-		
-		map.put("end", request.getParameter("endDay").replace("/", "-"));
-		map.put("start", request.getParameter("startDay").replace("/", "-"));
-		request.setAttribute("searchOption", map);
-		
-		request.setAttribute("list",  list);
-		
-		request.getRequestDispatcher("commuteList.jsp").forward(request, response);
-		
 	}
 	
 }

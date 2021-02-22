@@ -1,11 +1,13 @@
 package com.bitwork.commute.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.bitwork.common.DBService;
+import com.bitwork.common.Paging;
 import com.bitwork.commute.vo.CommuteVO;
 
 public class CommuteDAO {
@@ -89,14 +91,35 @@ public class CommuteDAO {
 	}
 	
 	// 기간별 출퇴근 기록 뽑기
-	public static List<CommuteVO> getCommuteList(Map<String, Object> map) {
+	public static Map<String, Object> getCommuteList(String startDay, String endDay, String memberId, int nowPage) {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<CommuteVO> list = ss.selectList("commute.list",  map);
+				
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("startDay", startDay);
+		paramMap.put("endDay", endDay);
+		paramMap.put("memberId", memberId);
+		paramMap.put("nowPage", nowPage);
+		
+		int totalCount = ss.selectOne("commute.totalCount", paramMap);
+		Paging paging = new Paging(totalCount, nowPage, 2, 2);
+		paramMap.put("startRow", paging.getStartRow());
+		paramMap.put("endRow", paging.getEndRow());
+		
+		System.out.println(paging);
+		
+		List<CommuteVO> list = ss.selectList("commute.list",  paramMap);
+		for (CommuteVO comVo : list) {
+			if (comVo.getStatus().equals("0")) {
+				comVo.setStatus("정상");
+			} else {
+				comVo.setStatus("지각");
+			}
+		}
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("list", list);
+		resultMap.put("paging", paging);
 		ss.close();
-		return list;
-	}
-	
-	
-	
-	
+		return resultMap;
+	}	
 }
