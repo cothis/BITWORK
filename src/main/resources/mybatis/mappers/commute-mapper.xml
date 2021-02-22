@@ -3,4 +3,82 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commute">
+	<!-- 출근 시간 꺼내오기 -->
+	<select id="onTimeToday" parameterType="map" resultType="string">
+		SELECT TO_CHAR(ON_TIME, 'hh24:mm:SS') AS ON_TIME
+		  FROM COMMUTE
+		 WHERE MEMBER_ID = #{memberId} AND C_DATE = #{cDate}
+	</select>
+	
+	<!-- 퇴근 시간 꺼내오기 -->
+	<select id="offTimeToday" parameterType="map" resultType="string">
+		SELECT TO_CHAR(OFF_TIME, 'hh24:mm:SS') AS OFF_TIME
+		  FROM COMMUTE
+		 WHERE MEMBER_ID = #{memberId} AND C_DATE = #{cDate}
+	</select>
+	
+	<!-- 이번달 구하는거 -->
+	<sql id="thisMonth">
+		SELECT COUNT(*)
+		  FROM (SELECT *
+                  FROM (SELECT *
+                          FROM (SELECT TO_CHAR(C_DATE, 'YY/MM') YYMM, MEMBER_ID, STATUS
+                                  FROM COMMUTE)
+                                 WHERE YYMM LIKE (SELECT TO_CHAR(SYSDATE,'YY/MM')
+                                                    FROM DUAL)
+                               )
+                 WHERE MEMBER_ID = #{memberId})
+	</sql>
+
+	<!-- 이번달 출석 일수 집계 -->
+	<select id="thisMonth_good" parameterType="string" resultType="int">
+		<include refid="thisMonth"/>
+         WHERE STATUS = 0
+	</select>
+
+
+	<!-- 이번달 지각 일수 집계 -->
+	<select id="thisMonth_late" parameterType="string" resultType="int">
+		<include refid="thisMonth"/>
+         WHERE STATUS = 1
+	</select>
+	
+	
+	<!-- 출근 입력 -->
+ 	<insert id="inCheck" parameterType="com.bitwork.commute.vo.CommuteVO">
+		INSERT INTO COMMUTE (MEMBER_ID, C_DATE, ON_TIME, STATUS)
+		VALUES (#{memberId}, #{cDate}, SYSDATE, #{status})
+	</insert>
+	
+	<!-- 퇴근 입력 -->
+	<update id="outCheck" parameterType="com.bitwork.commute.vo.CommuteVO">
+		UPDATE COMMUTE
+           SET OFF_TIME = SYSDATE
+         WHERE MEMBER_ID = #{memberId} AND C_DATE = #{cDate}
+	</update>
+	
+	
+	<!-- =============== 리스트 ================== -->
+
+	
+	<!-- 기간별 출퇴근 기록 뽑기 -->
+	<select id="list" resultType="com.bitwork.commute.vo.CommuteVO" parameterType="map">
+		SELECT * FROM 
+		(
+			SELECT ROW_NUMBER() over (ORDER BY C_DATE DESC) as RN, TO_CHAR(C_DATE, 'YY/MM/DD') AS C_DATE, TO_CHAR(ON_TIME, 'hh24:mm:SS') AS ON_TIME, TO_CHAR(OFF_TIME, 'hh24:mm:SS') AS OFF_TIME, STATUS
+			  FROM COMMUTE
+			 WHERE MEMBER_ID = #{memberId}
+			   AND C_DATE BETWEEN #{startDay} AND #{endDay}
+	   )
+	   WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<select id="totalCount" resultType="int" parameterType="map">
+		SELECT COUNT(MEMBER_ID)
+		FROM COMMUTE
+		WHERE MEMBER_ID = #{memberId}
+	      AND C_DATE BETWEEN #{startDay} AND #{endDay}
+	</select>
+	
+
 </mapper>
