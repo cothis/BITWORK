@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="../css/boardWrite.css">
-    <link rel="stylesheet" href="../css/board.css">
-    <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	
 	$(function(){
@@ -46,9 +45,6 @@
 		});
 	});
 
-	
-
-
 </script>    
     
 </head>
@@ -60,20 +56,24 @@
 		</div>
 	</div>
 	<div class="wrap">
-	    <input type="button" value="목록" onclick="history.back()">
 	    <hr>
 	    <form class="input-form" enctype="multipart/form-data">
-		    <input type="radio" name="write_option" value="1" checked="checked">일반글
-		    <input type="radio" name="write_option" value="0">공지글
+	   	<div class="input-bg">
+		    <input id="option-one" type="radio" name="write_option" value="1" checked="checked">
+		    <label for="option-one"><span></span>일반글 </label>
+		    <input id="option-two" type="radio" name="write_option" value="0">
+		    <label for="option-two"><span></span>공지글</label>
+		    
+		   
 		    <table>
 		    	<tr>
-				    <th>제목</th>
+				    <!-- <th>제목</th> -->
 				    <td>
-				    	<input type="text" name="write_subject" id="write_subject" required>
+				    	<input class="subject" type="text" name="write_subject" id="write_subject" required>
 				    </td>
 			    </tr>
 			    <tr>
-				    <th>내용</th>
+				    <!-- <th>내용</th> -->
 				    <td>
 				    	<textarea name="write_content" id="write_content" cols="50" rows="10" required></textarea>
 				    </td>
@@ -85,8 +85,13 @@
 				    </td>
 			    </tr>
 		    </table>
-		    <input class="write-btn" type="button" value="write" id="sendData">
+		    </div>
+		    <div class="btn-wrap">
+				<input class="list-btn" type="button" value="목록" onclick="history.back()">
+				<input class="write-btn" type="button" value="글쓰기" id="sendData">
+			</div>
 		</form>
+		
 	</div>
 </body>
 </html>

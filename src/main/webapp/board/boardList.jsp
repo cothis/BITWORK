@@ -91,7 +91,7 @@
 			</c:if>
 		</ol>
 
-		<a class="write-btn" href="write">write</a>
+		<a class="write-btn" href="write">글쓰기</a>
 	</div>
 </body>
 </html>
