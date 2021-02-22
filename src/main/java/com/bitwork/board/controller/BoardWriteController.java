@@ -24,7 +24,9 @@ public class BoardWriteController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("boardWrite.jsp").forward(request, response);
+		/* request.getRequestDispatcher("boardWrite.jsp").forward(request, response); */
+		
+		request.getRequestDispatcher("/layout.jsp?dest=/board/boardWrite.jsp").forward(request, response);
 	}
 	
 	@Override
