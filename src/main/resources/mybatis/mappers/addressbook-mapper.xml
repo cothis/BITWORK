@@ -2,5 +2,49 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="addressbook">
+<mapper namespace="com.bitwork.addressbook.vo.AddressBookMapper">
+    <select id="findByCompanyIdx" parameterType="map" resultType="com.bitwork.addressbook.vo.AddressBookVO">
+        SELECT ADDRESSBOOK_IDX, NAME, PHONE, EMAIL, COMPANY, COMPANY_IDX
+        FROM (
+                 SELECT ROW_NUMBER() over (ORDER BY ADDRESSBOOK_IDX DESC) AS RN, ADDRESSBOOK_IDX, NAME, PHONE, EMAIL, COMPANY, COMPANY_IDX
+                 FROM ADDRESSBOOK
+                 WHERE COMPANY_IDX = #{companyIdx}
+                   AND NAME LIKE '%' || #{name} || '%'
+             )
+        WHERE RN BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <select id="totalRow" parameterType="map" resultType="int">
+        SELECT COUNT(ADDRESSBOOK_IDX)
+        FROM ADDRESSBOOK
+        WHERE COMPANY_IDX = #{companyIdx}
+          AND NAME LIKE '%' || #{name} || '%'
+    </select>
+
+    <delete id="deleteByIdxList" parameterType="list">
+        DELETE FROM ADDRESSBOOK
+        WHERE ADDRESSBOOK_IDX IN 
+        <foreach collection="list" item="idx" open="(" close=")" separator=",">
+            #{idx}
+        </foreach>
+    </delete>
+
+    <insert id="insertAddress" parameterType="com.bitwork.addressbook.vo.AddressBookVO">
+        INSERT INTO ADDRESSBOOK(ADDRESSBOOK_IDX, NAME, PHONE, EMAIL, COMPANY, COMPANY_IDX)
+        VALUES (ADDRESSBOOK_SEQ.nextval, #{name}, #{phone}, #{email}, #{company}, #{companyIdx})
+    </insert>
+
+    <select id="findByIdx" parameterType="int" resultType="com.bitwork.addressbook.vo.AddressBookVO">
+        SELECT ADDRESSBOOK_IDX, NAME, PHONE, EMAIL, COMPANY, COMPANY_IDX
+        FROM ADDRESSBOOK
+        WHERE ADDRESSBOOK_IDX = #{idx}
+    </select>
+
+    <update id="updateAddress" parameterType="com.bitwork.addressbook.vo.AddressBookVO">
+        UPDATE ADDRESSBOOK
+        SET NAME = #{name}, EMAIL = #{email}, COMPANY = #{company}, PHONE = #{phone}
+        WHERE ADDRESSBOOK_IDX = #{addressbookIdx}
+    </update>
 </mapper>
+
+

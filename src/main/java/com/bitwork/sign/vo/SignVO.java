@@ -1,7 +1,15 @@
 package com.bitwork.sign.vo;
 
+import lombok.*;
+
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class SignVO {
     private Integer docNo;
     private String docTitle;
@@ -13,5 +21,6 @@ public class SignVO {
     private String fileName;
     private String oriName;
     private Integer userRead;
-    private Integer boosRead;
+    private Integer bossRead;
+    private String writerName;
 }
