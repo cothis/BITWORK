@@ -170,7 +170,7 @@
     }
 
     .wrap {
-        margin-left: 280px;
+        margin: 0 280px;
     }
 
     /* footer */
