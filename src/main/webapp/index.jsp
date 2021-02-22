@@ -12,8 +12,8 @@ System.out.println("realPath : " + dd);
     <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <jsp:include page="commons/nav.jsp"/>
-    <jsp:include page="commons/aside.jsp"/>
-  	
+    <jsp:include page="commons/nav.jspf"/>
+    <jsp:include page="commons/aside.jspf"/>
+    <a href="hello-servlet">Hello Servlet</a>
 </body>
 </html>

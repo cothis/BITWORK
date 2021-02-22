@@ -13,4 +13,5 @@ public class CompanyVO {
     private String companyName;
     private String companyPhone;
     private String companyEmail;
+    private Integer companyEmpCnt;
 }

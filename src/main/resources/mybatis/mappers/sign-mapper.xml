@@ -2,5 +2,71 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sign">
+<mapper namespace="com.bitwork.sign.vo.SignMapper">
+
+    <select id="totalRow" parameterType="map" resultType="int">
+        SELECT COUNT(DOC_NO) FROM SIGN
+        <where>
+            <if test="docStatus != null and docStatus.length() > 0">
+                AND DOC_STATUS = #{docStatus}
+            </if>
+            <if test="grade == 3">
+                AND MEMBER_ID = #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByMap" parameterType="map" resultType="com.bitwork.sign.vo.SignVO">
+        SELECT *
+        FROM (
+                 SELECT ROW_NUMBER() over (ORDER BY DOC_NO DESC) AS RN, S.*
+                 FROM SIGN S
+                <where>
+                    <if test="docStatus != null and docStatus.length() > 0">
+                        AND DOC_STATUS = #{docStatus}
+                    </if>
+                    <if test="grade == 3">
+                        AND MEMBER_ID = #{id}
+                    </if>
+                </where>
+             )
+        WHERE RN BETWEEN #{startRow} and #{endRow}
+    </select>
+
+    <insert id="insertDocument" parameterType="com.bitwork.sign.vo.SignWriteForm">
+        INSERT INTO SIGN(DOC_NO, DOC_TITLE, MEMBER_ID, WRITER_NAME, DOC_CONTENT, FILE_NAME, ORI_NAME, USER_READ, BOSS_READ)
+        VALUES (SIGN_SEQ.nextval, #{docTitle}, #{memberId}, #{writerName}, #{docContent}, #{fileName}, #{oriName}, 1,
+        <if test="grade == 4">
+            1
+        </if>
+        <if test="grade != 4">
+            0
+        </if>
+        )
+    </insert>
+
+    <select id="findByDocNo" resultType="com.bitwork.sign.vo.SignVO">
+        SELECT *
+        FROM SIGN
+        WHERE DOC_NO = #{docNo}
+    </select>
+
+    <update id="updateSign" parameterType="map">
+        UPDATE SIGN
+        SET DOC_STATUS = #{sign}, SIGN_DATE = SYSDATE
+        WHERE DOC_NO = #{docNo}
+    </update>
+
+    <update id="updateReadStatus" parameterType="map">
+        UPDATE SIGN
+        <set>
+            <if test="grade == 3">
+                USER_READ = 1
+            </if>
+            <if test="grade == 4">
+                BOSS_READ = 1
+            </if>
+        </set>
+        WHERE DOC_NO = #{docNo}
+    </update>
 </mapper>

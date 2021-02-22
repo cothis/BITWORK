@@ -2,8 +2,132 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member">
-    <select id="all" resultType="com.bitwork.member.vo.MemberVO">
-        SELECT * FROM MEMBER
+<mapper namespace="com.bitwork.member.vo.MemberMapper">
+    <select id="findById" resultType="com.bitwork.member.vo.MemberVO" parameterType="string">
+        SELECT ID,
+               PW,
+               NAME,
+               PHONE,
+               EMAIL,
+               POSITION,
+               REGDATE,
+               COMPANY_IDX,
+               JOINDATE,
+               GRADE,
+               FILE_NAME,
+               ORI_NAME
+        FROM MEMBER
+        WHERE ID = #{id}
+    </select>
+
+    <delete id="deleteMember" parameterType="map">
+        DELETE
+        FROM MEMBER
+        WHERE ID = #{id}
+          AND PW = #{pw}
+    </delete>
+
+    <insert id="addMember" parameterType="com.bitwork.member.dto.JoinForm">
+        INSERT INTO MEMBER(ID, PW, NAME, PHONE, EMAIL, POSITION, REGDATE, COMPANY_IDX, JOINDATE, GRADE, FILE_NAME,
+                           ORI_NAME)
+        VALUES (#{id}, #{pw}, #{name}, #{phone}, #{email}, #{position}, SYSDATE, null, null, 0, #{fileName}, #{oriName})
+    </insert>
+
+    <update id="updateMemberInfo" parameterType="com.bitwork.member.dto.JoinForm">
+        UPDATE MEMBER
+        SET PW        = #{pw},
+            NAME      = #{name},
+            EMAIL     = #{email},
+            POSITION  = #{position},
+            FILE_NAME = #{fileName},
+            ORI_NAME  = #{oriName}
+        WHERE ID = #{id}
+    </update>
+
+    <update id="updateCompanyInfo" parameterType="map">
+        UPDATE MEMBER
+        <set>
+            COMPANY_IDX = #{companyIdx},
+            GRADE = #{grade},
+            <if test="grade > 2">
+                JOINDATE = SYSDATE
+            </if>
+        </set>
+        WHERE ID = #{id}
+    </update>
+
+    <select id="findMembersByCompanyId" parameterType="map" resultType="com.bitwork.member.vo.MemberVO">
+        SELECT ID, PW, NAME, PHONE, EMAIL, POSITION, REGDATE, COMPANY_IDX, JOINDATE, GRADE, FILE_NAME, ORI_NAME
+        FROM (
+            SELECT ROW_NUMBER() over (ORDER BY JOINDATE DESC) RN,M.*
+            FROM MEMBER M
+            WHERE COMPANY_IDX = #{companyIdx}
+            <if test="name != null">
+                AND NAME LIKE '%' || #{name} || '%'
+            </if>
+        )
+        WHERE RN BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <select id="findInvitable" parameterType="string" resultType="com.bitwork.member.vo.MemberVO">
+        SELECT *
+        FROM MEMBER
+        WHERE ID LIKE '%' || #{id} || '%' AND (GRADE = 0 OR GRADE = 1)
+    </select>
+
+    <select id="findApplyList" parameterType="int" resultType="com.bitwork.member.vo.MemberVO">
+        SELECT ID,
+               PW,
+               NAME,
+               PHONE,
+               EMAIL,
+               POSITION,
+               REGDATE,
+               COMPANY_IDX,
+               JOINDATE,
+               GRADE,
+               FILE_NAME,
+               ORI_NAME
+        FROM MEMBER
+        WHERE COMPANY_IDX = #{companyIdx}
+          AND GRADE = 2
+    </select>
+
+    <update id="updateGrade" parameterType="map">
+        UPDATE MEMBER
+        <if test="isApply == true">
+            SET GRADE = 3, JOINDATE = SYSDATE
+        </if>
+        <if test="isApply == false">
+            SET GRADE = 0, COMPANY_IDX = NULL, JOINDATE = NULL
+        </if>
+        <where>
+            <if test="id != null">
+                ID = #{id}
+            </if>
+            <if test="memberIdList != null and id == null">
+                ID IN
+                <foreach collection="memberIdList" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </update>
+
+    <update id="inviteMember" parameterType="map">
+        UPDATE MEMBER
+        SET COMPANY_IDX = #{companyIdx}, GRADE = 1
+        WHERE ID = #{id}
+    </update>
+
+    <!-- 토탈 행 갯수(이름, 회사이름으로 검색) -->
+    <select id="getTotalRowByMap" parameterType="map" resultType="int">
+        SELECT COUNT(ID) FROM MEMBER
+        <where>
+            COMPANY_IDX = #{companyIdx}
+        <if test="name != null and name.length > 0">
+            AND NAME LIKE '%' || #{name} || '%'
+        </if>
+        </where>
     </select>
 </mapper>

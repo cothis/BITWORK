@@ -16,8 +16,15 @@ nav {
     list-style: none;
     display: flex;
 	justify-content: space-between;
-	align-items: centerl;
+	align-items: center;
 	padding: 0px 10px;
+}
+
+aside {
+	width: 250px;
+	/*height: calc(100% - 70px);*/
+	height: 530px;
+	background-color: #313131;
 }
 
 .title {
