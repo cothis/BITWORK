@@ -15,7 +15,12 @@
     </style>
 </head>
 <body>
-    <main>
+    <header class="header">
+        <div class="category">Member</div>
+        <div class="title">회원가입</div>
+    </header>
+
+    <div class="wrap">
         <form id="file_form" action="/member/join" method="post"
               enctype="multipart/form-data">
             <div class="input-form">
@@ -66,6 +71,6 @@
                 <button type="button" id="join" disabled>가입 신청</button>
             </div>
         </form>
-    </main>
+    </div>
 </body>
 </html>
