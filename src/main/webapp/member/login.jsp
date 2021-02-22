@@ -18,8 +18,8 @@
         });
 
         function login(btn) {
-            const user_id = btn.form.user_id.value;
-            const user_pw = btn.form.user_pw.value;
+            const user_id = document.querySelector("#user_id").value;
+            const user_pw = document.querySelector("#user_pw").value;
             const options = {
                 user_id: user_id,
                 user_pw: user_pw
@@ -48,9 +48,61 @@
                 });
         }
     </script>
+
+    <style>
+        .wrap {
+            width: 600px;
+            height: 350px;
+            background-color: #143455;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 20px 20px;
+            position: relative;
+        }
+
+        .wrap h1 {
+            color: #FFFFFF;
+            position: absolute;
+            top: 20px;
+        }
+
+        .form-group {
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .form-group > input {
+            width: 100%;
+            padding: 20px 10px 20px 10px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .form-buttons {
+            align-self: flex-end;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 20px;
+            margin: 20px 0;
+        }
+
+        .form-buttons button {
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
-    <form action="">
+    <header class="header">
+        <div class="category">Member</div>
+        <div class="title">로그인</div>
+    </header>
+
+    <div class="wrap">
+        <h1>로그인</h1>
+
         <div class="form-group">
             <label for="user_id">
                 <span class="user-icon"></span>
@@ -64,13 +116,13 @@
             <input type="text" name="user_pw" id="user_pw" placeholder="Password를 입력하세요">
         </div>
         <div class="form-buttons">
-            <button type="button" id="login">
+            <button type="button" class="btn primary" id="login">
                 로그인
             </button>
-            <button type="button" id="join">
+            <button type="button" class="btn green" id="join">
                 회원가입
             </button>
         </div>
-    </form>
+    </div>
 </body>
 </html>
