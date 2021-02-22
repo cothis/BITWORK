@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/boardWrite.css">
     <link rel="stylesheet" href="../css/board.css">
     <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -54,11 +53,16 @@
     
 </head>
 <body>
-    <main>
-	    <h2>게시글 작성</h2>
+	   <div class="white-bg">
+		<div class="header">
+			<p class="category">Board</p>
+			<h2 class="title">사내게시판</h2>
+		</div>
+	</div>
+	<div class="wrap">
 	    <input type="button" value="목록" onclick="history.back()">
 	    <hr>
-	    <form enctype="multipart/form-data">
+	    <form class="input-form" enctype="multipart/form-data">
 		    <input type="radio" name="write_option" value="1" checked="checked">일반글
 		    <input type="radio" name="write_option" value="0">공지글
 		    <table>
@@ -81,8 +85,8 @@
 				    </td>
 			    </tr>
 		    </table>
-		    <input type="button" value="등록" id="sendData">
+		    <input class="write-btn" type="button" value="write" id="sendData">
 		</form>
-	</main>
+	</div>
 </body>
 </html>

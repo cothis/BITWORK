@@ -2,6 +2,7 @@ package com.bitwork.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bitwork.board.dao.BoardDAO;
 import com.bitwork.board.vo.BoardVO;
 import com.bitwork.board.vo.PagingVO;
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.vo.MemberVO;
 
 @WebServlet("/board/list")
@@ -60,7 +62,9 @@ public class BoardListController extends HttpServlet {
 		
 		request.setAttribute("list",  list);
 		
-		request.getRequestDispatcher("boardList.jsp").forward(request, response);
+		request.getRequestDispatcher("/layout.jsp?dest=/board/boardList.jsp").forward(request, response);
+		
+//		request.getRequestDispatcher("boardList.jsp").forward(request, response);
 		
 	}
 	

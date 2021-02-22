@@ -31,7 +31,9 @@
 	    <p>조회수 ${bvo.hit}</p>
 	    <p>${bvo.regdate}</p>
 	    <hr>
-	    <p>${bvo.content}</p>
+	    <p>
+	    	<pre><c:out value="${bvo.content}"/></pre>
+	    </p>
 	    <c:if test="${isImage }">
 	    <img src="../data/board/${bvo.fileName }">
 	    </c:if>
