@@ -15,8 +15,6 @@
 
 </head>
 <body>
-	<jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <main>
 	    <h2>게시판</h2>
 	    <form action="list">

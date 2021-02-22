@@ -114,8 +114,6 @@
 </script>    
 </head>
 <body>
-	<jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <main>
     	<h2>일일 출퇴근 기록</h2>
     	<div>

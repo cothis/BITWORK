@@ -7,7 +7,6 @@ import com.bitwork.company.vo.CompanyVO;
 import com.bitwork.member.enumdef.MemberGrade;
 import com.bitwork.member.vo.MemberMapper;
 import com.bitwork.member.vo.MemberVO;
-import com.sun.applet2.AppletParameters;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;

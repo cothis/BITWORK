@@ -17,7 +17,6 @@
 	
 	
 	//DB에 입력(저장) 처리
-	AddressBookDAO.insert(addrvo);
 	
 	//화면전환(목록페이지로 이동)
 	response.sendRedirect("addressbook_main.jsp");

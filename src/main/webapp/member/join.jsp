@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/member.css">
-    <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/member.js"></script>
     <style>
         .red-important {
@@ -16,7 +16,7 @@
 </head>
 <body>
     <main>
-        <form id="file_form" action="${pageContext.request.contextPath}/member/join" method="post"
+        <form id="file_form" action="/member/join" method="post"
               enctype="multipart/form-data">
             <div class="input-form">
                 <div class="picture-form">
