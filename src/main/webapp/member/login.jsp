@@ -4,8 +4,8 @@
     <title>BitWork - Login</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/webjars/axios/0.21.1/dist/axios.js"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("login").addEventListener("click", function () {

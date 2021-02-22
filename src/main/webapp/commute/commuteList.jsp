@@ -23,8 +23,6 @@
     </style>
 </head>
 <body>
-	<jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <main>
 	    <h2>근태 현황 조회</h2>
 	    <form action="list">

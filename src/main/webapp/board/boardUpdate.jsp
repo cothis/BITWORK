@@ -57,8 +57,6 @@
 </script>  
 </head>
 <body>
-	<jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <main>
     	<h2>게시글 수정</h2>
 	    <input type="button" value="목록" onclick="location.href='list?cPage=${cPage }'">

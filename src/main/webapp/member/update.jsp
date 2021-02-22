@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/member.css">
-    <script src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/member.js"></script>
     <style>
         .red-important {
@@ -22,7 +22,7 @@
                 <div class="picture-form">
                     <div class="picture-img">
                         <c:if test="${not empty sessionScope.user.fileName}">
-                            <c:set var="path" value='${pageContext.request.contextPath}/data/member/${sessionScope.user.fileName}'/>
+                            <c:set var="path" value='/data/member/${sessionScope.user.fileName}'/>
                         </c:if>
                         <img src="${path}" alt="프로필사진" width="250px" height="250px">
                     </div>

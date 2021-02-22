@@ -54,8 +54,6 @@
     
 </head>
 <body>
-	<jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
     <main>
 	    <h2>게시글 작성</h2>
 	    <input type="button" value="목록" onclick="history.back()">

@@ -23,8 +23,6 @@
 </script>    
 </head>
 <body>
-	<jsp:include page="../commons/nav.jsp"/>
-    <jsp:include page="../commons/aside.jsp"/>
 	<main>
 	    
 	    <h3>${bvo.subject }</h3>
