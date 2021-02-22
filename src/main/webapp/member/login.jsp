@@ -52,11 +52,11 @@
     <style>
         .wrap {
             width: 600px;
-            height: 400px;
+            height: 350px;
             background-color: #143455;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             padding: 20px 20px;
             position: relative;
@@ -86,10 +86,11 @@
             display: flex;
             justify-content: flex-end;
             padding: 0 20px;
+            margin: 20px 0;
         }
 
         .form-buttons button {
-            margin-left: 10px;
+            margin-left: 20px;
         }
     </style>
 </head>

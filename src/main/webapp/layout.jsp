@@ -7,12 +7,21 @@
 <%--    <link rel="stylesheet" href="/css/normalize.css">--%>
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/aside.css">
+    <script src="/js/navbar.js"></script>
 </head>
 <body>
     <nav class="navbar">
         <h1>nav 내용</h1>
         <ul class="nav-menu">
-            <li>인사관리</li>
+            <li>
+                <a href="/company/manage">인사관리</a>
+                <ul class="sub-menu show">
+                    <li>조직관리</li>
+                    <li>사용자관리</li>
+                </ul>
+            </li>
             <li>게시판</li>
             <li>전자결재</li>
             <li>주소록</li>
@@ -21,10 +30,39 @@
         <a class="nav-toggle-btn">|||</a>
     </nav>
 
+
+
     <main class="main">
         <aside class="aside">
-            <h1>aside 내용</h1>
-            <a href="/test?testParam=testData">test</a>
+            <div class="profile">
+                <div class="profile-picture">
+                    <img src="/img/default.jpg" alt="사진">
+                </div>
+                <div class="name">
+                    신진영 사원
+                </div>
+                <div class="work-day">
+                    근무일 187일째
+                </div>
+                <div class="member-button">
+                    <a class="member-info" href="/member/update">정보수정</a>
+                    <a class="member-logout" href="/member/logout">로그아웃</a>
+                </div>
+            </div>
+            <div class="commute">
+                <div class="today-info">
+                    <div class="today">2021년 02월 10일</div>
+                    <div class="today-message">오늘의 근태 현황</div>
+                </div>
+                <div class="today-commute-time">
+                    <i></i>
+                    08 : 30 : 00
+                </div>
+                <div class="today-commute-time">
+                    <i></i>
+                    00 : 00 : 00
+                </div>
+            </div>
         </aside>
 
         <section id="container">
@@ -107,13 +145,6 @@
     }
 
     /* main aside */
-    .aside {
-        flex-basis: var(--aside-width);
-        display: block;
-        background-color: #39485D;
-        color: #FFFFFF;
-        padding: 20px;
-    }
 
     /* main > #container */
     #container {
