@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 	<title>근태 기간별 조회</title>
-	<link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/board.css">
     <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
     <style>

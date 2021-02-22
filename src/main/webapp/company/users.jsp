@@ -11,7 +11,7 @@
     <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
     <style>
         #inviteForm {
-            box-sizing: border-box;
+			box-sizing: border-box;
             background-color: #E0E0E0;
             width: 600px;
             padding: 15px;

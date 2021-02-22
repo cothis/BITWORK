@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%--    <link rel="stylesheet" href="/css/normalize.css">--%>
+    <%--    <link rel="stylesheet" href="/css/normalize.css">--%>
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
     <link rel="stylesheet" href="/css/navbar.css">
@@ -13,7 +13,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <h1>nav 내용</h1>
+        <h1>Company</h1>
         <ul class="nav-menu">
             <li>
                 <a href="/company/manage">인사관리</a>
@@ -29,9 +29,6 @@
         </ul>
         <a class="nav-toggle-btn">|||</a>
     </nav>
-
-
-
     <main class="main">
         <aside class="aside">
             <div class="profile">
@@ -84,6 +81,7 @@
 </body>
 </html>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&family=Quicksand:wght@700&display=swap');
     /* 전역 설정 */
     :root {
         --nav-height: 100px;
@@ -93,6 +91,10 @@
 
     * {
         box-sizing: border-box;
+        font-family: 'Noto Sans KR', sans-serif;
+        padding: 0;
+        margin: 0;
+
     }
 
     html,
@@ -100,8 +102,6 @@
         width: 100%;
         min-width: 500px;
         height: 100%;
-        padding: 0;
-        margin: 0;
         display: flex;
         flex-direction: column;
     }
@@ -115,6 +115,13 @@
         background-color: #1B232D;
         color: #039DBE;
         padding-left: 20px;
+
+    }
+
+    .navbar h1 {
+        font-family: 'Quicksand', sans-serif;
+        color: white;
+        font-size: 35px;
     }
 
     .nav-menu {
@@ -146,6 +153,14 @@
 
     /* main aside */
 
+    .aside {
+        flex-basis: var(--aside-width);
+        display: block;
+        background-color: #39485D;
+        color: #FFFFFF;
+        padding: 20px;
+    }
+
     /* main > #container */
     #container {
         flex: 1;
@@ -163,7 +178,51 @@
         display: flex;
         width: 100%;
         flex-basis: var(--footer-height);
-        background-color: khaki;
+        background-color: #282828;
+    }
+
+    /* header */
+    .header {
+        width: 100%;
+        flex-basis: 50px;
+        padding: 20px 0 20px 280px;
+        background-color: #FFFFFF;
+        border: 1px solid #e0e4e7;
+
+    }
+
+    /* Element */
+    .category {
+        color: #00add0;
+        font-weight: 800;
+        margin-left: 3px;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    .title {
+        color: #1e1e1e;
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    .btn {
+        width: 100px;
+        height: 40px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background-color: #7562ca;
+        transition-duration: 0.3s;
+    }
+
+    .primary {
+        background-color: #3498D8;
+        color: #FFFFFF;
     }
 
     /* header */
