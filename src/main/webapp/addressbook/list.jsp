@@ -64,8 +64,9 @@
         
         #name {
         	position: relative;
-        	left: 480px;
+        	left: 445px;
         	top: 10px;
+        	font-size: 18px;
         }
         #pageNav {
         	display: flex;
@@ -86,16 +87,16 @@
         	background-color: #FEFEFE;
         	text-align: center;
         	text-decoration: none;
-        	color: #D0D0D0;
+        	color: #ababab;
         }
         
         #pageNav a:hover {
         	cursor: pointer;
-        	background-color: red;
+        	background-color: #7562ca;
         }
         
         #pageNav a[href] {
-        	background-color: #C833E3;
+        	background-color: #3498D8;
         	font-weight: bold;
         }
         
@@ -197,7 +198,7 @@
             </table>
             <div id="pageNav">
                 <c:if test="${requestScope.paging.startPage - 1 > 0}">
-                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}">이전으로</a>
+                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}">이전</a>
                 </c:if>
                 <c:if test="${not (requestScope.paging.startPage - 1 > 0)}">
                     <a>이전</a>
@@ -213,7 +214,7 @@
                 </c:forEach>
 
                 <c:if test="${requestScope.paging.endPage < requestScope.paging.totalPage}">
-                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.endPage + 1}">다음으로</a>
+                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.endPage + 1}">다음</a>
                 </c:if>
                 <c:if test="${not (requestScope.paging.endPage < requestScope.paging.totalPage)}">
                     <a>다음</a>
