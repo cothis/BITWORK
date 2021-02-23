@@ -12,17 +12,18 @@
     <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById("remove-cmt").addEventListener("click", function () {
-		var isDelete = confirm("정말 삭제하시겠습니까?");
-		if (isDelete) {
-			//location.href = "delete?b_idx=" + ${bvo.boardIdx};
-			this.form.submit();
-		}
-	});		
-});
-	
 
+	document.addEventListener("DOMContentLoaded", function() {
+		document.querySelectorAll(".remove-cmt").forEach(function(el) {
+			el.addEventListener("click", function() {
+				var isDelete = confirm("정말 삭제하시겠습니까?");
+				if (isDelete) {
+					//location.href = "delete?b_idx=" + ${bvo.boardIdx};
+					this.form.submit();
+				}
+			});
+		});
+	});
 </script>    
 </head>
 <body>

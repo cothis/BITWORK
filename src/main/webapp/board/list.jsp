@@ -46,7 +46,7 @@
 					<tr>
 						<td>${article.boardIdx}</td>
 						<td class="subject"><a
-							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}&cmt=${article.cmtCount}'>${article.subject}
+							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
 								<b>${article.cmtCount }</b>
 						</a></td>
 						<td>${article.name}</td>
