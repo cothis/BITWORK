@@ -1,9 +1,12 @@
 package com.bitwork.commute.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bitwork.member.vo.MemberVO;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bitwork.common.DBService;
@@ -62,7 +65,7 @@ public class CommuteDAO {
 			return 0;
 		}
 	}
-	
+
 	// 퇴근 체크
 	public static int outCheck(CommuteVO cvo) {
 		try {
@@ -73,6 +76,22 @@ public class CommuteDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
+		}
+	}
+
+	// 오늘의 출근 상태 by cothis
+	public static CommuteVO getCommuteToday(MemberVO user) {
+		try (SqlSession ss = DBService.getFactory().openSession()) {
+			CommuteVO cvo = ss.selectOne("commute.getToday", user);
+			if (cvo == null) {
+				cvo = new CommuteVO();
+				Date today = new Date();
+				SimpleDateFormat date = new SimpleDateFormat("yy/MM/dd");
+
+				cvo.setCDate(date.format(today));
+				cvo.setMemberId(user.getId());
+			}
+			return cvo;
 		}
 	}
 	

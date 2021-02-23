@@ -12,8 +12,8 @@ import lombok.*;
 public class CommuteVO {
     private String memberId;
     private String cDate;
-    private String onTime;
-    private String offTime;
+    private String onTime = "00:00:00";
+    private String offTime = "00:00:00";
     private String status;	  // 0->정상, 1->지각
     private Integer good; // 정상출근 카운팅
     private Integer late; // 지각 카운팅

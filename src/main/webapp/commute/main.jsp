@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 	<title>근태기록 체크</title>
-	<link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/board.css">
-    <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
 	$(function() {
@@ -121,11 +121,11 @@
 	    	<h4 id="timer"></h4>
     	</div>
     	<div>
-	    	<p id="inTime">${cvo.onTime}</p>
+	    	<p id="inTime">${commute.onTime}</p>
 	    	<button id="inCheck">출근</button>
     	</div>
     	<div>
-	    	<p id="outTime">${cvo.offTime}</p>
+	    	<p id="outTime">${commute.offTime}</p>
 	   		<button id="outCheck">퇴근</button>
 	    </div>
 	    
@@ -141,9 +141,9 @@
     		</thead>
     		<tbody>
     			<tr>
-    				<td>${cvo.good}</td>
-    				<td>${cvo.late}</td>
-    				<td>${cvo.total}</td>
+    				<td>${commute.good}</td>
+    				<td>${commute.late}</td>
+    				<td>${commute.total}</td>
     			</tr>
     		</tbody>
     	</table>

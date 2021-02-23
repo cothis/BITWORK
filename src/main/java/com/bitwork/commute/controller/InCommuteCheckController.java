@@ -45,18 +45,14 @@ public class InCommuteCheckController extends HttpServlet {
 		System.out.println("status : " + status);
 		
 		// cDate에 넣어줄 오늘 날짜 구하기
-		Date today = new Date();
-		SimpleDateFormat date = new SimpleDateFormat("yy/MM/dd");
-		System.out.println("date : " + date.format(today));
-		
-		CommuteVO cvo = new CommuteVO();
-		cvo.setMemberId(mvo.getId());
-		cvo.setStatus(status);
-		cvo.setCDate(date.format(today));
-		
+		CommuteVO cvo = (CommuteVO) request.getSession().getAttribute("commute");
 		int result = CommuteDAO.inCheck(cvo);
-		System.out.println("result : " + result);
-		
+
+		if (result > 0) {
+			cvo = CommuteDAO.getCommuteToday(mvo);
+			request.getSession().setAttribute("commute", cvo);
+		}
+
 		response.getWriter().write(result + "");
 	}
 	

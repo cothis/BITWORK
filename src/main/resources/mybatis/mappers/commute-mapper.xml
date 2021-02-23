@@ -5,14 +5,14 @@
 <mapper namespace="commute">
 	<!-- 출근 시간 꺼내오기 -->
 	<select id="onTimeToday" parameterType="map" resultType="string">
-		SELECT TO_CHAR(ON_TIME, 'hh24:mm:SS') AS ON_TIME
+		SELECT TO_CHAR(ON_TIME, 'hh24:MI:SS') AS ON_TIME
 		  FROM COMMUTE
 		 WHERE MEMBER_ID = #{memberId} AND C_DATE = #{cDate}
 	</select>
 	
 	<!-- 퇴근 시간 꺼내오기 -->
 	<select id="offTimeToday" parameterType="map" resultType="string">
-		SELECT TO_CHAR(OFF_TIME, 'hh24:mm:SS') AS OFF_TIME
+		SELECT TO_CHAR(OFF_TIME, 'hh24:MI:SS') AS OFF_TIME
 		  FROM COMMUTE
 		 WHERE MEMBER_ID = #{memberId} AND C_DATE = #{cDate}
 	</select>
@@ -56,7 +56,28 @@
            SET OFF_TIME = SYSDATE
          WHERE MEMBER_ID = #{memberId} AND C_DATE = #{cDate}
 	</update>
-	
+
+	<select id="getToday" resultType="com.bitwork.commute.vo.CommuteVO" parameterType="com.bitwork.member.vo.MemberVO">
+		SELECT C.MEMBER_ID, TO_CHAR(C_DATE, 'YY/MM/DD') AS C_DATE,
+			   TO_CHAR(ON_TIME , 'HH24:MI:SS') AS ON_TIME,
+			   TO_CHAR(OFF_TIME, 'HH24:MI:SS') AS OFF_TIME,
+			   STATUS,
+			   GOOD,
+			   LATE,
+		       TOTAL
+		FROM COMMUTE C INNER JOIN
+			 (
+				 SELECT COUNT(DECODE(STATUS, 0, '정상')) AS GOOD,
+						COUNT(DECODE(STATUS, 1, '지각')) AS LATE,
+				        COUNT(MEMBER_ID) as TOTAL,
+						MEMBER_ID
+				 FROM COMMUTE
+				 WHERE TO_CHAR(C_DATE, 'YY/MM') = TO_CHAR(SYSDATE, 'YY/MM')
+				 GROUP BY MEMBER_ID
+			 ) S ON C.MEMBER_ID = S.MEMBER_ID
+		WHERE C.MEMBER_ID = #{id}
+		  AND C_DATE = TO_CHAR(SYSDATE, 'YYYY/MM/DD')
+	</select>
 	
 	<!-- =============== 리스트 ================== -->
 

@@ -1,5 +1,7 @@
 package com.bitwork.member.controller;
 
+import com.bitwork.commute.dao.CommuteDAO;
+import com.bitwork.commute.vo.CommuteVO;
 import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.dao.MemberDAO;
 import com.bitwork.member.vo.MemberVO;
@@ -28,19 +30,25 @@ public class LoginController extends HttpServlet {
         String userId = request.getParameter("user_id");
         String userPw = request.getParameter("user_pw");
 
-        Map<String, Object> resultMap = new HashMap<>();
+        try {
+            Map<String, Object> resultMap = new HashMap<>();
 
-        MemberDAO dao = new MemberDAO();
-        MemberVO vo = dao.findById(userId);
-        String result = "";
-        if (vo != null && userPw.equals(vo.getPw())) {
-            vo.setPw(null);
-            request.getSession().setAttribute("user", vo);
-            resultMap.put("grade", vo.getGrade());
-            result = new Gson().toJson(resultMap);
-        } else {
-            result = "false";
+            MemberDAO dao = new MemberDAO();
+            MemberVO vo = dao.findById(userId);
+            String result = "";
+            if (vo != null && userPw.equals(vo.getPw())) {
+                vo.setPw(null);
+                request.getSession().setAttribute("user", vo);
+                CommuteVO commuteToday = CommuteDAO.getCommuteToday(vo);
+                request.getSession().setAttribute("commute", commuteToday);
+                resultMap.put("grade", vo.getGrade());
+                result = new Gson().toJson(resultMap);
+            } else {
+                result = "false";
+            }
+            response.getWriter().write(result);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        response.getWriter().write(result);
     }
 }

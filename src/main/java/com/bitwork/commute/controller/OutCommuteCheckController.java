@@ -27,20 +27,17 @@ public class OutCommuteCheckController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 로그인한 아이디 불러오기
-		MemberVO mvo = (MemberVO) request.getSession().getAttribute("mvo");
+		MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
 		
-		// cDate에 넣어줄 오늘 날짜 구하기
-		Date today = new Date();
-		SimpleDateFormat date = new SimpleDateFormat("yy/MM/dd");
-		
-		
-		CommuteVO cvo = new CommuteVO();
-		cvo.setMemberId(mvo.getId());
-		cvo.setCDate(date.format(today));
-		
+		CommuteVO cvo = (CommuteVO) request.getSession().getAttribute("commute");
+
 		int result = CommuteDAO.outCheck(cvo);
-		System.out.println("result : " + result);
-		
+
+		if (result > 0) {
+			cvo = CommuteDAO.getCommuteToday(mvo);
+			request.getSession().setAttribute("commute", cvo);
+		}
+
 		response.getWriter().write(result + "");
 	}
 	

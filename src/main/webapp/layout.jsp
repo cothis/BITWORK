@@ -55,16 +55,16 @@
             </div>
             <div class="commute">
                 <div class="today-info">
-                    <div class="today">2021년 02월 10일</div>
+                    <div class="today">${sessionScope.commute.CDate}</div>
                     <div class="today-message">오늘의 근태 현황</div>
                 </div>
                 <div class="today-commute-time">
                     <i></i>
-                    08 : 30 : 00
+                    ${sessionScope.commute.onTime}
                 </div>
                 <div class="today-commute-time">
                     <i></i>
-                    00 : 00 : 00
+                    ${sessionScope.commute.offTime}
                 </div>
             </div>
         </aside>
