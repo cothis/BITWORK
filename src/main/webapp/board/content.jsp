@@ -8,9 +8,7 @@
 <head>
 <meta charset="UTF-8">
 	<title>게시글 상세</title>
-	<link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/board.css">
+	<link rel="stylesheet" href="/css/boardContent.css">
     <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	function deleteGo() {
@@ -23,19 +21,25 @@
 </script>    
 </head>
 <body>
-	<main>
-	    
-	    <h3>${bvo.subject }</h3>
-	    <input type="submit" value="목록" onclick="location.href='list?cPage=${pvo.nowPage }'">
+	<div class="white-bg">
+		<div class="header">
+			<p class="category">Board</p>
+			<h2 class="title">사내게시판</h2>
+		
+	</div>
+	<div class="wrap">
+	<div class="content-bg">
+	    <h3 class="subject">${bvo.subject }</h3>
+	    <input class="list-btn" type="submit" value="목록" onclick="location.href='list?cPage=${pvo.nowPage }'">
 	    <p>${bvo.name } ${bvo.position}</p>
 	    <p>조회수 ${bvo.hit}</p>
 	    <p>${bvo.regdate}</p>
 	    <hr>
 	    <p>
 	    	<pre><c:out value="${bvo.content}"/></pre>
-	    </p>
+	      
 	    <c:if test="${isImage }">
-	    <img src="../data/board/${bvo.fileName }">
+	    	<img src="../data/board/${bvo.fileName }">
 	    </c:if>
 	    <h4>첨부파일</h4>
 	    <c:if test="${empty bvo.fileName }">
@@ -45,17 +49,17 @@
 			<%-- 다운로드 링크 연결 --%>
 			<a href="download?path=data/board&name=${bvo.fileName }&ori=${bvo.oriName }">${bvo.oriName }</a>
 		</c:if>
-		
-		<tr>
-			<td colspan="2" class="btn">
+		</div>
+		<div>
+			<div class="btn-wrap">
 			<!-- 글쓴이 아이디랑 세션 아이디 동일해야 버튼 생성 -->
 			<c:if test="${user.id == bvo.memberId}">
-				<input type="button" value="수정" onclick="location.href='update?b_idx=${bvo.boardIdx }&cPage=${pvo.nowPage}'">
-				<input type="button" value="삭제" onclick="deleteGo()">
+				<input class="update-btn" type="button" value="수정" onclick="location.href='update?b_idx=${bvo.boardIdx }&cPage=${pvo.nowPage}'">
+				<input class="delete-btn" type="button" value="삭제" onclick="deleteGo()">
 				<input type="hidden" name="cPage" value="${cPage }">
 			</c:if>
-			</td>
-		</tr>
+			</div>
+		</div>
 		<hr>
 		<%-- 게시글에 대한 댓글 작성 영역 --%>
 		<form action="comments" method="post">
@@ -88,7 +92,7 @@
 	</div>
 	<hr>
 	</c:forEach>
-	    
-	</main>
+	</div>
+	</div>  
 </body>
 </html>

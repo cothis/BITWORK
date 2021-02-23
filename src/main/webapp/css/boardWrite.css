@@ -97,6 +97,8 @@ input[type="file"] {
     border-radius: 5px;
     margin-top: 20px;
     margin-left: 15px;
+    curser: pointer;
+    curser: pointer;
 }
 
 .write-btn:hover {

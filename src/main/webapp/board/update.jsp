@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/boardUpdate.css">
 <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 <style>
 input[type='file'] {
 	display: none;
@@ -46,15 +48,7 @@ input[type='file'] {
 						dataType : "json",
 						success : function(result) {
 							alert("수정되었습니다.");
-							location.href = "content?b_idx=" + $
-							{
-								bvo.boardIdx
-							}
-							+"&cPage=" + $
-							{
-								cPage
-							}
-							;
+							location.href = "content?b_idx=" + ${bvo.boardIdx} + "&cPage=" + ${cPage};
 						},
 						error : function() {
 							alert("수정이 실패하였습니다.");
@@ -95,23 +89,20 @@ input[type='file'] {
 									id="update_content" cols="50" rows="10">${bvo.content }</textarea>
 							</td>
 						</tr>
-						<tr>
-							<th class="file">첨부파일</th>
-							<td>
-								<div id="fileName">${bvo.oriName }</div>
-								<button type="button" id="remove_file">삭제</button>
-								<button type="button" id="select_file">파일 선택</button> <input
-								type="file" name="update_file" id="update_file"> <input
-								type="hidden" name="removed" id="removed">
-							</td>
-						</tr>
 					</table>
-					<div class="btn-wrap">
-						<input type="hidden" name="b_idx" value="${bvo.boardIdx }">
-						<input class="list-btn" type="button" value="목록"
-							onclick="location.href='list?cPage=${cPage }'"> <input
-							class="write-btn" type="button" value="수정" id="sendData">
-					</div>
+						<div class="file-wrap">
+							<div class="file">첨부파일</div>
+							<button class="file-btn" type="button" id="select_file">파일 선택</button>
+							<div class="file-name" id="fileName">${bvo.oriName }</div>
+							<button class="remove-btn" type="button" id="remove_file"><i class="fas fa-times"></i></button>
+							<input type="file" name="update_file" id="update_file">
+							<input type="hidden" name="removed" id="removed">
+						</div>
+				</div>
+				<div class="btn-wrap">
+					<input type="hidden" name="b_idx" value="${bvo.boardIdx }">
+					<input class="list-btn" type="button" value="목록" onclick="location.href='list?cPage=${cPage }'">
+					<input class="write-btn" type="button" value="수정" id="sendData">
 				</div>
 			</form>
 		</div>
