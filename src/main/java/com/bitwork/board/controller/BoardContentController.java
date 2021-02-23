@@ -13,6 +13,7 @@ import com.bitwork.board.dao.BoardDAO;
 import com.bitwork.board.vo.BoardVO;
 import com.bitwork.board.vo.CommentsVO;
 import com.bitwork.main.controller.RequestForwarder;
+import com.bitwork.member.vo.MemberVO;
 
 @WebServlet("/board/content")
 public class BoardContentController extends HttpServlet {

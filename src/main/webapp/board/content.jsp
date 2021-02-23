@@ -49,7 +49,7 @@
 		<tr>
 			<td colspan="2" class="btn">
 			<!-- 글쓴이 아이디랑 세션 아이디 동일해야 버튼 생성 -->
-			<c:if test="${mvo.id == bvo.memberId}">
+			<c:if test="${user.id == bvo.memberId}">
 				<input type="button" value="수정" onclick="location.href='update?b_idx=${bvo.boardIdx }&cPage=${pvo.nowPage}'">
 				<input type="button" value="삭제" onclick="deleteGo()">
 				<input type="hidden" name="cPage" value="${cPage }">
@@ -60,7 +60,7 @@
 		<%-- 게시글에 대한 댓글 작성 영역 --%>
 		<form action="comments" method="post">
 			<!-- 댓글쓰는사람 이름 -->
-			<h5>${mvo.name } ${mvo.position }</h5>
+			<h5>${user.name } ${user.position }</h5>
 			<textarea name="content" rows="4" cols="55" required></textarea>
 			<input type="submit" value="댓글입력">
 			<input type="hidden" name="b_idx" value="${bvo.boardIdx }">
@@ -77,7 +77,7 @@
 			<p>${cmtVO.cmtDate }</p>
 			<p>${cmtVO.cmtContent }</p>
 						
-			<c:if test="${(mvo.id == cmtVO.memberId) || (mvo.id == bvo.memberId)}">
+			<c:if test="${(user.id == cmtVO.memberId) || (user.id == bvo.memberId)}">
 				<input type="submit" value="댓글삭제">
 				<input type="hidden" name="c_idx" value="${cmtVO.cmtIdx }">
 				<%-- 댓글 삭제처리 후 게시글 상세페이지로 이동 시  --%>

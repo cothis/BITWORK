@@ -26,7 +26,7 @@ public class BoardCommentsController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		// 로그인된 세션 정보
-		MemberVO mvo = (MemberVO) request.getSession().getAttribute("mvo");
+		MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
 		
 		CommentsVO cvo = new CommentsVO();
 		cvo.setMemberId(mvo.getId());
