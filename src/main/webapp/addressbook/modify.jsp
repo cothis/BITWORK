@@ -72,19 +72,19 @@
     <hr>
     <form action="modify" method="post">
         <div class="form-group">
-            <label for="name">이름</label>
-            <input type="text" name="name" id="name" value="${requestScope.vo.name}">
+            <label for="name">이름 : </label>
+            <input type="text" name="name" id="name" value="${requestScope.vo.name }">
         </div>
         <div class="form-group">
-            <label for="email">이메일</label>
+            <label for="email">이메일 : </label>
             <input type="text" name="email" id="email" value="${requestScope.vo.email}">
         </div>
         <div class="form-group">
-            <label for="company">회사</label>
+            <label for="company">회사 : </label>
             <input type="text" name="company" id="company" value="${requestScope.vo.company}">
         </div>
         <div class="form-group">
-            <label for="phone">전화번호</label>
+            <label for="phone">전화번호 : </label>
             <input type="text" name="phone" id="phone" value="${requestScope.vo.phone}">
         </div>
         <div class="form-buttons">
