@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>BitWork - Sign Write2</title>
+    <title>BitWork - Sign Write</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
