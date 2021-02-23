@@ -1,12 +1,23 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//     let menu = document.querySelector(".nav-menu li");
-//
-//     menu.addEventListener("mouseenter", function () {
-//         let subMenu = this.querySelector(".sub-menu");
-//         subMenu.classList.add("show");
-//         subMenu.addEventListener("mouseleave", function () {
-//             console.log(this);
-//             this.classList.remove("show");
-//         })
-//     });
-// })
+document.addEventListener("DOMContentLoaded", function () {
+    let menu = document.querySelectorAll(".nav-menu > li");
+
+    menu.forEach(function (el) {
+        el.addEventListener("mouseenter", function () {
+            let timer;
+            let subMenu = this.querySelector(".sub-menu");
+            if (subMenu) {
+                subMenu.classList.add("show");
+                el.addEventListener("mouseleave", function () {
+                    clearTimeout(timer);
+                    timer = setTimeout(function () {
+                        subMenu.classList.remove("show");
+                    }, 500);
+                    subMenu.addEventListener("mouseenter", function () {
+                        clearTimeout(timer);
+                        subMenu.classList.add("show");
+                    });
+                });
+            }
+        });
+    });
+});

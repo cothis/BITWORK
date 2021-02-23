@@ -44,7 +44,7 @@
 			})
 		});
 	});
-
+  
 </script>    
     
 </head>
@@ -91,7 +91,6 @@
 				<input class="write-btn" type="button" value="글쓰기" id="sendData">
 			</div>
 		</form>
-		
 	</div>
 </body>
 </html>

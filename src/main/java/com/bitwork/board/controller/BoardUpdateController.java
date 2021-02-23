@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bitwork.board.dao.BoardDAO;
 import com.bitwork.board.dto.BoardUpdateForm;
 import com.bitwork.board.vo.BoardVO;
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.vo.MemberVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -38,7 +39,7 @@ public class BoardUpdateController extends HttpServlet {
 		
 		bvo.setSubject(subject);
 		
-		request.getRequestDispatcher("boardUpdate.jsp").forward(request, response);
+		RequestForwarder.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

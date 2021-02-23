@@ -48,7 +48,7 @@ public class BoardContentController extends HttpServlet {
 		request.setAttribute("cvo", cvo);
 		
 		
-		request.getRequestDispatcher("boardContent.jsp").forward(request, response);
+		request.getRequestDispatcher("content.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
