@@ -16,6 +16,7 @@
 .nav-menu {
 	display: flex;
 	position: relative;
+	right: 60px;
 }
 
 .nav-menu > li {

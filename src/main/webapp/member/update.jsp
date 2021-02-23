@@ -16,7 +16,11 @@
     </style>
 </head>
 <body>
-    <main>
+    <header class="header">
+        <div class="category">Member</div>
+        <div class="title">회원정보 수정</div>
+    </header>
+    <div class="wrap">
         <form id="file_form" method="post" enctype="multipart/form-data">
             <div class="input-form">
                 <div class="picture-form">
@@ -74,6 +78,6 @@
                 <button type="button" id="update">정보 수정</button>
             </div>
         </form>
-    </main>
+    </div>
 </body>
 </html>

@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     let menu = document.querySelectorAll(".nav-menu > li");
-
+    let timer;
     menu.forEach(function (el) {
         el.addEventListener("mouseenter", function () {
-            let timer;
             let subMenu = this.querySelector(".sub-menu");
             if (subMenu) {
                 subMenu.classList.add("show");
