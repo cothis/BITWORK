@@ -26,6 +26,7 @@ public class BoardDeleteController extends HttpServlet {
 		response.sendRedirect("list");
 	}
 
+	// 댓글 삭제
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost 실행");

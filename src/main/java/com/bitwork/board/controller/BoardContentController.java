@@ -22,6 +22,9 @@ public class BoardContentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String b_idx = request.getParameter("b_idx");
+		String cmt = request.getParameter("cmt");
+		request.setAttribute("cmt", cmt);
+		System.out.println("cmt: " + cmt);
 		
 		BoardDAO.updateHit(Integer.parseInt(b_idx));
 
@@ -48,6 +51,9 @@ public class BoardContentController extends HttpServlet {
 		// 댓글 가져오기
 		List<CommentsVO> cvo = BoardDAO.getCmtList(b_idx);
 		request.setAttribute("cvo", cvo);
+		System.out.println("cvo.size() : " + cvo.size());
+		
+		request.setAttribute("cmtCount", cvo.size());
 		
 		/* request.getRequestDispatcher("content.jsp").forward(request, response); */
 		

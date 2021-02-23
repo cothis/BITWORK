@@ -7,8 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/boardUpdate.css">
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
 <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 
 <style>
 input[type='file'] {

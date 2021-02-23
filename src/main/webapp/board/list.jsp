@@ -46,7 +46,7 @@
 					<tr>
 						<td>${article.boardIdx}</td>
 						<td class="subject"><a
-							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
+							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}&cmt=${article.cmtCount}'>${article.subject}
 								<b>${article.cmtCount }</b>
 						</a></td>
 						<td>${article.name}</td>
@@ -64,8 +64,8 @@
 				</c:when>
 				<c:otherwise>
 					<li><a
-						href="list?cPage=${pvo.beginPage - 1}&search_option=${search.search_option }&keyword=${search.keyword }"><i
-							class="fas fa-chevron-left"></i></a></li>
+						href="list?cPage=${pvo.beginPage - 1}&search_option=${search.search_option }&keyword=${search.keyword }">
+						<i class="fas fa-chevron-left"></i></a></li>
 				</c:otherwise>
 			</c:choose>
 			<%-- 블록내에 표시할 페이지 태그 작성(시작페이지 ~ 끝페이지) 현재페이지와 페이지 번호가 같으면 현재페이지 처리 --%>
