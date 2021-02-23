@@ -142,5 +142,17 @@
 	<delete id="cmtDelete" parameterType="string">
 		DELETE FROM COMMENTS WHERE CMT_IDX = #{cmt_idx}	
 	</delete>
+
+	<!-- 최근 4개의 글 가져오기 -->
+	<select id="lastNormal" resultType="com.bitwork.board.vo.BoardVO">
+		SELECT * FROM
+		(
+			SELECT ROW_NUMBER() OVER (PARTITION BY status ORDER BY BOARD_IDX DESC) RN,
+				   B.*, M.NAME, M.POSITION
+			FROM BOARD B INNER JOIN MEMBER M ON B.MEMBER_ID = M.ID
+		)
+		WHERE RN &lt; 5
+		order by status
+	</select>
 	
 </mapper>

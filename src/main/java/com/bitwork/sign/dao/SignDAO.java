@@ -3,6 +3,7 @@ package com.bitwork.sign.dao;
 import com.bitwork.common.DBService;
 import com.bitwork.common.Paging;
 import com.bitwork.member.vo.MemberVO;
+import com.bitwork.sign.vo.NoReadCount;
 import com.bitwork.sign.vo.SignMapper;
 import com.bitwork.sign.vo.SignVO;
 import com.bitwork.sign.vo.SignWriteForm;
@@ -79,6 +80,17 @@ public class SignDAO {
             map.put("grade", grade);
 
             return mapper.updateReadStatus(map);
+        }
+    }
+
+    public static NoReadCount findNoReadCount(MemberVO user) {
+        try (SqlSession sqlSession = DBService.getFactory().openSession()) {
+            SignMapper mapper = sqlSession.getMapper(SignMapper.class);
+
+            return mapper.noReadCount(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

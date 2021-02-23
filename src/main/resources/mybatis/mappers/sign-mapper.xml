@@ -69,4 +69,19 @@
         </set>
         WHERE DOC_NO = #{docNo}
     </update>
+
+    <select id="noReadCount" parameterType="com.bitwork.member.vo.MemberVO" resultType="com.bitwork.sign.vo.NoReadCount">
+        SELECT COUNT(DOC_NO) AS TOTAL,
+               COUNT(DECODE(DOC_STATUS, '완료', 1)) AS COMPLETE,
+               COUNT(DECODE(DOC_STATUS, '반려', 1)) AS REFUSE,
+               COUNT(DECODE(DOC_STATUS, '대기', 1)) AS WAIT
+        FROM SIGN
+        <if test="grade == 3">
+          WHERE USER_READ = 0
+            AND MEMBER_ID = #{id}
+        </if>
+        <if test="grade == 4">
+            WHERE BOSS_READ = 0
+        </if>
+    </select>
 </mapper>

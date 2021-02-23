@@ -95,8 +95,12 @@ public class BoardDAO {
 		
 		return result;
 	}
-	
-	
+
+	public static List<BoardVO> lastNormal() {
+		try (SqlSession ss = DBService.getFactory().openSession()) {
+			return ss.selectList("board.lastNormal");
+		}
+	}
 	
 	// =============== 댓글관련 ===============
 
@@ -127,6 +131,5 @@ public class BoardDAO {
 		
 		return result;
 	}
-	
 
 }
