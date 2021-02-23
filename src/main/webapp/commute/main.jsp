@@ -6,12 +6,10 @@
 <head>
 <meta charset="UTF-8">
 	<title>근태기록 체크</title>
-	<link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="/css/CommuteMain.css">
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script>
-
 	$(function() {
 		//타이머 함수
 		inClock();
@@ -109,44 +107,57 @@
 		
 		return currentTime;
 	}
-	
-
 </script>    
 </head>
 <body>
-    <main>
-    	<h2>일일 출퇴근 기록</h2>
-    	<div>
-	    	<h4>현재시간</h4>
-	    	<h4 id="timer"></h4>
-    	</div>
-    	<div>
-	    	<p id="inTime">${commute.onTime}</p>
-	    	<button id="inCheck">출근</button>
-    	</div>
-    	<div>
-	    	<p id="outTime">${commute.offTime}</p>
-	   		<button id="outCheck">퇴근</button>
+   	<div class="white-bg">
+		<div class="header">
+			<p class="category">Commute</p>
+			<h2 class="title">일일 출퇴근 관리</h2>
+		</div>
+	</div>
+	<div class="wrap">
+		<div class="content-bg">
+	    	<div class="timer">
+		    	<h3>현재시간</h3>
+		    	<h2>─</h2>
+		    	<h4 id="timer"></h4>
+	    	</div>
+	    	<div class="commute-btn-wrap">
+		    	<button id="inCheck">
+		    		<i class="fas fa-briefcase fa-2x"></i>
+			    	<p class="time" id="inTime">${commute.onTime}</p>
+			    	<h2>출근</h2>
+		    	</button>
+		   		<button id="outCheck">
+		   			<i class="fas fa-home fa-2x"></i>
+		   			<p class="time" id="outTime">${commute.offTime}</p>
+		   			<h2>퇴근</h2>
+		   		</button>
+			   
+		    </div>
+			    
+		    <div class="status">
+		    	<!-- <h3>이번 달 출퇴근 현황</h3> -->
+		    	<table>
+		    		<thead>
+		    			<tr class="column">
+		    				<th>이번 달 정상출근</th>
+		    				<th>이번 달 지각</th>
+		    				<th>이번 달 총 근무일</th>
+		    			</tr>
+		    		</thead>
+		    		<tbody>
+		    			<tr>
+		    				<td>${commute.good}</td>
+		    				<td>${commute.late}</td>
+		    				<td>${commute.total}</td>
+		    			</tr>
+		    		</tbody>
+		    	</table>
+	    	</div>
 	    </div>
-	    
-    
-    	<h2>이번 달 출퇴근 현황</h2>
-    	<table border>
-    		<thead>
-    			<tr>
-    				<th>정상출근</th>
-    				<th>지각</th>
-    				<th>총 근무일</th>
-    			</tr>
-    		</thead>
-    		<tbody>
-    			<tr>
-    				<td>${commute.good}</td>
-    				<td>${commute.late}</td>
-    				<td>${commute.total}</td>
-    			</tr>
-    		</tbody>
-    	</table>
-    </main>
+   	</div>
+
 </body>
 </html>
