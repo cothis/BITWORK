@@ -124,30 +124,6 @@
         background-color: #FC9C12;
     }
 
-    table {
-        border-collapse: collapse;
-    }
-
-    .notice-thead {
-        width: 100%;
-        height: 25%;
-        display: flex;
-    }
-
-    .notice-tbody {
-        width: 100%;
-        height: 25%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .tr-parent {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
     .notice-list-item {
         display: flex;
     }
@@ -172,6 +148,22 @@
         flex-basis: 20%;
     }
 
+    .board-list-item {
+        display: flex;
+    }
+
+    .board .board-subject {
+        flex-basis: 50%;
+    }
+
+    .board .board-writer-name {
+        flex-basis: 25%;
+    }
+
+    .board .board-write-day {
+        flex-basis: 25%;
+    }
+
 </style>
 <body>
     <header class="header">
@@ -188,28 +180,24 @@
                     <a href="" class="into-page-btn">+</a>
                 </div>
                 <div class="section-content">
-                    <table class="section-list">
-                        <thead class="notice-thead">
-                            <tr class="list-item notice-list-item">
-                                <th class="board-no">No.</th>
-                                <th class="board-subject">제목</th>
-                                <th class="board-writer-name">작성자</th>
-                                <th class="board-write-day">작성일</th>
-                                <th class="board-hit">조회수</th>
-                            </tr>
-                        </thead>
-                        <tbody class="notice-tbody">
-                            <c:forEach var="notice" items="${requestScope.noticeList}">
-                                <tr class="list-item notice-list-item">
-                                    <td class="board-no">공지</td>
-                                    <td class="board-subject">${notice.subject}</td>
-                                    <td class="board-writer-name">${notice.name} ${notice.position}</td>
-                                    <td class="board-write-day">${notice.regdate}</td>
-                                    <td class="board-hits">${notice.hit}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                    <ul class="section-list">
+                        <li class="list-item notice-list-item">
+                            <span class="board-no">No.</span>
+                            <span class="board-subject">제목</span>
+                            <span class="board-writer-name">작성자</span>
+                            <span class="board-write-day">작성일</span>
+                            <span class="board-hit">조회수</span>
+                        </li>
+                        <c:forEach var="notice" items="${requestScope.noticeList}">
+                        <li class="list-item notice-list-item">
+                            <span class="board-no">공지</span>
+                            <span class="board-subject">${notice.subject}</span>
+                            <span class="board-writer-name">${notice.name} ${notice.position}</span>
+                            <span class="board-write-day">${notice.regdate}</span>
+                            <span class="board-hit">${notice.hit}</span>
+                        </li>
+                        </c:forEach>
+                    </ul>
                 </div>
             </section>
         </div>
@@ -250,17 +238,15 @@
                     <a href="" class="into-page-btn">+</a>
                 </div>
                 <div class="section-content">
-                    <table class="section-list">
-                        <tbody class="tr-parent">
-                            <c:forEach var="normal" items="${requestScope.normalList}">
-                            <tr class="list-item board-list-item">
-                                <td class="board-subject">${normal.subject}</td>
-                                <td class="board-writer-name">${normal.name} ${normal.position}</td>
-                                <td class="board-write-day">${normal.regdate}</td>
-                            </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                    <ul class="section-list">
+                    <c:forEach var="normal" items="${requestScope.normalList}">
+                        <li class="list-item board-list-item">
+                            <span class="board-subject">${normal.subject}</span>
+                            <span class="board-writer-name">${normal.name} ${normal.position}</span>
+                            <span class="board-write-day">${normal.regdate}</span>
+                        </li>
+                    </c:forEach>
+                    </ul>
                 </div>
             </section>
         </div>

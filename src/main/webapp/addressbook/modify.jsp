@@ -11,7 +11,7 @@
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>
 		.wrap {
-			background-color: FFFFFF;
+			background-color: #FFFFFF;
 			width: 1000px;
 			height: 500px;
 			text-align: center;
