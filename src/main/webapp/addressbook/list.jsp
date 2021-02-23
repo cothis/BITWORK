@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
         table {
+        	
             border-collapse: collapse;
             width: 800px;
             background-color: #FFFFFF;
@@ -54,18 +56,18 @@
         }
         
         .primary {
-        	margin: 3px;
+        	margin: 20px;
         	float: left;
         }
         .green {
-        	margin: 3px;
+        	margin: 20px;
         	float: right;
         }
         
         #name {
         	position: relative;
-        	left: 445px;
-        	top: 10px;
+        	left: 350px;
+        	top: 25px;
         	font-size: 18px;
         }
         #pageNav {
@@ -73,18 +75,12 @@
         	width: 100%;
         	justify-content: center;
         	margin-top: 10px;
+        	
         }
         
         #pageNav a {
-        	box-sizing: border-box;
-        	display: block;
-        	margin: 0 10px;
-        	width: 50px;
-        	height: 30px;
-        	line-height: 30px;        	
-        	border: 1px solid silver;
-        	border-radius: 5px;
-        	background-color: #FEFEFE;
+        	margin: 0 20px;
+        	line-height: 16px;        	
         	text-align: center;
         	text-decoration: none;
         	color: #ababab;
@@ -92,12 +88,12 @@
         
         #pageNav a:hover {
         	cursor: pointer;
-        	background-color: #7562ca;
         }
         
         #pageNav a[href] {
-        	background-color: #3498D8;
+        	text-decoration: underline;
         	font-weight: bold;
+        	color: #3498D8; 
         }
         
     </style>
@@ -163,7 +159,7 @@
             <button type="button" onclick="deleteAddr()" class="btn primary">삭제</button>
             <label for="name"></label>
             <input type="text" name="name" id="name" placeholder="이름" class="search" value="${param.name}">
-            <button type="button" onclick="searchAddr()" class="btn green">검색</button>
+            <button type="button" onclick="searchAddr()" class="btn green"><i class="fas fa-search"></i></button>
         </section>
         <section id="bbs">
             <table>
@@ -198,10 +194,10 @@
             </table>
             <div id="pageNav">
                 <c:if test="${requestScope.paging.startPage - 1 > 0}">
-                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}">이전</a>
+                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}"><i class="fas fa-chevron-left"></i></a>
                 </c:if>
                 <c:if test="${not (requestScope.paging.startPage - 1 > 0)}">
-                    <a>이전</a>
+                    <a><i class="fas fa-chevron-left"></i></a>
                 </c:if>
 
                 <c:forEach var="page" begin="${requestScope.paging.startPage}" end="${requestScope.paging.endPage}">
@@ -214,10 +210,10 @@
                 </c:forEach>
 
                 <c:if test="${requestScope.paging.endPage < requestScope.paging.totalPage}">
-                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.endPage + 1}">다음</a>
+                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.endPage + 1}"><i class="fas fa-chevron-right"></i></a>
                 </c:if>
                 <c:if test="${not (requestScope.paging.endPage < requestScope.paging.totalPage)}">
-                    <a>다음</a>
+                    <a><i class="fas fa-chevron-right"></i></a>
                 </c:if>
             </div>
         </section>
