@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - Wait</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -26,7 +26,11 @@
     </script>
 </head>
 <body>
-    <div id="container">
+    <header class="header">
+        <div class="category">Member</div>
+        <div class="title">가입 대기</div>
+    </header>
+    <div class="wrap">
         <div>${requestScope.company.companyName}</div>
         <h2>가입 승인 대기중입니다</h2>
         <button type="button" id="cancel">신청 취소</button>

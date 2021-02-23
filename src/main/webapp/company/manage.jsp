@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - Manage</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>
@@ -71,24 +71,31 @@
     </script>
 </head>
 <body>
-    <form>
-        <div class="form-group">
-            <label for="name"></label>
-            <input type="text" name="name" id="name" placeholder="이름">
-            <button type="button" onclick="loadEmployees(this.form.name.value)">검색</button>
-        </div>
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>번호</th>
-                <th>직급</th>
-                <th>이름</th>
-                <th>입사일</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <header class="header">
+        <div class="category">Company</div>
+        <div class="title">조직 관리</div>
+    </header>
+    <div class="wrap">
+
+        <form>
+            <div class="form-group">
+                <label for="name"></label>
+                <input type="text" name="name" id="name" placeholder="이름">
+                <button type="button" onclick="loadEmployees(this.form.name.value)">검색</button>
+            </div>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>직급</th>
+                    <th>이름</th>
+                    <th>입사일</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

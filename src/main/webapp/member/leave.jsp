@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>BitWork - Leave</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/member.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/member.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(function () {
@@ -34,13 +34,19 @@
     </script>
 </head>
 <body>
-    <form>
-        <div class="form-group">
-            <label for="pw">비밀번호 확인</label>
-            <input type="text" name="pw" id="pw" required>
-        </div>
-        <button type="button" id="leave">탈퇴</button>
-        <button type="button" id="cancel">취소</button>
-    </form>
+    <header class="header">
+        <div class="category">Member</div>
+        <div class="wrap">회원 탈퇴</div>
+    </header>
+    <div class="wrap">
+        <form>
+            <div class="form-group">
+                <label for="pw">비밀번호 확인</label>
+                <input type="text" name="pw" id="pw" required>
+            </div>
+            <button type="button" id="leave">탈퇴</button>
+            <button type="button" id="cancel">취소</button>
+        </form>
+    </div>
 </body>
 </html>

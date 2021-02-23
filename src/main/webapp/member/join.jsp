@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>BitWork - Join</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/member.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/member.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/member.js"></script>
+    <script src="/js/member.js"></script>
     <style>
         .red-important {
             border: 1px solid red !important;
@@ -26,7 +26,7 @@
             <div class="input-form">
                 <div class="picture-form">
                     <div class="picture-img">
-                        <img src="" alt="프로필사진" width="250px" height="250px">
+                        <img src="" alt="프로필사진" width="250px" height="250px" id="user_image">
                     </div>
                     <div>
                         <input type="file" name="user_picture" id="user_picture" accept="image/jpeg, image/png">

@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - Join Company</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
-
         th {
             background-color: #16A085;
             color: white;
@@ -107,18 +106,24 @@
     </script>
 </head>
 <body>
-    <div class="form-group">
-        <label for="companyName"></label>
-        <input type="text" id="companyName" placeholder="회사명">
-        <button type="button" id="searchCompany">검색</button>
-    </div>
-    <div id="container">
-    </div>
-    <form>
-        <div class="form-buttons">
-            <input type="hidden" name="companyIdx" id="companyIdx">
-            <button type="button" id="joinCompany" disabled>가입 신청</button>
+    <header class="header">
+        <div class="category">Company</div>
+        <div class="title">회사 가입</div>
+    </header>
+    <div class="wrap">
+        <div class="form-group">
+            <label for="companyName"></label>
+            <input type="text" id="companyName" placeholder="회사명">
+            <button type="button" id="searchCompany">검색</button>
         </div>
-    </form>
+        <div id="container">
+        </div>
+        <form>
+            <div class="form-buttons">
+                <input type="hidden" name="companyIdx" id="companyIdx">
+                <button type="button" id="joinCompany" disabled>가입 신청</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

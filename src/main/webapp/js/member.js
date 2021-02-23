@@ -42,7 +42,7 @@ $(function () {
                     alert("가입에 실패했습니다.");
                 } else {
                     alert("가입되었습니다.");
-                    location.href = "/member/login.jsp";
+                    location.href = "../member/login";
                 }
             }
         });
@@ -73,7 +73,7 @@ $(function () {
                     alert("정보 수정에 실패했습니다.");
                 } else {
                     alert("회원정보가 수정되었습니다.");
-                    location.href = "/main.jsp";
+                    location.href = "/main";
                 }
             }
         });
@@ -84,9 +84,8 @@ $(function () {
     $("#user_picture").change(function (event) {
         let reader = new FileReader();
         reader.addEventListener("load", function (event) {
-            $("img")[0].setAttribute("src", event.target.result);
+            document.querySelector("#user_image").setAttribute("src", event.target.result);
         });
-
         reader.readAsDataURL(event.target.files[0]);
     });
 

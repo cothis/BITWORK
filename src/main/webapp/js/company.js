@@ -38,7 +38,7 @@ $(function () {
             success: function (result) {
                 if (result) {
                     alert("회사가 생성되었습니다.");
-                    location.href = "/";
+                    location.href = "..";
                 } else {
                     alert("생성에 실패했습니다.");
                 }

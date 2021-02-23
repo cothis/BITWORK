@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - Invite</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/member.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/member.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <script>
@@ -32,7 +32,7 @@
                 axios.post("updateGrade", data)
                     .then(response => {
                         console.log(response);
-                        if(response.data) {
+                        if (response.data) {
                             if (decide) {
                                 alert("환영합니다");
                                 location.replace("../main");
@@ -47,7 +47,11 @@
     </script>
 </head>
 <body>
-    <div id="container">
+    <header class="header">
+        <div class="category">Company</div>
+        <div class="title">가입 승인</div>
+    </header>
+    <div class="wrap">
         <div>
             <span id="companyName"></span>
         </div>

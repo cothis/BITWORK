@@ -5,13 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - Manage</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
     <style>
         #inviteForm {
-			box-sizing: border-box;
+            box-sizing: border-box;
             background-color: #E0E0E0;
             width: 600px;
             padding: 15px;
@@ -202,59 +202,66 @@
     </script>
 </head>
 <body>
-    <section id="inviteSection">
-        <form id="inviteForm">
-            <div class="form-group">
-                <label for="userId"></label>
-                <input type="text" placeholder="아이디로 검색" name="userId" id="userId">
-                <button type="button" id="searchUserBtn" class="transparent">검색</button>
-            </div>
-            <table id="userTable">
+    <header class="header">
+        <div class="category">Company</div>
+        <div class="title">사용자 관리</div>
+    </header>
+    <div class="wrap">
+
+        <section id="inviteSection">
+            <form id="inviteForm">
+                <div class="form-group">
+                    <label for="userId"></label>
+                    <input type="text" placeholder="아이디로 검색" name="userId" id="userId">
+                    <button type="button" id="searchUserBtn" class="transparent">검색</button>
+                </div>
+                <table id="userTable">
+                    <thead>
+                        <tr>
+                            <th>아이디</th>
+                            <th>이름</th>
+                            <th>초대</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTbody">
+                        <tr>
+                            <td>테스트1 아이디</td>
+                            <td>테스트1 이름</td>
+                            <td>
+                                <button class="transparent invite">초대</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>테스트2 아이디</td>
+                            <td>테스트2 이름</td>
+                            <td>
+                                <button class="transparent invite">초대</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </section>
+        <section id="inviteList">
+            <table id="inviteTable">
                 <thead>
                     <tr>
+                        <th>번호</th>
                         <th>아이디</th>
                         <th>이름</th>
-                        <th>초대</th>
+                        <th>직급</th>
+                        <th>승인</th>
                     </tr>
                 </thead>
-                <tbody id="userTbody">
+                <tfoot>
                     <tr>
-                        <td>테스트1 아이디</td>
-                        <td>테스트1 이름</td>
-                        <td>
-                            <button class="transparent invite">초대</button>
+                        <td colspan="5">
+                            <button type="button" id="applyAll">모두 승인</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>테스트2 아이디</td>
-                        <td>테스트2 이름</td>
-                        <td>
-                            <button class="transparent invite">초대</button>
-                        </td>
-                    </tr>
-                </tbody>
+                </tfoot>
             </table>
-        </form>
-    </section>
-    <section id="inviteList">
-        <table id="inviteTable">
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>아이디</th>
-                    <th>이름</th>
-                    <th>직급</th>
-                    <th>승인</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <button type="button" id="applyAll">모두 승인</button>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    </section>
+        </section>
+    </div>
 </body>
 </html>
