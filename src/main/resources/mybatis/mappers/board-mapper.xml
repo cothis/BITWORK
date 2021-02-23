@@ -145,14 +145,21 @@
 
 	<!-- 최근 4개의 글 가져오기 -->
 	<select id="lastNormal" resultType="com.bitwork.board.vo.BoardVO">
-		SELECT * FROM
-		(
-			SELECT ROW_NUMBER() OVER (PARTITION BY status ORDER BY BOARD_IDX DESC) RN,
-				   B.*, M.NAME, M.POSITION
-			FROM BOARD B INNER JOIN MEMBER M ON B.MEMBER_ID = M.ID
-		)
+		SELECT *
+		FROM (
+				 SELECT ROW_NUMBER() OVER (PARTITION BY STATUS ORDER BY B.BOARD_IDX DESC) RN,
+						B.*,
+						M.NAME,
+						M.POSITION,
+						NVL(C.CMT_COUNT, 0) AS CMT_COUNT
+				 FROM BOARD B
+						  INNER JOIN MEMBER M ON B.MEMBER_ID = M.ID
+						  LEFT JOIN
+					  (SELECT COUNT(CMT_IDX) AS CMT_COUNT, BOARD_IDX FROM COMMENTS GROUP BY BOARD_IDX) C
+					  ON C.BOARD_IDX = B.BOARD_IDX
+			 )
 		WHERE RN &lt; 5
-		order by status
+		ORDER BY STATUS
 	</select>
 	
 </mapper>

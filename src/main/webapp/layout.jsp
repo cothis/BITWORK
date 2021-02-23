@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -37,16 +38,18 @@
         <a class="nav-toggle-btn">|||</a>
     </nav>
     <main class="main">
+        <c:if test="${not empty sessionScope.user}">
         <aside class="aside">
             <div class="profile">
                 <div class="profile-picture">
-                    <img src="/img/default.jpg" alt="사진">
+                    <img src="/data/member/${sessionScope.user.fileName}" alt="사진">
                 </div>
                 <div class="name">
-                    신진영 사원
+                    <span>${sessionScope.user.name}</span>
+                    <span>${sessionScope.user.position}</span>
                 </div>
                 <div class="work-day">
-                    근무일 187일째
+                    근무일 ${sessionScope.workingDay}일째
                 </div>
                 <div class="member-button">
                     <a class="member-info" href="/member/update">정보수정</a>
@@ -68,6 +71,7 @@
                 </div>
             </div>
         </aside>
+        </c:if>
 
         <section id="container">
             <jsp:include page="#{param.dest}"/>
@@ -80,10 +84,12 @@
     <script>
         let navMenuIcon = document.querySelector(".nav-toggle-btn");
         let navUl = document.querySelector(".nav-menu");
-        navMenuIcon.addEventListener("click", function (e) {
-            e.preventDefault();
-            navUl.classList.toggle("active");
-        });
+        if (navMenuIcon) {
+            navMenuIcon.addEventListener("click", function (e) {
+                e.preventDefault();
+                navUl.classList.toggle("active");
+            });
+        }
     </script>
 </body>
 </html>

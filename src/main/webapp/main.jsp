@@ -150,6 +150,7 @@
 
     .board-list-item {
         display: flex;
+        color: #333333;
     }
 
     .board .board-subject {
@@ -162,6 +163,11 @@
 
     .board .board-write-day {
         flex-basis: 25%;
+    }
+
+    .board-subject a {
+        text-decoration: none;
+        color: #333333;
     }
 
 </style>
@@ -177,7 +183,7 @@
                 <div class="sub-title">
                     <i class="fas fa-microphone"></i>
                     <span class="sub-title-text">사내공지</span>
-                    <a href="" class="into-page-btn">+</a>
+                    <a href="/board/list" class="into-page-btn">+</a>
                 </div>
                 <div class="section-content">
                     <ul class="section-list">
@@ -191,7 +197,9 @@
                         <c:forEach var="notice" items="${requestScope.noticeList}">
                         <li class="list-item notice-list-item">
                             <span class="board-no">공지</span>
-                            <span class="board-subject">${notice.subject}</span>
+                            <span class="board-subject">
+                                <a href="board/content?b_idx=${notice.boardIdx}&cmt=${notice.cmtCount}">${notice.subject}</a>
+                            </span>
                             <span class="board-writer-name">${notice.name} ${notice.position}</span>
                             <span class="board-write-day">${notice.regdate}</span>
                             <span class="board-hit">${notice.hit}</span>
@@ -207,7 +215,7 @@
                 <div class="sub-title">
                     <i class="fas fa-file-alt"></i>
                     <span class="sub-title-text">전자결재</span>
-                    <a href="" class="into-page-btn">+</a>
+                    <a href="/sign/list" class="into-page-btn">+</a>
                 </div>
                 <div class="section-content">
                     <ul class="section-list">
@@ -235,13 +243,16 @@
                 <div class="sub-title">
                     <i class="fas fa-file-alt"></i>
                     <span class="sub-title-text">게시판</span>
-                    <a href="" class="into-page-btn">+</a>
+                    <a href="/board/list" class="into-page-btn">+</a>
                 </div>
                 <div class="section-content">
                     <ul class="section-list">
                     <c:forEach var="normal" items="${requestScope.normalList}">
                         <li class="list-item board-list-item">
-                            <span class="board-subject">${normal.subject}</span>
+                            <span class="board-subject">
+                                <a href="board/content?b_idx=${normal.boardIdx}&cmt=${normal.cmtCount}">${normal.subject}</a>
+                                <span>[${normal.cmtCount}]</span>
+                            </span>
                             <span class="board-writer-name">${normal.name} ${normal.position}</span>
                             <span class="board-write-day">${normal.regdate}</span>
                         </li>

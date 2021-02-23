@@ -11,6 +11,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,12 +37,18 @@ public class LoginController extends HttpServlet {
 
             MemberDAO dao = new MemberDAO();
             MemberVO vo = dao.findById(userId);
-            String result = "";
+            String result;
             if (vo != null && userPw.equals(vo.getPw())) {
                 vo.setPw(null);
                 request.getSession().setAttribute("user", vo);
                 CommuteVO commuteToday = CommuteDAO.getCommuteToday(vo);
                 request.getSession().setAttribute("commute", commuteToday);
+                Date joinDate = vo.getJoindate();
+                Date today = new Date();
+                long workingTime = today.getTime() - joinDate.getTime();
+                long workingDay = workingTime / 1000 / 60 / 60 / 24;
+                request.getSession().setAttribute("workingDay", workingDay);
+
                 resultMap.put("grade", vo.getGrade());
                 result = new Gson().toJson(resultMap);
             } else {

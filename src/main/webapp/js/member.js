@@ -79,7 +79,10 @@ $(function () {
         });
     });
 
-
+    document.querySelector("#user_image").addEventListener("error", function () {
+        console.log(this);
+        this.src = "/profile-picture/default.png";
+    })
 
     $("#user_picture").change(function (event) {
         let reader = new FileReader();

@@ -26,7 +26,7 @@
             <div class="input-form">
                 <div class="picture-form">
                     <div class="picture-img">
-                        <img src="" alt="프로필사진" width="250px" height="250px" id="user_image">
+                        <img src="/profile-picture/default.png" alt="프로필사진" width="250px" height="250px" id="user_image">
                     </div>
                     <div>
                         <input type="file" name="user_picture" id="user_picture" accept="image/jpeg, image/png">
