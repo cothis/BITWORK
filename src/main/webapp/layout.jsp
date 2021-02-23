@@ -26,7 +26,13 @@
             <li><a href="/board/list">게시판</a></li>
             <li><a href="/sign/list">전자결재</a></li>
             <li><a href="/addressbook/list">주소록</a></li>
-            <li><a href="/commute/list">근태관리</a></li>
+            <li>
+                <a href="/commute/main">근태관리</a>
+                <ul class="sub-menu">
+                    <li><a href="/commute/main">근태관리</a></li>
+                    <li><a href="/commute/list">근태현황</a></li>
+                </ul>
+            </li>
         </ul>
         <a class="nav-toggle-btn">|||</a>
     </nav>
