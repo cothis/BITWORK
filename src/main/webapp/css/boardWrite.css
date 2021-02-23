@@ -9,11 +9,12 @@
 	width: 100%;
 	min-width: 500px;
 	flex-direction: column;
+	align-items: center;
 }
 .input-bg {
 	background-color: white;
 	border-radius: 10px;
-	padding: 40px 100px;
+	padding: 60px 100px;
 	border: 1px solid #e0e4e7;
 	width: 100%;
 }
@@ -68,7 +69,7 @@ input[type="file"] {
 .btn-wrap {
 	display: flex;
 	text-decoration: none;
-	align-self: flex-end;
+	justify-content: center;
 }
 .list-btn {
 	border: none;
@@ -82,6 +83,7 @@ input[type="file"] {
     line-height: 40px;
     border-radius: 5px;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .write-btn {
@@ -97,8 +99,7 @@ input[type="file"] {
     border-radius: 5px;
     margin-top: 20px;
     margin-left: 15px;
-    curser: pointer;
-    curser: pointer;
+    cursor: pointer;
 }
 
 .write-btn:hover {

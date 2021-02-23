@@ -2,7 +2,7 @@
 /* 전역 설정 */
 :root {
     --nav-height: 100px;
-    --footer-height: 80px;
+    --footer-height: 40px;
     --aside-width: 360px;
 }
 
@@ -78,6 +78,7 @@ li {
     width: 100%;
     flex-basis: var(--footer-height);
     background-color: #282828;
+    overflow: hidden;
 }
 
 /* header */
