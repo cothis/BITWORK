@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판리스트</title>
-<link rel="stylesheet" href="../css/boardList.css">
+<link rel="stylesheet" href="/css/boardList.css">
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>

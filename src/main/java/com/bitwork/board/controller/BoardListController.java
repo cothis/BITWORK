@@ -31,14 +31,7 @@ public class BoardListController extends HttpServlet {
 		System.out.println(">>> BoardController doGet()");
 		
 		// 임시 로그인 세션
-		MemberVO mvo = new MemberVO();
-		mvo.setId("onion");
-		mvo.setName("양파");
-		mvo.setPosition("사원");
-		
-		System.out.println("mvo : " + mvo);
-		
-		request.getSession().setAttribute("mvo", mvo);
+		MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
 		
 		
 		// 검색할 때 옵션이랑 키워드

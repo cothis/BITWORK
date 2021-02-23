@@ -145,7 +145,7 @@ table {
    text-align: center;
    line-height: 40px;
    border-radius: 5px;
-   margin-top: 20px;
+   margin: 20px 0;
    align-self: flex-end;
 }
 

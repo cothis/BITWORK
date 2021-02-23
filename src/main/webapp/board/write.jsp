@@ -63,7 +63,6 @@
 		    <label for="option-one"><span></span>일반글 </label>
 		    <input id="option-two" type="radio" name="write_option" value="0">
 		    <label for="option-two"><span></span>공지글</label>
-		    
 		   
 		    <table>
 		    	<tr>
@@ -75,16 +74,12 @@
 			    <tr>
 				    <!-- <th>내용</th> -->
 				    <td>
-				    	<textarea name="write_content" id="write_content" cols="50" rows="10" required></textarea>
-				    </td>
-			    </tr>
-			    <tr>
-				    <th>첨부파일</th>
-				    <td>
-				    	<input type="file" name="write_file" id="write_file" >
+				    	<textarea class="content" name="write_content" id="write_content" cols="50" rows="10" required></textarea>
 				    </td>
 			    </tr>
 		    </table>
+			    <div class="file">첨부파일</div>
+			    <input type="file" name="write_file" id="write_file" >
 		    </div>
 		    <div class="btn-wrap">
 				<input class="list-btn" type="button" value="목록" onclick="history.back()">
