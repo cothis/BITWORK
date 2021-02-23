@@ -38,7 +38,7 @@ public class BoardWriteController extends HttpServlet {
 		 pvo.setNowPage(1);
 		 
 		 // 로그인된 세션 정보
-		 MemberVO mvo = (MemberVO) request.getSession().getAttribute("mvo");
+		 MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
 		 
 		 String path = request.getServletContext().getRealPath("data/board");
 		 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bitwork.board.dao.BoardDAO;
 import com.bitwork.board.vo.BoardVO;
 import com.bitwork.board.vo.CommentsVO;
+import com.bitwork.main.controller.RequestForwarder;
 
 @WebServlet("/board/content")
 public class BoardContentController extends HttpServlet {
@@ -47,8 +48,9 @@ public class BoardContentController extends HttpServlet {
 		List<CommentsVO> cvo = BoardDAO.getCmtList(b_idx);
 		request.setAttribute("cvo", cvo);
 		
+		/* request.getRequestDispatcher("content.jsp").forward(request, response); */
 		
-		request.getRequestDispatcher("content.jsp").forward(request, response);
+		RequestForwarder.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
