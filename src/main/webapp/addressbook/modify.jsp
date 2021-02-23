@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
+    <style>
+
+        
+        
+        
+    </style>
     <script>
         function cancelAddr() {
             location.href = "list";
@@ -15,7 +21,12 @@
     </script>
 </head>
 <body>
-    <h1>주소록 추가</h1>
+    <header class="header">
+        <div class="category">AddressBook</div>
+        <div class="title">주소록 추가</div>
+    </header>
+    
+    <div class="wrap">
     <hr>
     <form action="modify" method="post">
         <div class="form-group">
@@ -40,5 +51,6 @@
             <button type="button" onclick="cancelAddr()">취소</button>
         </div>
     </form>
+    </div>
 </body>
 </html>

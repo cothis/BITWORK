@@ -29,6 +29,76 @@
         td {
             text-align: center;
         }
+        
+        table {
+            border-collapse: collapse;
+            width: 1000px;
+            background-color: #FFFFFF;
+        }
+
+        thead {
+            background-color: #EAEAEA;
+        }
+
+        tr {
+            border: 1px solid #CCCCCC;
+            border-left: none;
+            border-right: none;
+            
+        }
+
+        td {
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        .primary {
+        	margin: 3px;
+        	float: left;
+        }
+        .green {
+        	margin: 3px;
+        	float: right;
+        }
+        
+        #name {
+        	position: relative;
+        	left: 480px;
+        	top: 10px;
+        }
+        #pageNav {
+        	display: flex;
+        	width: 100%;
+        	justify-content: center;
+        	margin-top: 10px;
+        }
+        
+        #pageNav a {
+        	box-sizing: border-box;
+        	display: block;
+        	margin: 0 10px;
+        	width: 50px;
+        	height: 30px;
+        	line-height: 30px;        	
+        	border: 1px solid silver;
+        	border-radius: 5px;
+        	background-color: #FEFEFE;
+        	text-align: center;
+        	text-decoration: none;
+        	color: #D0D0D0;
+        }
+        
+        #pageNav a:hover {
+        	cursor: pointer;
+        	background-color: red;
+        }
+        
+        #pageNav a[href] {
+        	background-color: #C833E3;
+        	font-weight: bold;
+        }
+        
     </style>
     <script>
         function checkOthers() {
@@ -88,11 +158,11 @@
     </header>
     <div class="wrap">
         <section class="form-buttons">
-            <button type="button" onclick="addAddr()">추가</button>
-            <button type="button" onclick="deleteAddr()">삭제</button>
+            <button type="button" onclick="addAddr()" class="btn primary">추가</button>
+            <button type="button" onclick="deleteAddr()" class="btn primary">삭제</button>
             <label for="name"></label>
-            <input type="text" name="name" id="name" placeholder="이름" value="${param.name}">
-            <button type="button" onclick="searchAddr()">검색</button>
+            <input type="text" name="name" id="name" placeholder="이름" class="search" value="${param.name}">
+            <button type="button" onclick="searchAddr()" class="btn green">검색</button>
         </section>
         <section id="bbs">
             <table>
@@ -130,7 +200,7 @@
                     <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}">이전으로</a>
                 </c:if>
                 <c:if test="${not (requestScope.paging.startPage - 1 > 0)}">
-                    <a>이전으로</a>
+                    <a>이전</a>
                 </c:if>
 
                 <c:forEach var="page" begin="${requestScope.paging.startPage}" end="${requestScope.paging.endPage}">
@@ -146,7 +216,7 @@
                     <a href="list?name=${param.name}&nowPage=${requestScope.paging.endPage + 1}">다음으로</a>
                 </c:if>
                 <c:if test="${not (requestScope.paging.endPage < requestScope.paging.totalPage)}">
-                    <a>다음으로</a>
+                    <a>다음</a>
                 </c:if>
             </div>
         </section>
