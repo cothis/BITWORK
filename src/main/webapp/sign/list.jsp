@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -156,8 +157,8 @@
                     <td>${vo.docNo}</td>
                     <td><a href="detail?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&docNo=${vo.docNo}">${vo.docTitle}</a></td>
                     <td>${vo.writerName}</td>
-                    <td>${vo.insertDate}</td>
-                    <td>${vo.signDate}</td>
+                    <td><fmt:formatDate value="${vo.insertDate}" pattern="yyyy.MM.dd"/></td>
+                    <td><fmt:formatDate value="${vo.signDate}" pattern="yyyy.MM.dd"/></td>
                     <td>${vo.docStatus}</td>
                 </tr>
             </c:forEach>
