@@ -49,15 +49,35 @@ input[type="radio"] + label span, input[type="radio"]:checked + label span { -we
 	border-radius: 5px;
 }
 
-
+.file-wrap {
+	display: flex;
+	margin-top: 11px;
+}
 
 .file {
 	color: #333;
 	font-weight: 800;
 	font-size: 16px;
-	margin-top: 12px;
 	margin-right: 10px;
 	float: left;
+}
+
+.file-btn {
+	margin-right: 10px;
+}
+
+.file-name {
+	margin-right: 10px;
+}
+
+.remove-btn {
+	margin-right: 10px;
+	color: white;
+	height: 20px;
+	padding: 2px 4px;
+	background-color: Silver;
+	border-radius: 5px;
+	border: none;
 }
 
 input[type="file"] {
@@ -82,6 +102,7 @@ input[type="file"] {
     line-height: 40px;
     border-radius: 5px;
     margin-top: 20px;
+    curser: pointer;
 }
 
 .write-btn {
@@ -97,6 +118,7 @@ input[type="file"] {
     border-radius: 5px;
     margin-top: 20px;
     margin-left: 15px;
+    curser: pointer;
 }
 
 .write-btn:hover {

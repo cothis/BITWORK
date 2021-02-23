@@ -49,7 +49,7 @@
     
 </head>
 <body>
-	   <div class="white-bg">
+  	<div class="white-bg">
 		<div class="header">
 			<p class="category">Board</p>
 			<h2 class="title">사내게시판</h2>
