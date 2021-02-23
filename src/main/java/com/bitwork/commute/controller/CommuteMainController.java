@@ -25,11 +25,8 @@ public class CommuteMainController extends HttpServlet {
 		System.out.println(">>> CommuteMainController doGet()");
 		
 		// 임시 로그인 세션
-		MemberVO mvo = new MemberVO();
-		mvo.setId("potato");
-		mvo.setName("감자");
-		mvo.setPosition("부장");
-		
+		MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
+
 		request.getSession().setAttribute("mvo", mvo);
 		
 		System.out.println("mvo : " + mvo);
@@ -68,7 +65,7 @@ public class CommuteMainController extends HttpServlet {
 		
 		request.setAttribute("cvo", cvo);
 		
-		request.getRequestDispatcher("commuteMain.jsp").forward(request, response);
+		request.getRequestDispatcher("main.jsp").forward(request, response);
 	}
 	
 	

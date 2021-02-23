@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bitwork.board.dao.BoardDAO;
 import com.bitwork.board.dto.BoardWriteForm;
 import com.bitwork.board.vo.PagingVO;
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.vo.MemberVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -24,9 +25,9 @@ public class BoardWriteController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* request.getRequestDispatcher("boardWrite.jsp").forward(request, response); */
+		/* request.getRequestDispatcher("write.jsp").forward(request, response); */
 		
-		request.getRequestDispatcher("/layout.jsp?dest=/board/boardWrite.jsp").forward(request, response);
+		RequestForwarder.forward(request, response);
 	}
 	
 	@Override

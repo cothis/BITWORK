@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bitwork.commute.dao.CommuteDAO;
 import com.bitwork.commute.vo.CommuteVO;
+import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.vo.MemberVO;
 
 @WebServlet("/commute/list")
@@ -27,13 +28,8 @@ public class CommuteListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 임시 로그인 세션
-		MemberVO mvo = new MemberVO();
-		mvo.setId("potato");
-		mvo.setName("감자");
-		mvo.setPosition("부장");
-		request.getSession().setAttribute("mvo", mvo);
-		
+		MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
+
 		String nowPageStr = request.getParameter("nowPage");
 		int nowPage = 1;
 		if (nowPageStr != null && nowPageStr.length() > 0) {
@@ -52,13 +48,7 @@ public class CommuteListController extends HttpServlet {
 			end = sdf.format(_today);
 			
 		}
-		
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("startDay", start);
-		paramMap.put("endDay", end);
-		paramMap.put("memberId", mvo.getId());
-		
-			
+
 		Map<String, Object> resultMap = CommuteDAO.getCommuteList(start, end, mvo.getId(), nowPage);
 		
 		String searchStart = start.replaceAll("/", "-");
@@ -70,8 +60,8 @@ public class CommuteListController extends HttpServlet {
 		request.setAttribute("searchOption", searchOption);
 		request.setAttribute("list", resultMap.get("list"));
 		request.setAttribute("paging", resultMap.get("paging"));
-		
-		request.getRequestDispatcher("commuteList.jsp").forward(request, response);
+
+		RequestForwarder.forward(request, response);
 	}
 	
 	@Override

@@ -62,10 +62,7 @@ public class BoardListController extends HttpServlet {
 		
 		request.setAttribute("list",  list);
 		
-		request.getRequestDispatcher("/layout.jsp?dest=/board/boardList.jsp").forward(request, response);
-		
-//		request.getRequestDispatcher("boardList.jsp").forward(request, response);
-		
+		RequestForwarder.forward(request, response);
 	}
 	
 	public Map<String, Object> Paging(String cPage, HttpServletRequest request) {

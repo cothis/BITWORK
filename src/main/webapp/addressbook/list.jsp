@@ -82,67 +82,75 @@
     </script>
 </head>
 <body>
-    <section class="form-buttons">
-        <button type="button" onclick="addAddr()">추가</button>
-        <button type="button" onclick="deleteAddr()">삭제</button>
-        <label for="name"></label>
-        <input type="text" name="name" id="name" placeholder="이름" value="${param.name}">
-        <button type="button" onclick="searchAddr()">검색</button>
-    </section>
-    <section id="bbs">
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        <label for="checkAllButton"></label>
-                        <input type="checkbox" id="checkAllButton" onclick="checkAll(this)">
-                    </th>
-                    <th>이름</th>
-                    <th>이메일</th>
-                    <th>회사</th>
-                    <th>전화번호</th>
-                </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="vo" items="${requestScope.list}">
-                <tr>
-                    <td>
-                        <label>
-                            <input type="checkbox" name="selectRows" value="${vo.addressbookIdx}" onclick="checkOthers()">
-                        </label>
-                    </td>
-                    <td><a href="modify?idx=${vo.addressbookIdx}&nowPage=${param.nowPage}">${vo.name}</a></td>
-                    <td>${vo.email}</td>
-                    <td>${vo.company}</td>
-                    <td>${vo.phone}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <div id="pageNav">
-        <c:if test="${requestScope.paging.startPage - 1 > 0}">
-            <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}">이전으로</a>
-        </c:if>
-        <c:if test="${not (requestScope.paging.startPage - 1 > 0)}">
-            <a>이전으로</a>
-        </c:if>
+    <header class="header">
+        <div class="category">AddressBook</div>
+        <div class="title">주소록</div>
+    </header>
+    <div class="wrap">
+        <section class="form-buttons">
+            <button type="button" onclick="addAddr()">추가</button>
+            <button type="button" onclick="deleteAddr()">삭제</button>
+            <label for="name"></label>
+            <input type="text" name="name" id="name" placeholder="이름" value="${param.name}">
+            <button type="button" onclick="searchAddr()">검색</button>
+        </section>
+        <section id="bbs">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <label for="checkAllButton"></label>
+                            <input type="checkbox" id="checkAllButton" onclick="checkAll(this)">
+                        </th>
+                        <th>이름</th>
+                        <th>이메일</th>
+                        <th>회사</th>
+                        <th>전화번호</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="vo" items="${requestScope.list}">
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="selectRows" value="${vo.addressbookIdx}"
+                                           onclick="checkOthers()">
+                                </label>
+                            </td>
+                            <td><a href="modify?idx=${vo.addressbookIdx}&nowPage=${param.nowPage}">${vo.name}</a></td>
+                            <td>${vo.email}</td>
+                            <td>${vo.company}</td>
+                            <td>${vo.phone}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            <div id="pageNav">
+                <c:if test="${requestScope.paging.startPage - 1 > 0}">
+                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}">이전으로</a>
+                </c:if>
+                <c:if test="${not (requestScope.paging.startPage - 1 > 0)}">
+                    <a>이전으로</a>
+                </c:if>
 
-        <c:forEach var="page" begin="${requestScope.paging.startPage}" end="${requestScope.paging.endPage}">
-        <c:if test="${page eq requestScope.paging.nowPage}">
-            <a>${page}</a>
-        </c:if>
-        <c:if test="${page ne requestScope.paging.nowPage}">
-            <a href="list?name=${param.name}&nowPage=${page}">${page}</a>
-        </c:if>
-        </c:forEach>
+                <c:forEach var="page" begin="${requestScope.paging.startPage}" end="${requestScope.paging.endPage}">
+                    <c:if test="${page eq requestScope.paging.nowPage}">
+                        <a>${page}</a>
+                    </c:if>
+                    <c:if test="${page ne requestScope.paging.nowPage}">
+                        <a href="list?name=${param.name}&nowPage=${page}">${page}</a>
+                    </c:if>
+                </c:forEach>
 
-        <c:if test="${requestScope.paging.endPage < requestScope.paging.totalPage}">
-            <a href="list?name=${param.name}&nowPage=${requestScope.paging.endPage + 1}">다음으로</a>
-        </c:if>
-        <c:if test="${not (requestScope.paging.endPage < requestScope.paging.totalPage)}">
-            <a>다음으로</a>
-        </c:if>
-        </div>
-    </section>
+                <c:if test="${requestScope.paging.endPage < requestScope.paging.totalPage}">
+                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.endPage + 1}">다음으로</a>
+                </c:if>
+                <c:if test="${not (requestScope.paging.endPage < requestScope.paging.totalPage)}">
+                    <a>다음으로</a>
+                </c:if>
+            </div>
+        </section>
+    </div>
+
 </body>
 </html>
