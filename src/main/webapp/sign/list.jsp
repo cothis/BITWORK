@@ -5,10 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - Sign List</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
+   
+   
+    <link rel="stylesheet" href="/css/normalize.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
         table {
             border-collapse: collapse;
@@ -32,7 +34,14 @@
     </style>
 </head>
 <body>
-    <div class="nav-buttons">
+	
+
+	
+            
+        
+
+
+    <div class="wrap">
         <a href="list?nowPage=${requestScope.paging.nowPage}">결재전체</a>
         <a href="list?nowPage=${requestScope.paging.nowPage}&docStatus=완료">완료문서</a>
         <a href="list?nowPage=${requestScope.paging.nowPage}&docStatus=반려">반려문서</a>
@@ -92,5 +101,12 @@
         <a>다음으로</a>
     </c:if>
     </div>
+    </section>
+    </main>
+    
+    <footer class="footer">
+        <h1>footer 내용</h1>
+    </footer>
+    
 </body>
 </html>
