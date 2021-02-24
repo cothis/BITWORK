@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="/css/components/table.css">
     <link rel="stylesheet" href="/css/components/button.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        #companyList tbody tr {
+            cursor: initial;
+            user-select: none;
+        }
+
+        #companyList tbody tr:hover {
+            background-color: #CCCCCC;
+        }
+
+        .selected {
+            background-color: #0e4aa7;
+        }
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // 변수 선언
