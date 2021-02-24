@@ -5,44 +5,50 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - AddressBook</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="/css/components/table.css">
+    <link rel="stylesheet" href="/css/components/search.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 1000px;
-            background-color: #FFFFFF;
+    	.wrap {
+    		display: flex;
+    		flex-direction: column;
+    	}
+    	
+    	.user-form {
+    		margin-top: 10px;
+    		width: 1000px;
+    		display: flex;
+    		justify-content: space-between;
+    	}
+    	
+    	.add-delete .search-button {
+    		width: 50px;
+    	}
+    	
+    	.delete-button {
+    		background-color: red;
+    	}
+    
+        a { 
+        	text-decoration: none; 
+        	color: black; 
         }
-        thead {
-            background-color: #EAEAEA;
-        }
-        tr {
-            border: 1px solid #CCCCCC;
-            border-left: none;
-            border-right: none;
-        }
-       td {
-            text-align: center;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        .primary {
-        	margin: 20px;
-        	float: left;
-        }
-        .green {
-        	margin: 20px;
-        	float: right;
-        	}
-        #name {
-        	position: relative;
-        	left: 350px;
-        	top: 25px;
-        	font-size: 18px;
-        }
+
+        a:link { 
+        	color: black;
+	        text-decoration: none;
+	    }
+        
+ 		a:visited {
+	 		text-decoration: none;
+	 	}
+ 		
+ 		a:hover { 
+	 		text-decoration: underline;
+	 	}
+       
         #pageNav {
         	display: flex;
         	width: 100%;
@@ -126,16 +132,25 @@
         <div class="title">주소록</div>
     </header>
     <div class="wrap">
-        <section class="form-buttons">
-            <button type="button" onclick="addAddr()" class="btn primary">추가</button>
-            <button type="button" onclick="deleteAddr()" class="btn primary">삭제</button>
-            <label for="name"></label>
-            <input type="text" name="name" id="name" placeholder="이름" class="search" value="${param.name}">
-            <button type="button" onclick="searchAddr()" class="btn green">검색</button>
-        </section>
+    	<div class="user-form">
+    		<div class="add-delete">
+	            <button type="button" onclick="addAddr()" class="search-button">추가</button>
+	            <button type="button" onclick="deleteAddr()" 
+	                    class="search-button delete-button">삭제</button>
+    		</div>
+	    	<div class="search-form">
+	            <label for="name"></label>
+	            <input type="text" name="name" id="name" placeholder="이름" class="search-bar" value="${param.name}">
+	            <button type="button" onclick="searchAddr()" class="search-button">
+	            	<i class="fas fa-search"></i>
+	            </button>
+	        </div>
+    	</div>
+        
         <section id="bbs">
-            <table style="table-layout: fixed">
-                <thead>
+<!--             <table style="table-layout: fixed"> -->
+            <table class="table">
+                <thead class="thead">
                     <tr>
                         <th width="5%">
                             <label for="checkAllButton"></label>
