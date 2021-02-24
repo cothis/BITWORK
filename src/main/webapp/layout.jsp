@@ -30,69 +30,75 @@
     <nav class="navbar">
         <h1><a href="/main">${not empty sessionScope.company ? sessionScope.company.companyName : "BitWork"}</a></h1>
         <c:if test="${not empty sessionScope.company}">
-        <ul class="nav-menu">
-            <li>
-                <a href="/company/manage">인사관리</a>
-                <ul class="sub-menu">
-                    <li><a href="/company/manage">조직관리</a></li>
-                    <li><a href="/company/users">사용자관리</a></li>
-                </ul>
-            </li>
-            <li><a href="/board/list">게시판</a></li>
-            <li><a href="/sign/list">전자결재</a></li>
-            <li><a href="/addressbook/list">주소록</a></li>
-            <li>
-                <a href="/commute/main">근태관리</a>
-                <ul class="sub-menu">
-                    <li><a href="/commute/main">근태관리</a></li>
-                    <li><a href="/commute/list">근태현황</a></li>
-                </ul>
-            </li>
-        </ul>
-        <a class="nav-toggle-btn">|||</a>
+            <ul class="nav-menu">
+                <li>
+                    <a href="/company/manage">인사관리</a>
+                    <ul class="sub-menu">
+                        <li><a href="/company/manage">조직관리</a></li>
+                        <li><a href="/company/users">사용자관리</a></li>
+                    </ul>
+                </li>
+                <li><a href="/board/list">게시판</a></li>
+                <li><a href="/sign/list">전자결재</a></li>
+                <li><a href="/addressbook/list">주소록</a></li>
+                <li>
+                    <a href="/commute/main">근태관리</a>
+                    <ul class="sub-menu">
+                        <li><a href="/commute/main">근태관리</a></li>
+                        <li><a href="/commute/list">근태현황</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a class="nav-toggle-btn">|||</a>
         </c:if>
     </nav>
     <main class="main">
         <c:if test="${not empty sessionScope.user}">
-        <aside class="aside">
-            <div class="profile">
-                <div class="profile-picture">
-                    <c:set var="path" value="/profile-picture/default.png"/>
-                    <c:if test="${not empty sessionScope.user.fileName}">
-                        <c:set var="path" value="/data/member/${sessionScope.user.fileName}"/>
+            <aside class="aside">
+                <div class="profile">
+                    <div class="profile-picture">
+                        <c:set var="path" value="/profile-picture/default.png"/>
+                        <c:if test="${not empty sessionScope.user.fileName}">
+                            <c:set var="path" value="/data/member/${sessionScope.user.fileName}"/>
+                        </c:if>
+                        <img src="${path}" alt="사진">
+                    </div>
+                    <div class="name">
+                        <span>${sessionScope.user.name}</span>
+                        <span>${sessionScope.user.position}</span>
+                    </div>
+                    <div class="work-day">
+                        <c:if test="${not empty sessionScope.user.joindate}">
+                            근무일 ${sessionScope.workingDay}일째
+                        </c:if>
+                        <c:if test="${empty sessionScope.user.joindate}">
+                            가입된 회사가 없습니다
+                        </c:if>
+                    </div>
+                    <div class="member-button">
+                        <a class="member-info" href="/member/update">정보수정</a>
+                        <a class="member-logout" href="/member/logout">로그아웃</a>
+                    </div>
+                </div>
+                <div class="commute">
+                    <div class="today-info">
+                        <div class="today-message">· TODAY ·</div>
+                        <div class="today">${sessionScope.commute.CDate}</div>
+                    </div>
+                    <c:if test="${not empty sessionScope.user.joindate}">
+                        <div class="today-commute-time">
+                            <span>출근</span>
+                            <i class="fas fa-briefcase"></i>
+                                ${sessionScope.commute.onTime}
+                        </div>
+                        <div class="today-commute-time">
+                            <span>퇴근</span>
+                            <i class="fas fa-home"></i>
+                                ${sessionScope.commute.offTime}
+                        </div>
                     </c:if>
-                    <img src="${path}" alt="사진">
                 </div>
-                <div class="name">
-                    <span>${sessionScope.user.name}</span>
-                    <span>${sessionScope.user.position}</span>
-                </div>
-                <div class="work-day">
-                    근무일 ${sessionScope.workingDay}일째
-                </div>
-                <div class="member-button">
-                    <a class="member-info" href="/member/update">정보수정</a>
-                    <a class="member-logout" href="/member/logout">로그아웃</a>
-                </div>
-            </div>
-            <div class="commute">
-                <div class="today-info">
-                <div class="today-message">· TODAY ·</div>
-                    <div class="today">${sessionScope.commute.CDate}</div>
-                    
-                </div>
-                <div class="today-commute-time">
-     				<span>출근</span>
-                    <i class="fas fa-briefcase"></i>
-                    ${sessionScope.commute.onTime}
-                </div>
-                <div class="today-commute-time">
-                	<span>퇴근</span>
-                    <i class="fas fa-home"></i>
-                    ${sessionScope.commute.offTime}
-                </div>
-            </div>
-        </aside>
+            </aside>
         </c:if>
 
         <section id="container">
