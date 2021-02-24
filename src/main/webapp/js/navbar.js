@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }, 500);
 
                     subMenu.addEventListener("mouseenter", function () {
-                        clearTimeout(timer);
+                        clearTimeout(myTimer.timer);
                         subMenu.classList.add("show");
                     });
 
