@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 <title>게시판리스트</title>
 <link rel="stylesheet" href="/css/boardList.css">
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
 	<div class="white-bg">
@@ -46,7 +46,7 @@
 					<tr>
 						<td>${article.boardIdx}</td>
 						<td class="subject"><a
-							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}&cmt=${article.cmtCount}'>${article.subject}
+							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
 								<b>${article.cmtCount }</b>
 						</a></td>
 						<td>${article.name}</td>
