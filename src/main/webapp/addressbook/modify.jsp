@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - Insert Form</title>
-    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/components/button.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>

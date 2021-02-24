@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="/css/components/search.css">
     <link rel="stylesheet" href="/css/components/table.css">
+    <link rel="stylesheet" href="/css/components/button.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -115,7 +116,7 @@
         <form>
             <div class="form-buttons">
                 <input type="hidden" name="companyIdx" id="companyIdx">
-                <button type="button" id="joinCompany" disabled>가입 신청</button>
+                <button type="button" class="btn" id="joinCompany" disabled>가입 신청</button>
             </div>
         </form>
     </div>

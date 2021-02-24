@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="/css/components/table.css">
     <link rel="stylesheet" href="/css/components/search.css">
-    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/components/button.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>
