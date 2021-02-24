@@ -28,7 +28,7 @@ public class InCommuteCheckController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost 실행()");
 		// 로그인한 아이디 불러오기
-		MemberVO mvo = (MemberVO) request.getSession().getAttribute("mvo");
+		MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
 		
 		String inTime = request.getParameter("time");
 		System.out.println("inTime : " + inTime);
@@ -47,6 +47,7 @@ public class InCommuteCheckController extends HttpServlet {
 		// cDate에 넣어줄 오늘 날짜 구하기
 		CommuteVO cvo = (CommuteVO) request.getSession().getAttribute("commute");
 		cvo.setStatus(status);
+		System.out.println("InCheck Controller cvo:" + cvo);
 		int result = CommuteDAO.inCheck(cvo);
 
 		if (result > 0) {

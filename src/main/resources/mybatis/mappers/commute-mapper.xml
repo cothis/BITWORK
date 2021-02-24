@@ -75,7 +75,7 @@
 						MEMBER_ID
 				 FROM COMMUTE
 				 WHERE TO_CHAR(C_DATE, 'YY/MM') = TO_CHAR(SYSDATE, 'YY/MM')
-				   and MEMBER_ID = 'cothis'
+				   and MEMBER_ID = #{id}
 				 GROUP BY MEMBER_ID
 			 ) S ON C.MEMBER_ID = S.MEMBER_ID
 		WHERE C_DATE = TO_CHAR(SYSDATE, 'YYYY/MM/DD')
@@ -99,7 +99,7 @@
 						MEMBER_ID
 				 FROM COMMUTE
 				 WHERE TO_CHAR(C_DATE, 'YY/MM') = TO_CHAR(SYSDATE, 'YY/MM')
-				   and MEMBER_ID = 'cothis'
+				   and MEMBER_ID = #{id}
 				 GROUP BY MEMBER_ID
 			 ) S ON C.MEMBER_ID = S.MEMBER_ID
 		WHERE rownum = 1
@@ -121,7 +121,7 @@
 								MEMBER_ID
 						 FROM COMMUTE
 						 WHERE TO_CHAR(C_DATE, 'YY/MM') = TO_CHAR(SYSDATE, 'YY/MM')
-						   and MEMBER_ID = 'cothis'
+						   and MEMBER_ID = #{id}
 						 GROUP BY MEMBER_ID
 					 ) S ON C.MEMBER_ID = S.MEMBER_ID
 				WHERE C_DATE = TO_CHAR(SYSDATE, 'YYYY/MM/DD')

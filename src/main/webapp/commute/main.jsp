@@ -58,7 +58,8 @@
 					} else {
 						/* clearInterval(outTimer); */
 						document.getElementById("outTime").innerText = nowTime();
-						alert("퇴근 기록 완료.")
+						alert("퇴근 기록 완료.");
+						location.href = "main";
 					}
 				})
 			}

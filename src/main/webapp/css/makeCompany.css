@@ -1,0 +1,84 @@
+.wrap {
+	display: flex;
+	flex-direction: column;
+	padding-top: 30px;
+	background-color: white;
+	border-radius: 10px;
+	border: 1px solid #e0e4e7;
+	width: 700px;
+	margin: 40px auto;
+	align-items: center;
+	padding: 80px 0 50px 0;
+}
+.wrap img {
+	position: relative;
+	left: 45px;
+	top: -20px;
+	width: 150px;
+}
+.input-warp {
+	margin: 0 auto;
+	position: relative;
+	left: 30px;
+	align-items: center;
+}
+.wrap h4 {
+	margin-bottom: 50px;
+}
+.wrap div {
+	margin-bottom: 15px;
+}
+.search-bar {
+   	width: 300px;
+   	height: 40px;
+   	border-radius: 5px;
+   	border: 1px solid SlateGrey;
+   	padding-left: 13px;
+   	outline: none;
+}
+.check-btn {
+ 	width: 70px;
+   	height: 30px;
+   	color: white;
+   	font-size: 15px;
+   	margin-left: 10px;
+   	background-color: #00add0;
+   	border-radius: 5px;
+   	border: none;
+   	outline: none;
+}
+.form-buttons {
+	margin-top: 40px;
+	text-align: center;
+}
+.button1 {
+    background-color: silver; 
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    width: 90px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+	border: none;	
+	margin-right: 15px;
+	outline: none;
+}
+.button2 {
+	background-color: #00add0;
+	text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    width: 90px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+	border: none;	
+} 
+
+.button2:hover {
+   background-color: #ff9c00;
+   transition: all 0.3s ease;
+}
