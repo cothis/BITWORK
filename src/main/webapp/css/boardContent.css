@@ -1,7 +1,6 @@
 .wrap {
 	display: flex;
 	flex-direction: column;
-	
 	padding-top: 30px;
 }
 .content-bg {

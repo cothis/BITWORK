@@ -7,26 +7,13 @@
     <title>BitWork - Manage</title>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="/css/boardList.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
-    <style>
-        table {
-            background-color: #FFFFFF;
-            border: 2px solid #CCCCCC;
-            border-collapse: collapse;
-        }
-
-        th {
-            background-color: #EAEAEA;
-        }
-
-        th,
-        td {
-            border: 1px solid #CCCCCC;
-        }
-    </style>
     <script>
-        function loadEmployees(name) {
+        function loadEmployees() {
+            let name = document.querySelector("#name").value;
             let params = {
                 type: "employees",
                 name: name
@@ -39,11 +26,12 @@
         }
 
         function makeTbodyContents(employees) {
-            const tbody = document.querySelector("tbody");
+            const tbody = document.querySelector(".member-content");
             tbody.innerHTML = "";
             employees.forEach(function (emp, idx) {
                 console.log(emp);
                 const tr = tbody.insertRow(-1);
+                tr.classList.add("trow");
                 tr.insertCell(-1).innerText = idx + 1;
                 tr.insertCell(-1).innerText = emp.position;
                 tr.insertCell(-1).innerText = emp.name;
@@ -69,6 +57,53 @@
             loadEmployees();
         });
     </script>
+    <style>
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            width: 1000px;
+            height: 80%;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .section {
+            width: 100%;
+            min-width: 800px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-form {
+            align-self: flex-end;
+            display: flex;
+        }
+
+        table {
+            background-color: #FFFFFF;
+            border: none;
+            border-collapse: collapse;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .thead-row {
+            background-color: #EAEAEA;
+            padding: 10px;
+        }
+
+        .trow {
+            border-top: 1px solid #CCCCCC;
+            border-bottom: 1px solid #CCCCCC;
+        }
+
+        .col-25 {
+            width: 25%;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -76,26 +111,28 @@
         <div class="title">조직 관리</div>
     </header>
     <div class="wrap">
-
-        <form>
-            <div class="form-group">
+        <div class="section">
+            <div class="search-form">
                 <label for="name"></label>
-                <input type="text" name="name" id="name" placeholder="이름">
-                <button type="button" onclick="loadEmployees(this.form.name.value)">검색</button>
+                <input type="text" name="name" id="name" placeholder="이름" class="search-bar">
+                <button class="search-button" type="submit" onclick="loadEmployees()">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
-        </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>직급</th>
-                    <th>이름</th>
-                    <th>입사일</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+
+            <table>
+                <thead>
+                    <tr class="trow thead-row">
+                        <th class="col-25">번호</th>
+                        <th class="col-25">직급</th>
+                        <th class="col-25">이름</th>
+                        <th class="col-25">입사일</th>
+                    </tr>
+                </thead>
+                <tbody class="member-content">
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

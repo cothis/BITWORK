@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 <title>게시판리스트</title>
 <link rel="stylesheet" href="/css/boardList.css">
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
 	<div class="white-bg">
@@ -46,7 +46,7 @@
 					<tr>
 						<td>${article.boardIdx}</td>
 						<td class="subject"><a
-							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}&cmt=${article.cmtCount}'>${article.subject}
+							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
 								<b>${article.cmtCount }</b>
 						</a></td>
 						<td>${article.name}</td>
@@ -83,8 +83,8 @@
 			<%-- [다음으로]에 대한 사용여부 처리 endPage가 전체페이지수(totalPage)보다 작은 경우 활성화 --%>
 			<c:if test="${pvo.endPage < pvo.totalPage }">
 				<li><a
-					href="list?cPage=${pvo.endPage + 1 }&search_option=${search.search_option }&keyword=${search.keyword }"><i
-						class="fas fa-chevron-right"></i></a></li>
+					href="list?cPage=${pvo.endPage + 1 }&search_option=${search.search_option }&keyword=${search.keyword }">
+					<i class="fas fa-chevron-right"></i></a></li>
 			</c:if>
 			<c:if test="${pvo.endPage >= pvo.totalPage }">
 				<li class="disable"><i class="fas fa-chevron-right"></i></li>
