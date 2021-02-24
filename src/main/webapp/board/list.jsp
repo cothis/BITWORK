@@ -31,8 +31,8 @@
 				<i class="fas fa-search"></i>
 			</button>
 		</form>
-		<table>
-			<thead>
+		<table class="content-table">
+			<thead id="thead">
 				<tr>
 					<th>No</th>
 					<th>제목</th>
@@ -45,10 +45,12 @@
 				<c:forEach var="article" items="${list}">
 					<tr>
 						<td>${article.boardIdx}</td>
-						<td class="subject"><a
-							href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
+						<td class="subject">
+							<a href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
 								<b>${article.cmtCount }</b>
-						</a></td>
+								<img src="/img/new.png">
+							</a>
+						</td>
 						<td>${article.name}</td>
 						<td>${article.regdate}</td>
 						<td>${article.hit}</td>
@@ -63,9 +65,11 @@
 					<li class="disable"><i class="fas fa-chevron-left"></i></li>
 				</c:when>
 				<c:otherwise>
-					<li><a
-						href="list?cPage=${pvo.beginPage - 1}&search_option=${search.search_option }&keyword=${search.keyword }">
-						<i class="fas fa-chevron-left"></i></a></li>
+					<li>
+						<a href="list?cPage=${pvo.beginPage - 1}&search_option=${search.search_option }&keyword=${search.keyword }">
+							<i class="fas fa-chevron-left"></i>
+						</a>
+					</li>
 				</c:otherwise>
 			</c:choose>
 			<%-- 블록내에 표시할 페이지 태그 작성(시작페이지 ~ 끝페이지) 현재페이지와 페이지 번호가 같으면 현재페이지 처리 --%>
@@ -75,16 +79,17 @@
 					<li class="now">${pageNo }</li>
 				</c:if>
 				<c:if test="${pageNo != pvo.nowPage }">
-					<li><a
-						href="list?cPage=${pageNo }&search_option=${search.search_option }&keyword=${search.keyword }">${pageNo }</a>
+					<li>
+						<a href="list?cPage=${pageNo }&search_option=${search.search_option }&keyword=${search.keyword }">${pageNo }</a>
 					</li>
 				</c:if>
 			</c:forEach>
 			<%-- [다음으로]에 대한 사용여부 처리 endPage가 전체페이지수(totalPage)보다 작은 경우 활성화 --%>
 			<c:if test="${pvo.endPage < pvo.totalPage }">
-				<li><a
-					href="list?cPage=${pvo.endPage + 1 }&search_option=${search.search_option }&keyword=${search.keyword }">
-					<i class="fas fa-chevron-right"></i></a></li>
+				<li>
+					<a href="list?cPage=${pvo.endPage + 1 }&search_option=${search.search_option }&keyword=${search.keyword }">
+					<i class="fas fa-chevron-right"></i></a>
+				</li>
 			</c:if>
 			<c:if test="${pvo.endPage >= pvo.totalPage }">
 				<li class="disable"><i class="fas fa-chevron-right"></i></li>

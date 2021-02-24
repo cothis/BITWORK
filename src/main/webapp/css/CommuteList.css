@@ -5,11 +5,16 @@
 }
 .search-wrap {
 	display: flex;
-	float: right;
+	justify-content: flex-end;
 	margin-bottom: 20px;
 }
 .search-wrap div {
 	margin-right: 15px;
+}
+
+.search-wrap div span {
+	font-size: 15px;
+	
 }
 .search-bar {
    width: 180px;
@@ -65,9 +70,13 @@
 .content-table tbody tr:last-of-type {
 	border-bottom: 2px solid #039DBE;
 }
-.content-table tbody tr:hover {
-   color: #39485D;
-   font-weight: bold;
+.red {
+	color: tomato;
+	font-weight: bold;
+}
+.blue {
+	color: DodgerBlue;
+	font-weight: bold;
 }
 
 .content-table tbody tr.active-row {
@@ -84,27 +93,28 @@
    justify-content: center;
 }
 .paging li {
-	margin: 8px;
+	
 }
 
 .paging li a {
    text-decoration: none;
    font-weight: bold;
    color: black;
-   padding: 0 5px;
 }
 
 .paging .disable {
    color: silver;
-   padding: 0 5px;
 }
 
 .paging .now {
    color: #00add0;
    font-weight: bold;
-   padding: 0 5px;
    height: 28px;
+   padding: 0 5px;
    border-bottom: 2px solid #00B3DC;
+}
+.paging .other {
+	padding: 0 5px;
 }
 
 .paging li a:hover {
