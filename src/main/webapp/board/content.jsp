@@ -11,6 +11,11 @@
 	<link rel="stylesheet" href="/css/boardContent.css">
     <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+		.content-image {
+			width: 100%;
+		}
+	</style>
 <script>
 
 	document.addEventListener("DOMContentLoaded", function() {
@@ -53,7 +58,7 @@
 	    <hr>
 	    	<pre class="content"><c:out value="${bvo.content}"/></pre>
 	    	<c:if test="${isImage }">
-	    		<img src="../data/board/${bvo.fileName }">
+	    		<img src="/data/board/${bvo.fileName }" class="content-image">
 	   		</c:if>
 		    <div class="file-wrap">
 			    <h4 class="file"><i class="far fa-file-alt"></i></h4>
