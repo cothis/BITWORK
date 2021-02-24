@@ -20,24 +20,37 @@ import java.util.stream.Stream;
 public class MainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+        try {
 
-        // Board
-        List<BoardVO> boardList = BoardDAO.lastNormal();
+            MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+            if (user.getGrade() == 0) {
+                response.sendRedirect("/member/noCompany");
+            } else if (user.getGrade() == 1) { // 초대
+                response.sendRedirect("/member/invite");
+            } else if (user.getGrade() == 2) { // 신청
+                response.sendRedirect("/member/waitCompany");
+            } else {
+                // Board
+                List<BoardVO> boardList = BoardDAO.lastNormal();
 
-        List<BoardVO> noticeList = boardList.stream()
-                .filter(boardVO -> boardVO.getStatus() == 0)
-                .collect(Collectors.toList());
-        List<BoardVO> normalList = boardList.stream()
-                .filter(boardVO -> boardVO.getStatus() == 1)
-                .collect(Collectors.toList());
-        request.setAttribute("noticeList", noticeList);
-        request.setAttribute("normalList", normalList);
+                List<BoardVO> noticeList = boardList.stream()
+                        .filter(boardVO -> boardVO.getStatus() == 0)
+                        .collect(Collectors.toList());
+                List<BoardVO> normalList = boardList.stream()
+                        .filter(boardVO -> boardVO.getStatus() == 1)
+                        .collect(Collectors.toList());
+                request.setAttribute("noticeList", noticeList);
+                request.setAttribute("normalList", normalList);
 
-        // Sign
-        NoReadCount noReadCount = SignDAO.findNoReadCount(user);
-        request.setAttribute("noReadCount", noReadCount);
-        RequestForwarder.forward(request, response);
+                // Sign
+                NoReadCount noReadCount = SignDAO.findNoReadCount(user);
+                request.setAttribute("noReadCount", noReadCount);
+                RequestForwarder.forward(request, response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
