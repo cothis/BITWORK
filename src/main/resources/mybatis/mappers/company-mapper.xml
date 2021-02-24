@@ -6,7 +6,7 @@
     <select id="findByName" parameterType="string" resultType="com.bitwork.company.vo.CompanyVO">
         SELECT COMPANY_IDX, COMPANY_NAME, COMPANY_PHONE, COMPANY_EMAIL, COMPANY_EMP_CNT
         FROM COMPANY
-        WHERE COMPANY_NAME = #{companyName}
+        WHERE COMPANY_NAME LIKE  '%' || #{companyName} || '%'
     </select>
 
     <select id="findById" resultType="com.bitwork.company.vo.CompanyVO">
