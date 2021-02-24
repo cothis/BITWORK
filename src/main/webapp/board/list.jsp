@@ -83,8 +83,8 @@
 			<%-- [다음으로]에 대한 사용여부 처리 endPage가 전체페이지수(totalPage)보다 작은 경우 활성화 --%>
 			<c:if test="${pvo.endPage < pvo.totalPage }">
 				<li><a
-					href="list?cPage=${pvo.endPage + 1 }&search_option=${search.search_option }&keyword=${search.keyword }"><i
-						class="fas fa-chevron-right"></i></a></li>
+					href="list?cPage=${pvo.endPage + 1 }&search_option=${search.search_option }&keyword=${search.keyword }">
+					<i class="fas fa-chevron-right"></i></a></li>
 			</c:if>
 			<c:if test="${pvo.endPage >= pvo.totalPage }">
 				<li class="disable"><i class="fas fa-chevron-right"></i></li>
