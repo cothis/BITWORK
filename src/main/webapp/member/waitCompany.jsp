@@ -6,6 +6,7 @@
     <title>BitWork - Wait</title>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components/button.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -24,6 +25,17 @@
             });
         });
     </script>
+    <style>
+        .wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wrap div {
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
 <body>
     <header class="header">
@@ -32,8 +44,12 @@
     </header>
     <div class="wrap">
         <div>${requestScope.company.companyName}</div>
-        <h2>가입 승인 대기중입니다</h2>
-        <button type="button" id="cancel">신청 취소</button>
+        <div>
+            <h2>가입 승인 대기중입니다</h2>
+        </div>
+        <div>
+            <button class="btn" type="button" id="cancel">신청 취소</button>
+        </div>
     </div>
 </body>
 </html>

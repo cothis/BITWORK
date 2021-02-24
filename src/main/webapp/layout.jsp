@@ -63,7 +63,7 @@
                         <c:if test="${not empty sessionScope.user.fileName}">
                             <c:set var="path" value="/data/member/${sessionScope.user.fileName}"/>
                         </c:if>
-                        <img src="${path}" alt="사진">
+                        <img src="${path}" alt="사진" onerror="this.src='/profile-picture/default.png'">
                     </div>
                     <div class="name">
                         <span>${sessionScope.user.name}</span>
