@@ -33,18 +33,18 @@
                 user_pw: user_pw
             };
             const params = new URLSearchParams(options);
-            axios.post("login", params)
+            axios.post("/member/login", params)
                 .then(res => {
                     const data = res.data;
                     if (data) {
                         if (data.grade === 0) {
-                            location.href = "noCompany";
+                            location.href = "/member/noCompany";
                         } else if (data.grade === 1) {
-                            location.href = "invite";
+                            location.href = "/member/invite";
                         } else if (data.grade === 2) {
-                            location.href = "waitCompany";
+                            location.href = "/member/waitCompany";
                         } else if (data.grade > 2) {
-                            location.href = "../main";
+                            location.href = "/main";
                         }
                     } else {
                         alert("로그인 실패");

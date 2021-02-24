@@ -27,7 +27,7 @@
             // 검색 클릭 시, 회사명 검색
             searchCompany.addEventListener("click", function () {
                 $.ajax({
-                    url: "api",
+                    url: "/member/api",
                     data: {
                         command: "searchCompany",
                         companyName: companyName.value
@@ -49,7 +49,11 @@
                             tr.insertCell(-1).innerText = company.companyEmpCnt;
                         }
 
-                        document.querySelector("#companyList").appendChild(table);
+                        let companyList = document.querySelector("#companyList");
+                        companyList.childNodes.forEach(function (el) {
+                            el.remove();
+                        })
+                        companyList.appendChild(table);
                         document.querySelectorAll("tbody > tr").forEach(function (tr) {
                             tr.addEventListener("click", selectEventHandler);
                         })
@@ -75,7 +79,7 @@
             // 가입 요청
             joinCompany.addEventListener("click", function () {
                 $.ajax({
-                    url: "joinCompany",
+                    url: "/member/joinCompany",
                     method: "post",
                     data: {
                         companyIdx: companyIdx.getAttribute("value")
@@ -84,7 +88,7 @@
                 }).then(function (res) {
                     if (res) {
                         alert("신청되었습니다");
-                        location.href = "waitCompany";
+                        location.href = "/member/waitCompany";
                     } else {
                         alert("가입 실패입니다");
                     }

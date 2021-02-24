@@ -19,7 +19,7 @@
                     success: function (res) {
                         if (res) {
                             alert("다음에 또 뵈요..");
-                            location.href = "login.jsp";
+                            location.href = "/member/login";
                         } else {
                             alert("비밀번호가 틀렸습니다");
                         }

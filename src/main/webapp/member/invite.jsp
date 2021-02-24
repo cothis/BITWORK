@@ -36,10 +36,10 @@
                         if (response.data) {
                             if (decide) {
                                 alert("환영합니다");
-                                location.replace("../main");
+                                location.replace("/main");
                             } else {
                                 alert("거절했습니다.");
-                                location.replace("noCompany");
+                                location.replace("/member/noCompany");
                             }
                         }
                     });

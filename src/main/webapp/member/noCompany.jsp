@@ -33,8 +33,8 @@
     </header>
     <div class="wrap">
         <div class="form">
-            <a href="../member/joinCompany" class="btn primary">가입 신청</a>
-            <a href="../company/makeCompany" class="btn primary">회사 생성</a>
+            <a href="/member/joinCompany" class="btn primary">가입 신청</a>
+            <a href="/company/makeCompany" class="btn primary">회사 생성</a>
         </div>
     </div>
 </body>

@@ -11,12 +11,12 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelector("#cancel").addEventListener("click", function () {
                 $.ajax({
-                    url: "cancelJoinCompany",
+                    url: "/member/cancelJoinCompany",
                     method: "get",
                     dataType: "json"
                 }).then(function (res) {
                     if (res) {
-                        location.href = "noCompany";
+                        location.href = "/member/noCompany";
                     } else {
                         alert("신청 취소에 실패했습니다");
                     }
