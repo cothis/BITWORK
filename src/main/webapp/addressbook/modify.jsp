@@ -15,12 +15,13 @@
 			width: 1000px;
 			height: 500px;
 			text-align: center;
+			border: none;
 		}
 		
 		.form-group {
 			position: relative;
 			top: 50px;
-			padding: 8px;
+			padding: 20px;
 			font-size: 30px;
 		}
 		
@@ -31,6 +32,7 @@
 			font-size: 25px;
 			
 		}
+
 		
 		#add{
 			width: 100px;

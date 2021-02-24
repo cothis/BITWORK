@@ -6,6 +6,8 @@
     <title>BitWork - No Company</title>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components/search.css">
+    <link rel="stylesheet" href="/css/components/table.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>

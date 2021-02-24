@@ -42,6 +42,7 @@ public class LoginController extends HttpServlet {
                 vo.setPw(null);
                 request.getSession().setAttribute("user", vo);
                 CommuteVO commuteToday = CommuteDAO.getCommuteToday(vo);
+                System.out.println("commuteToday = " + commuteToday);
                 request.getSession().setAttribute("commute", commuteToday);
                 Date joinDate = vo.getJoindate();
                 if (joinDate != null) {
