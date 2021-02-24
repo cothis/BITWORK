@@ -39,39 +39,25 @@
             padding: 10px 20px 20px 10px;
         }
         
-        div a.a{
-        	border:1px solid #ffc200;
-        	width:200px; height:40px
-        	text-align:center;
-        	padding-top:7px;
-        	font-size:14pt;
-        	color:white;
-        	background:#39485D;
-        	border-radius:0.4em;
-        	margin: 30px 20px 30px 20px; 
-        }
+       
         
 	  a { text-decoration:none !important } 
 	  a:hover { text-decoration:none !important }
 
       div#wr {
      
-       	margin: 30px 20px 30px 20px; 
+       	margin: 0px 20px 30px 20px; 
         padding: 10px 20px 0px 250px;  <!-- xx는 위, yy는 오른쪽, zz는 아래, ww는 왼쪽 여백 -->
      
       }
-      div.a{
-      	margin: 30px 20px 30px 400px;
-      }
+      
       h1{
       	margin: 30px 20px 30px 200px;
       } 
       .pageNav{
       	margin: 30px 20px 30px 500px;
       }
-      div h2{
-      	margin: 3px 600px 3px -70px;
-      }
+      
       p.category{
       	margin: 3px 100px 3px -70px;
       }
@@ -122,20 +108,44 @@
 		   -webkit-transition: all 0.2s ease;
 		         transition: all 0.2s ease;
 		}
+		
+		 div a.a{
+        	border:1px solid #5383E8;
+        	width:200px; height:40px
+        	
+        	padding-top:0px;
+        	font-size:14pt;
+        	color:white;
+        	background:#39485D;
+        	border-radius:0.4em;
+        	margin: 50px 30px 30px 10px; 
+        	}
+        	
+        div#wrap div a.a:hover{
+        	background : #0097A7;
+        	
+        }
+        tr.hover:hover{
+        	background : #F0F0F0;
+        }
+        
+        div h2{
+      	margin: 3px 1px 3px -70px;
+      }
     </style>
 </head>
 <body>
 	
-    <div id = "wr" >
+    <div id = "wrap" class="header">
+    <p class="category">Sign</p>
+	<h2>결재 ${empty requestScope.docStatus ? "전체" : requestScope.docStatus}</h2>
+		<div>
         <a class="a" href="list?nowPage=${requestScope.paging.nowPage}">결재전체   <i class="far fa-envelope">   </i></a>
         <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=완료">완료문서    <i class="far fa-envelope-open"></i></a>
         <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=반려" >반려문서     <i class="fas fa-envelope-open"></i></a>
         <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=대기">대기문서    <i class="fas fa-envelope"></i></a>
         <a class="a" href="detail?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&type=write">결재상신    <i class="fas fa-upload"></i></a>
-    </div>
-    <div class="header">
-	<p class="category">Board</p>
-	<h2>결재 ${empty requestScope.docStatus ? "전체" : requestScope.docStatus}</h2>
+  		</div>
 	</div>
     
     
@@ -153,7 +163,7 @@
         <tbody>
             <!-- requestScope에 있는 리스트 객체에서 꺼내서 쓸것임-->
             <c:forEach var="vo" items="${requestScope.list}">
-                <tr>
+                <tr class="hover">
                     <td>${vo.docNo}</td>
                     <td><a href="detail?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&docNo=${vo.docNo}">${vo.docTitle}</a></td>
                     <td>${vo.writerName}</td>
