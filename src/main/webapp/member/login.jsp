@@ -15,9 +15,17 @@
             document.getElementById("join").addEventListener("click", function () {
                 location.href = "join";
             })
+
+            document.querySelectorAll(".user-input").forEach(function (input) {
+                input.addEventListener("keyup", function (event) {
+                    if (event.keyCode === 13) {
+                        login();
+                    }
+                });
+            });
         });
 
-        function login(btn) {
+        function login() {
             const user_id = document.querySelector("#user_id").value;
             const user_pw = document.querySelector("#user_pw").value;
             const options = {
@@ -107,16 +115,16 @@
             <label for="user_id">
                 <span class="user-icon"></span>
             </label>
-            <input type="text" name="user_id" id="user_id" placeholder="ID를 입력하세요">
+            <input type="text" name="user_id" id="user_id" placeholder="ID를 입력하세요" class="user-input">
         </div>
         <div class="form-group">
             <label for="user_pw">
                 <span class="user-pw"></span>
             </label>
-            <input type="text" name="user_pw" id="user_pw" placeholder="Password를 입력하세요">
+            <input type="text" name="user_pw" id="user_pw" placeholder="Password를 입력하세요" class="user-input">
         </div>
         <div class="form-buttons">
-            <button type="button" class="btn primary" id="login">
+            <button type="submit" class="btn primary" id="login">
                 로그인
             </button>
             <button type="button" class="btn green" id="join">

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="/css/boardList.css">
+    <link rel="stylesheet" href="/css/CommuteList.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <script>
@@ -67,6 +68,11 @@
             margin-bottom: auto;
         }
 
+        .search-form {
+            align-self: flex-end;
+            display: flex;
+        }
+
         .section {
             width: 100%;
             min-width: 800px;
@@ -75,11 +81,6 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-        }
-
-        .search-form {
-            align-self: flex-end;
-            display: flex;
         }
 
         table {
@@ -111,17 +112,17 @@
         <div class="title">조직 관리</div>
     </header>
     <div class="wrap">
+        <div class="search-form">
+            <label for="name"></label>
+            <input type="text" name="name" id="name" placeholder="이름" class="search-bar">
+            <button class="search-button" type="submit" onclick="loadEmployees()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
         <div class="section">
-            <div class="search-form">
-                <label for="name"></label>
-                <input type="text" name="name" id="name" placeholder="이름" class="search-bar">
-                <button class="search-button" type="submit" onclick="loadEmployees()">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
 
             <table>
-                <thead>
+                <thead class="table-head">
                     <tr class="trow thead-row">
                         <th class="col-25">번호</th>
                         <th class="col-25">직급</th>

@@ -62,7 +62,6 @@ background-color: white;
 
 </style>
 <body> <!-- 작성모드와 detail 여부는 attribute vo가 있는지 여부로 판단-->
-
 	<div class="white-bg">
 		<div class="header">
 			<p class="category">Board</p>
@@ -73,10 +72,9 @@ background-color: white;
     
     
     <div class = "wrap">
-    <form class ="form-write" action="write" method="post" enctype="multipart/form-data">
+    <form class ="form-write" action="/sign/detail" method="post" enctype="multipart/form-data">
         <span><h3>결재 서류(상신)</h3></span>
         <span><h3>작성 일자 : ${requestScope.date}</h3></span>
-        
             <div class="form-group">
                 <label for="subject">제목</label>
                 <input type="text" name="subject" id="subject"
