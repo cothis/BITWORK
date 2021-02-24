@@ -7,83 +7,28 @@
     <title>BitWork - Manage</title>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components/search.css">
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="/css/components/table.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
     <style>
-        #inviteForm {
-            box-sizing: border-box;
-            background-color: #E0E0E0;
-            width: 600px;
-            padding: 15px;
-        }
-
-        .form-group {
+        .wrap {
             display: flex;
-        }
-
-        .form-group input {
-            box-sizing: border-box;
-            width: 80%;
-            height: 30px;
-            padding-left: 10px;
-        }
-
-        .form-group button {
-            width: 20%;
-        }
-
-        section {
-            padding: 15px;
-        }
-
-        #userTable {
+            width: 1000px;
+            height: 80%;
             margin-top: 10px;
-            width: 100%;
-            background-color: #FFFFFF;
-            box-shadow: 0 0 5px;
-            border-collapse: collapse;
         }
 
-        #userTable tr {
-            height: 30px;
-            border: 1px solid #d3d3d3;
-        }
-
-        #userTable thead {
-            background-color: #16A085;
-        }
-
-        #userTable th:not(:last-child) {
-            text-align: left;
-            width: 40%;
-        }
-
-        #userTable th:last-child {
-            width: 20%;
-        }
-
-        #userTable th,
-        #userTable td {
-            padding-left: 10px;
-        }
-
-        .transparent {
-            box-sizing: border-box;
-            margin: 0;
-            width: 100%;
-            background: none;
-            border: none;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .invite {
-            color: #16A085;
-        }
-
-        .invited {
-            color: #1290ff;
-            cursor: default;
+        .invite-section {
+            background-color: #CCCCCC;
+            border-radius: 10px;
+            padding: 20px;
+            margin-right: 10px;
+            flex-basis: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
     <script>
@@ -187,7 +132,7 @@
 
             document.querySelector("#searchUserBtn").addEventListener("click", function () {
                 const tbody = document.getElementById("userTbody");
-                const id = this.form.userId.value;
+                const id = document.querySelector("#userId").value;
                 axios.get("../member/api", {
                     params: {
                         command: "findInvitable",
@@ -207,42 +152,41 @@
         <div class="title">사용자 관리</div>
     </header>
     <div class="wrap">
-
-        <section id="inviteSection">
-            <form id="inviteForm">
-                <div class="form-group">
-                    <label for="userId"></label>
-                    <input type="text" placeholder="아이디로 검색" name="userId" id="userId">
-                    <button type="button" id="searchUserBtn" class="transparent">검색</button>
-                </div>
-                <table id="userTable">
-                    <thead>
-                        <tr>
-                            <th>아이디</th>
-                            <th>이름</th>
-                            <th>초대</th>
-                        </tr>
-                    </thead>
-                    <tbody id="userTbody">
-                        <tr>
-                            <td>테스트1 아이디</td>
-                            <td>테스트1 이름</td>
-                            <td>
-                                <button class="transparent invite">초대</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>테스트2 아이디</td>
-                            <td>테스트2 이름</td>
-                            <td>
-                                <button class="transparent invite">초대</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+        <section class="invite-section">
+            <div class="search-form">
+                <label for="userId"></label>
+                <input type="text" placeholder="아이디로 검색" name="userId" id="userId" class="search-bar">
+                <button type="button" id="searchUserBtn" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>초대</th>
+                    </tr>
+                </thead>
+                <tbody id="userTbody">
+                    <tr>
+                        <td>테스트1 아이디</td>
+                        <td>테스트1 이름</td>
+                        <td>
+                            <button class="transparent invite">초대</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>테스트2 아이디</td>
+                        <td>테스트2 이름</td>
+                        <td>
+                            <button class="transparent invite">초대</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
-        <section id="inviteList">
+        <section class="invite-section" id="inviteList">
             <table id="inviteTable">
                 <thead>
                     <tr>

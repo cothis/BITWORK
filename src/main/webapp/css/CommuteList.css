@@ -1,34 +1,27 @@
 .wrap {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+	display: flex;
+	flex-direction: column;
+	padding-top: 40px;
+}
+.search-wrap {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 20px;
+}
+.search-wrap div {
+	margin-right: 15px;
 }
 
-.search-form {
-   align-self: flex-end;
-   margin: 40px 0 20px 0;
+.search-wrap div span {
+	font-size: 15px;
+	
 }
-
-.search-option {
-   border: 1px solid #e0e4e7;
-   border-radius: 50px;
-   height: 30px;
-   width: 80px;
-   padding-left: 8px;
-   color: #39485d;
-   font-size: 15px;
-   line-height: 3px;
-   font-weight: 800;
-   outline: none;
-}
-
 .search-bar {
-   width: 300px;
+   width: 180px;
    height: 30px;
    border-radius: 50px;
    border: 1px solid #e0e4e7;
-   padding-left: 13px;
-   outline: none;
+   padding: 0 8px 0 13px;
 }
 .search-button {
    background-color: #00add0;
@@ -38,13 +31,6 @@
    border: none;
    color: white;
    margin-left: 5px;
-   outline: none;
-   cursor: pointer;
-}
-
-.search-button:hover {
-   background-color: #ff9c00;
-   transition: all 0.3s ease;
 }
 
 .content-table {
@@ -62,31 +48,7 @@
 }
 .content-table th,
 .content-table td {
-	padding: 8px 15px;	
-}
-.content-table td a {
-	text-decoration: none;
-	color: #0a0a0a;
-	font-weight: bold;
-}
-.content-table td b {
-	color: #00add0;
-}
-
-.content-table td img {
-	width: 12px;
-	height: 12px;
-}
-.content-table td a {
-	background-color: white;
-}
-
-.content-table td a:visited {
-	background-color: red;
-}
-
-.content-table td a:hover img {
-	display: none;
+	padding: 8px 15px;
 }
 .content-table th:first-child {
     -moz-border-radius: 8px 0 0 0;
@@ -108,7 +70,19 @@
 .content-table tbody tr:last-of-type {
 	border-bottom: 2px solid #039DBE;
 }
+.red {
+	color: tomato;
+	font-weight: bold;
+}
+.blue {
+	color: DodgerBlue;
+	font-weight: bold;
+}
 
+.content-table tbody tr.active-row {
+	font-weigth: bold;
+	color: #00add0;
+}
 .paging {
    padding-top: 15px;
    font-family: 'Quicksand', sans-serif;
@@ -119,27 +93,28 @@
    justify-content: center;
 }
 .paging li {
-	margin: 8px;
+	
 }
 
 .paging li a {
    text-decoration: none;
    font-weight: bold;
    color: black;
-   padding: 0 5px;
 }
 
 .paging .disable {
    color: silver;
-   padding: 0 5px;
 }
 
 .paging .now {
    color: #00add0;
    font-weight: bold;
-   padding: 0 5px;
    height: 28px;
+   padding: 0 5px;
    border-bottom: 2px solid #00B3DC;
+}
+.paging .other {
+	padding: 0 5px;
 }
 
 .paging li a:hover {
@@ -166,7 +141,12 @@
    align-self: flex-end;
 }
 
-.write-btn:hover {
-   background-color: #ff9c00;
-   transition: all 0.3s ease;
-}
+
+
+
+
+
+
+
+
+
