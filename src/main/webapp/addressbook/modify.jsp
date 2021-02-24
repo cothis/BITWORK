@@ -11,16 +11,18 @@
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>
 		.wrap {
+			padding : 5px;
+			margin-top : 40px;
 			background-color: #FFFFFF;
 			width: 1000px;
-			height: 500px;
+			height: 600px;
 			text-align: center;
 			border: none;
 		}
 		
 		.form-group {
 			position: relative;
-			top: 50px;
+			top: 47px;
 			padding: 20px;
 			font-size: 30px;
 		}
@@ -32,7 +34,7 @@
 			font-size: 25px;
 			
 		}
-
+		
 		
 		#add{
 			width: 100px;
@@ -53,6 +55,16 @@
     		color: #ababab;
 		}
 		
+		#add:hover {
+			background-color: #ff9c00;
+		}
+		
+		#cancel:hover {
+			background-color: #ff9c00;
+			color: #7a7a7a;
+		}
+		
+		
 		
 		
         
@@ -71,22 +83,21 @@
         <div class="title">주소록 ${empty vo ? "추가" : "변경"}</div>
     </header>
     <div class="wrap">
-    <hr>
     <form action="modify" method="post">
         <div class="form-group">
-            <label for="name">이름 : </label>
+            <label for="name">&nbsp;&nbsp;이름 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="text" name="name" id="name" value="${requestScope.vo.name }">
         </div>
         <div class="form-group">
-            <label for="email">이메일 : </label>
+            <label for="email">&nbsp;&nbsp;이메일 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="text" name="email" id="email" value="${requestScope.vo.email}">
         </div>
         <div class="form-group">
-            <label for="company">회사 : </label>
+            <label for="company">&nbsp;&nbsp;회사 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="text" name="company" id="company" value="${requestScope.vo.company}">
         </div>
         <div class="form-group">
-            <label for="phone">전화번호 : </label>
+            <label for="phone">&nbsp;&nbsp;전화번호 :&nbsp;&nbsp;&nbsp;</label>
             <input type="text" name="phone" id="phone" value="${requestScope.vo.phone}">
         </div>
         <div class="form-buttons">

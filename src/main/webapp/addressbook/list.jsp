@@ -28,7 +28,7 @@
     	}
     	
     	.delete-button {
-    		background-color: red;
+    		background-color: #7a7a7a;
     	}
     
         a { 
@@ -48,6 +48,9 @@
  		a:hover { 
 	 		text-decoration: underline;
 	 	}
+	 	#pageNav li a:hover {
+	 		color: #ff9c00;
+	 	}
        
         #pageNav {
         	display: flex;
@@ -60,18 +63,20 @@
         	margin: 0 20px;
         	line-height: 16px;        	
         	text-align: center;
-        	text-decoration: none;
-        	color: #ababab;
+        	text-decoration: underline;
+        	color: #3498D8;
         }
         
-        #pageNav a:hover {
-        	cursor: pointer;
-        }
+
         
         #pageNav a[href] {
-        	text-decoration: underline;
+        	text-decoration: none;
         	font-weight: bold;
-        	color: #3498D8; 
+        	color: #000000; 
+        }
+
+        a i:hover{
+        	color: #ff9c00;
         }
         
     </style>
@@ -146,7 +151,6 @@
 	            </button>
 	        </div>
     	</div>
-        
         <section id="bbs">
 <!--             <table style="table-layout: fixed"> -->
             <table class="table">
@@ -158,8 +162,8 @@
                         </th>
                         <th width="20%">이름</th>
                         <th width="25%">이메일</th>
-                        <th>회사</th>
-                        <th>전화번호</th>
+                        <th width="20%">회사</th>
+                        <th width="15%">전화번호</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -181,26 +185,28 @@
             </table>
             <div id="pageNav">
                 <c:if test="${requestScope.paging.startPage - 1 > 0}">
-                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}"><i class="fas fa-chevron-left"></i></a>
+                    <a href="list?name=${param.name}&nowPage=${requestScope.paging.startPage - 1}" style="color:black;"><i class="fas fa-chevron-left"></i></a>
                 </c:if>
                 <c:if test="${not (requestScope.paging.startPage - 1 > 0)}">
-                    <a><i class="fas fa-chevron-left"></i></a>
+                    <a><i class="fas fa-chevron-left" style="color:gray;"></i></a>
                 </c:if>
 
                 <c:forEach var="page" begin="${requestScope.paging.startPage}" end="${requestScope.paging.endPage}">
                     <c:if test="${page eq requestScope.paging.nowPage}">
                         <a>${page}</a>
                     </c:if>
+                    <li>
                     <c:if test="${page ne requestScope.paging.nowPage}">
                         <a href="list?name=${param.name}&nowPage=${page}">${page}</a>
                     </c:if>
+                    </li>
                 </c:forEach>
 
                 <c:if test="${requestScope.paging.endPage < requestScope.paging.totalPage}">
                     <a href="list?name=${param.name}&nowPage=${requestScope.paging.endPage + 1}"><i class="fas fa-chevron-right"></i></a>
                 </c:if>
                 <c:if test="${not (requestScope.paging.endPage < requestScope.paging.totalPage)}">
-                    <a><i class="fas fa-chevron-right"></i></a>
+                    <a><i class="fas fa-chevron-right" style="color:gray;"></i></a>
                 </c:if>
             </div>
         </section>
