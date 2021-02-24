@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
-    <link rel="stylesheet" href="/css/boardList.css">
-    <link rel="stylesheet" href="/css/CommuteList.css">
+    <link rel="stylesheet" href="/css/components/table.css">
+    <link rel="stylesheet" href="/css/components/search.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <script>
@@ -91,16 +91,6 @@
             text-align: center;
         }
 
-        .thead-row {
-            background-color: #EAEAEA;
-            padding: 10px;
-        }
-
-        .trow {
-            border-top: 1px solid #CCCCCC;
-            border-bottom: 1px solid #CCCCCC;
-        }
-
         .col-25 {
             width: 25%;
         }
@@ -120,10 +110,9 @@
             </button>
         </div>
         <div class="section">
-
-            <table>
-                <thead class="table-head">
-                    <tr class="trow thead-row">
+            <table class="table">
+                <thead class="thead">
+                    <tr>
                         <th class="col-25">번호</th>
                         <th class="col-25">직급</th>
                         <th class="col-25">이름</th>

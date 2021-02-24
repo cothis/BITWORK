@@ -6,25 +6,9 @@
     <title>BitWork - Join Company</title>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        th {
-            background-color: #16A085;
-            color: white;
-        }
-
-        tr {
-            cursor: pointer;
-        }
-
-        tr:hover {
-            background-color: #5ab194;
-        }
-
-        .selected {
-            background-color: #16A085;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="/css/components/search.css">
+    <link rel="stylesheet" href="/css/components/table.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -52,7 +36,10 @@
                 }).then(function (res) {
                     if (res) {
                         let table = document.createElement("table");
-                        let thead_tr = table.createTHead().insertRow();
+                        table.className = "table";
+                        let thead = table.createTHead();
+                        thead.className = "thead";
+                        let thead_tr = thead.insertRow();
                         thead_tr.insertCell(-1).outerHTML = "<th>회사코드</th><th>회사명</th><th>사원수</th>"
                         table.createTBody();
                         for (let company of res) {
@@ -61,7 +48,8 @@
                             tr.insertCell(-1).innerText = company.companyName;
                             tr.insertCell(-1).innerText = company.companyEmpCnt;
                         }
-                        document.querySelector("#container").innerHTML = table.outerHTML;
+
+                        document.querySelector("#companyList").appendChild(table);
                         document.querySelectorAll("tbody > tr").forEach(function (tr) {
                             tr.addEventListener("click", selectEventHandler);
                         })
@@ -111,12 +99,14 @@
         <div class="title">회사 가입</div>
     </header>
     <div class="wrap">
-        <div class="form-group">
+        <div class="search-form">
             <label for="companyName"></label>
-            <input type="text" id="companyName" placeholder="회사명">
-            <button type="button" id="searchCompany">검색</button>
+            <input type="text" id="companyName" placeholder="회사명" class="search-bar">
+            <button type="button" id="searchCompany" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
-        <div id="container">
+        <div id="companyList">
         </div>
         <form>
             <div class="form-buttons">
