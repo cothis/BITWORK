@@ -23,6 +23,11 @@ public class MainController extends HttpServlet {
         try {
 
             MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+            if(user == null) {
+                response.sendRedirect("/");
+                return;
+            }
+
             if (user.getGrade() == 0) {
                 response.sendRedirect("/member/noCompany");
             } else if (user.getGrade() == 1) { // 초대
