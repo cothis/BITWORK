@@ -33,9 +33,9 @@ public class BoardUpdateController extends HttpServlet {
 		// 기존 제목
 		String subject = bvo.getSubject();
 		
-		if (bvo.getStatus() == 0) {
-			subject = subject.replace("[공지] ", "");
-		}
+		/*
+		 * if (bvo.getStatus() == 0) { subject = subject.replace("[공지] ", ""); }
+		 */
 		
 		bvo.setSubject(subject);
 		
@@ -60,10 +60,10 @@ public class BoardUpdateController extends HttpServlet {
 		String option = mr.getParameter("update_option");
 		String subject = mr.getParameter("update_subject");
 				
-		// 공지 선택하면 앞에 문자열 붙여줌
-		if (option.equals("0")) { 
-		 subject = "[공지] " + subject;
-		}
+		/*
+		 * // 공지 선택하면 앞에 문자열 붙여줌 if (option.equals("0")) { subject = "[공지] " + subject;
+		 * }
+		 */
 		
 		System.out.println("subject: " + subject);
 		

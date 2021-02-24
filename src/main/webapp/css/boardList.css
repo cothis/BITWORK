@@ -47,66 +47,37 @@
    transition: all 0.3s ease;
 }
 
-.content-table {
-	top: 20px;
-	width: 100%;
-	border-collapse: collapse;
-	min-width: 400px; 
-	overflos: hidden;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-	text-align: center;
+.table {
+	padding-left: 100px;
 }
-.content-table thead tr {
-	background-color: #39485D;
-	color: white;
+.table .subject {
+   	text-align: left;
 }
-.content-table th,
-.content-table td {
-	padding: 8px 15px;	
-}
-.content-table td a {
+
+.table .subject a {
+	margin-left: 30px;
 	text-decoration: none;
-	color: #0a0a0a;
+	color: #141414;
+}
+.table .subject a:visited {
+}
+
+
+.table .subject b {
+   color: #00add0;
+   font-weight: 800;
+   font-size: 15px;
+}
+.table .notice {
+	background-color: #ff9c00;
 	font-weight: bold;
-}
-.content-table td b {
-	color: #00add0;
-}
-
-.content-table td img {
-	width: 12px;
-	height: 12px;
-}
-.content-table td a {
-	background-color: white;
+	color: white;
+	border-radius: 50px;
+	padding: 0 8px 1px 8px;
 }
 
-.content-table td a:visited {
-	background-color: red;
-}
-
-.content-table td a:hover img {
-	display: none;
-}
-.content-table th:first-child {
-    -moz-border-radius: 8px 0 0 0;
-    -webkit-border-radius: 8px 0 0 0;
-    border-radius: 8px 0 0 0;
-}
-.content-table th:last-child {
-    -moz-border-radius: 0 8px 0 0;
-    -webkit-border-radius: 0 8px 0 0;
-    border-radius: 0 8px 0 0;
-}
-.content-table tbody tr {
-	border-bottom: 1px solid lightgray;
-	background-color: white;
-}
-.content-table tbody tr:nth-of-type(even) {
-	background-color: #f2f5f7;
-}
-.content-table tbody tr:last-of-type {
-	border-bottom: 2px solid #039DBE;
+.table .bold {
+	font-weight: bold;
 }
 
 .paging {
@@ -162,7 +133,8 @@
    text-align: center;
    line-height: 40px;
    border-radius: 5px;
-   margin: 20px 0;
+   position: relative;
+   top: -50px;
    align-self: flex-end;
 }
 

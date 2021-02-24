@@ -37,6 +37,7 @@
 	background-color: #1B232D;
 	border: none;
 	margin-top: 20px;
+	outline:none;
 }
 .commute-btn-wrap button:first-child {
 	margin-right: 25px;

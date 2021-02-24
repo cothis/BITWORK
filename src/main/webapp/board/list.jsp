@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>게시판리스트</title>
 <link rel="stylesheet" href="/css/boardList.css">
+<link rel="stylesheet" href="/css/components/table.css">
 <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -31,8 +32,8 @@
 				<i class="fas fa-search"></i>
 			</button>
 		</form>
-		<table class="content-table">
-			<thead id="thead">
+		<table class="table">
+			<thead class="thead">
 				<tr>
 					<th>No</th>
 					<th>제목</th>
@@ -44,11 +45,17 @@
 			<tbody id="tbody">
 				<c:forEach var="article" items="${list}">
 					<tr>
+					<c:if test="${article.status eq 0 }">
+						<td>
+							<span ${article.status eq 0 ? "class='notice'":""}>공지</span>
+						</td>
+					</c:if>
+					<c:if test="${article.status eq 1 }">
 						<td>${article.boardIdx}</td>
+					</c:if>
 						<td class="subject">
-							<a href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
+							<a ${article.status eq 0 ? "class='bold'":""} href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
 								<b>${article.cmtCount }</b>
-								<img src="/img/new.png">
 							</a>
 						</td>
 						<td>${article.name}</td>
