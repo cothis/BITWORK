@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/normalize.css">
-    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/aside.css">
     <script src="/js/navbar.js"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
 </head>
 <body>
     <nav class="navbar">
