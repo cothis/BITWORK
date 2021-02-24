@@ -13,7 +13,7 @@
     <script src="../webjars/jquery/3.5.1/jquery.min.js"></script>
 	<style>
 		.content-image {
-			width: 100%;
+			max-width: 100%;
 		}
 	</style>
 <script>
