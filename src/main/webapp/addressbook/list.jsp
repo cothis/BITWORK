@@ -12,49 +12,23 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
         table {
-        	
-            border-collapse: collapse;
-            width: 800px;
-            background-color: #FFFFFF;
-        }
-
-        thead {
-            background-color: #EAEAEA;
-        }
-
-        tr {
-            border: 1px solid #CCCCCC;
-            border-left: none;
-            border-right: none;
-        }
-
-        td {
-            text-align: center;
-        }
-        
-        table {
             border-collapse: collapse;
             width: 1000px;
             background-color: #FFFFFF;
         }
-
         thead {
             background-color: #EAEAEA;
         }
-
         tr {
             border: 1px solid #CCCCCC;
             border-left: none;
             border-right: none;
-            
         }
-
-        td {
+       td {
             text-align: center;
             padding-top: 10px;
             padding-bottom: 10px;
         }
-        
         .primary {
         	margin: 20px;
         	float: left;
@@ -62,8 +36,7 @@
         .green {
         	margin: 20px;
         	float: right;
-        }
-        
+        	}
         #name {
         	position: relative;
         	left: 350px;
@@ -77,7 +50,6 @@
         	margin-top: 10px;
         	
         }
-        
         #pageNav a {
         	margin: 0 20px;
         	line-height: 16px;        	
@@ -159,18 +131,18 @@
             <button type="button" onclick="deleteAddr()" class="btn primary">삭제</button>
             <label for="name"></label>
             <input type="text" name="name" id="name" placeholder="이름" class="search" value="${param.name}">
-            <button type="button" onclick="searchAddr()" class="btn green"><i class="fas fa-search"></i></button>
+            <button type="button" onclick="searchAddr()" class="btn green">검색</button>
         </section>
         <section id="bbs">
-            <table>
+            <table style="table-layout: fixed">
                 <thead>
                     <tr>
-                        <th>
+                        <th width="5%">
                             <label for="checkAllButton"></label>
                             <input type="checkbox" id="checkAllButton" onclick="checkAll(this)">
                         </th>
-                        <th>이름</th>
-                        <th>이메일</th>
+                        <th width="20%">이름</th>
+                        <th width="25%">이메일</th>
                         <th>회사</th>
                         <th>전화번호</th>
                     </tr>
@@ -184,7 +156,7 @@
                                            onclick="checkOthers()">
                                 </label>
                             </td>
-                            <td><a href="modify?idx=${vo.addressbookIdx}&nowPage=${param.nowPage}">${vo.name}</a></td>
+                            <td><a href="modify?idx=${vo.addressbookIdx}&nowPage=${param.nowPage}">${vo.name}&nbsp;&nbsp;<i class="fas fa-edit"></i></a></td>
                             <td>${vo.email}</td>
                             <td>${vo.company}</td>
                             <td>${vo.phone}</td>
