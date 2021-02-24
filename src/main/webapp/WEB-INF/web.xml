@@ -30,12 +30,4 @@
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
-    
-<!--    <jsp-config>
-        <jsp-property-group>
-            <url-pattern>*.jsp</url-pattern>
-            <include-coda>/commons/aside.jspf</include-coda>
-            <include-coda>/commons/nav.jspf</include-coda>
-        </jsp-property-group>
-    </jsp-config>-->
 </web-app>
