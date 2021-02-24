@@ -13,6 +13,18 @@
     <script src="/js/navbar.js"></script>
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.js"></script>
+    <style>
+        .footer {
+            align-items: center;
+        }
+
+        .logo-title {
+            margin-left: 20px;
+            font-size: 18px;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -89,7 +101,7 @@
     </main>
 
     <footer class="footer">
-        <h1>(주)비트워크</h1>
+        <span class="logo-title">(주)비트워크</span>
     </footer>
     <script>
         let navMenuIcon = document.querySelector(".nav-toggle-btn");
