@@ -1,0 +1,97 @@
+       
+        
+	  a { text-decoration:none !important } 
+	  a:hover { text-decoration:none !important }
+
+      div#wr {
+     
+       	margin: 0px 20px 30px 20px; 
+        padding: 10px 20px 0px 250px;  <!-- xx는 위, yy는 오른쪽, zz는 아래, ww는 왼쪽 여백 -->
+     
+      }
+      
+      h1{
+      	margin: 30px 20px 30px 200px;
+      } 
+      .pageNav{
+      	margin: 30px 20px 30px 500px;
+      }
+      
+      p.category{
+      	margin: 3px 100px 3px -70px;
+      }
+      
+      
+      #paging{
+       padding-top: 15px;
+	   font-family: 'Quicksand', sans-serif;
+	   list-style: none;
+	   width: 100%;
+	   height: 70px;
+	   display: flex;
+	   justify-content: center;
+	   margin : 3px 50px 30px 20px;
+      
+      }
+      
+     	 #paging li {
+			margin: 8px;
+		}
+		
+		#paging li a {
+		   text-decoration: none;
+		   font-weight: bold;
+		   color: black;
+		   padding: 0 5px;
+		}
+		
+		#paging .disable {
+		   color: silver;
+		   padding: 0 5px;
+		}
+		
+		#paging .now {
+		   color: #00add0;
+		   font-weight: bold;
+		   padding: 0 5px;
+		   height: 28px;
+		  border-bottom: 2px solid #00B3DC;
+		}
+		
+		#paging li a:hover {
+		   color: #ff9c00;
+		   
+		}
+		
+		#paging li a, .paging li a:before {
+		   -webkit-transition: all 0.2s ease;
+		         transition: all 0.2s ease;
+		}
+		
+		 div a.a{
+        	border:1px solid #5383E8;
+        	width:200px; height:40px
+        	
+        	padding-top:0px;
+        	font-size:14pt;
+        	color:white;
+        	background:#39485D;
+        	border-radius:0.4em;
+        	margin: 50px 30px 30px 10px; 
+        	}
+        	
+        div#wrap div a.a:hover{
+        	background : #0097A7;
+        	
+        }
+        tr.hover:hover{
+        	background : #F0F0F0;
+        }
+        
+        div h2{
+      	margin: 3px 1px 3px -70px;
+      }
+      
+      div.signbutton{
+      margin: 30px 50px 50px 250px;
+      }

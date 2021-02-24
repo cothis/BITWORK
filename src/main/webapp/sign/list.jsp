@@ -9,148 +9,35 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> <!--CDN 링크 -->
 
 
-    <link rel="stylesheet" href="css/signlist.css">
+    <link rel="stylesheet" href="/css/list.css">
     <link rel="stylesheet" href="/css/normalize.css"> 
+    <link rel="stylesheet" href="/css/components/table.css"> 
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 800px;
-            background-color: #FFFFFF;
-            margin: 30px 20px 30px 200px;
-        }
-
-        thead {
-            background-color: #F0F0F0;
-            padding: 10px 20px 30px 280px;
-        }
-         
-        tr {
-            border: 1px solid #CCCCCC;
-            border-left: none;
-            border-right: none;
-            margin: 30px 20px 30px 200px; 
-        }
-
-        td {
-            text-align: center;
-            padding: 10px 20px 20px 10px;
-        }
-        
-       
-        
-	  a { text-decoration:none !important } 
-	  a:hover { text-decoration:none !important }
-
-      div#wr {
+   
      
-       	margin: 0px 20px 30px 20px; 
-        padding: 10px 20px 0px 250px;  <!-- xx는 위, yy는 오른쪽, zz는 아래, ww는 왼쪽 여백 -->
-     
-      }
-      
-      h1{
-      	margin: 30px 20px 30px 200px;
-      } 
-      .pageNav{
-      	margin: 30px 20px 30px 500px;
-      }
-      
-      p.category{
-      	margin: 3px 100px 3px -70px;
-      }
-      
-      
-      #paging{
-       padding-top: 15px;
-	   font-family: 'Quicksand', sans-serif;
-	   list-style: none;
-	   width: 100%;
-	   height: 70px;
-	   
-	   display: flex;
-	   justify-content: center;
-	   margin : 3px 30px 30px 30px;
-      
-      }
-      
-     	 #paging li {
-			margin: 8px;
-		}
-		
-		#paging li a {
-		   text-decoration: none;
-		   font-weight: bold;
-		   color: black;
-		   padding: 0 5px;
-		}
-		
-		#paging .disable {
-		   color: silver;
-		   padding: 0 5px;
-		}
-		
-		#paging .now {
-		   color: #00add0;
-		   font-weight: bold;
-		   padding: 0 5px;
-		   height: 28px;
-		   border-bottom: 2px solid #00B3DC;
-		}
-		
-		#paging li a:hover {
-		   color: #ff9c00;
-		}
-		
-		#paging li a, .paging li a:before {
-		   -webkit-transition: all 0.2s ease;
-		         transition: all 0.2s ease;
-		}
-		
-		 div a.a{
-        	border:1px solid #5383E8;
-        	width:200px; height:40px
-        	
-        	padding-top:0px;
-        	font-size:14pt;
-        	color:white;
-        	background:#39485D;
-        	border-radius:0.4em;
-        	margin: 50px 30px 30px 10px; 
-        	}
-        	
-        div#wrap div a.a:hover{
-        	background : #0097A7;
-        	
-        }
-        tr.hover:hover{
-        	background : #F0F0F0;
-        }
-        
-        div h2{
-      	margin: 3px 1px 3px -70px;
-      }
-    </style>
 </head>
 <body>
 	
-    <div id = "wrap" class="header">
-    <p class="category">Sign</p>
-	<h2>결재 ${empty requestScope.docStatus ? "전체" : requestScope.docStatus}</h2>
-		<div>
+    <div class="header">
+   		<p class="category">Sign</p>
+		<h2>결재 ${empty requestScope.docStatus ? "전체" : requestScope.docStatus}</h2>
+		
+	</div>
+	<div class="signbutton">
         <a class="a" href="list?nowPage=${requestScope.paging.nowPage}">결재전체   <i class="far fa-envelope">   </i></a>
         <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=완료">완료문서    <i class="far fa-envelope-open"></i></a>
         <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=반려" >반려문서     <i class="fas fa-envelope-open"></i></a>
         <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=대기">대기문서    <i class="fas fa-envelope"></i></a>
         <a class="a" href="detail?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&type=write">결재상신    <i class="fas fa-upload"></i></a>
-  		</div>
-	</div>
-    
-    
-    <table class="t">
-        <thead>
+  	</div>
+	
+	
+	<div class="wrap">
+	
+	  <table class="table">
+        <thead class = "thead">
             <tr>
                 <th>서류번호</th>
                 <th>제목</th>
@@ -201,6 +88,12 @@
        <li><a><i class="fas fa-chevron-right"></i></a></li>
     </c:if>
     </div>
+	</div>
+	
+    
+    
+  
+    
   
    
     
