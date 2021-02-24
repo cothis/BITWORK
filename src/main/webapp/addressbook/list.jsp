@@ -17,6 +17,7 @@
             background-color: #FFFFFF;
         }
         thead {
+
             background-color: #EAEAEA;
         }
         tr {
@@ -24,24 +25,48 @@
             border-left: none;
             border-right: none;
         }
-       td {
+        td {
             text-align: center;
             padding-top: 10px;
             padding-bottom: 10px;
         }
+        a { 
+        	text-decoration: none; 
+        	color: black; 
+        	
+        }
+
+
+        a:link { 
+        	color: black;
+	        text-decoration: none;
+	    }
+        
+ 		a:visited {
+	 		text-decoration: none;
+	 	}
+ 		
+ 		a:hover { 
+	 		text-decoration: underline;
+	 	}
+
         .primary {
-        	margin: 20px;
-        	float: left;
+        	margin-top : 17px;
+        	margin-bottom : 17px;
+        	margin-right: 12px;
+        	float: left; 
         }
         .green {
-        	margin: 20px;
+        	margin-top : 17px;
+        	margin-bottom : 17px;
         	float: right;
         	}
+        
         #name {
         	position: relative;
-        	left: 350px;
+        	left: 410px;
         	top: 25px;
-        	font-size: 18px;
+        	font-size: 20px;
         }
         #pageNav {
         	display: flex;
