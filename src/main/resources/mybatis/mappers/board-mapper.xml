@@ -39,7 +39,7 @@
 	<select id="list" resultType="com.bitwork.board.vo.BoardVO" parameterType="map">
 		SELECT *
           FROM (SELECT ROWNUM AS R_NUM, B.*
-                  FROM (SELECT BOARD_IDX, SUBJECT, NAME, TO_CHAR(B.REGDATE, 'YYYY-MM-DD') AS REGDATE, HIT, CMT_COUNT
+                  FROM (SELECT BOARD_IDX, STATUS, SUBJECT, NAME, TO_CHAR(B.REGDATE, 'YYYY-MM-DD') AS REGDATE, HIT, CMT_COUNT
                           FROM (SELECT B.BOARD_IDX, STATUS, SUBJECT, B.MEMBER_ID, REGDATE, HIT, COUNT(CMT_IDX) AS CMT_COUNT
                                   FROM BOARD B LEFT JOIN COMMENTS C ON B.BOARD_IDX = C.BOARD_IDX
                                  GROUP BY B.BOARD_IDX, STATUS, SUBJECT, B.MEMBER_ID, REGDATE, HIT) B, MEMBER M 

@@ -55,10 +55,10 @@ public class BoardWriteController extends HttpServlet {
 		 String option = mr.getParameter("write_option");
 		 String subject = mr.getParameter("write_subject");
 		 
-		 // 공지 선택하면 앞에 문자열 붙여줌
-		 if (option.equals("0")) { 
-			 subject = "[공지] " + subject;
-		 }
+		/*
+		 * // 공지 선택하면 앞에 문자열 붙여줌 if (option.equals("0")) { subject = "[공지] " + subject;
+		 * }
+		 */
 		 
 		 String content = mr.getParameter("write_content");
 		 String fileName = mr.getFilesystemName("write_file");
