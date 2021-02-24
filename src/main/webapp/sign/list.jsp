@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/components/table.css">
     <link rel="stylesheet" href="/css/sign.css">
+    <link rel="stylesheet" href="/css/button.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>
@@ -28,7 +29,7 @@
             position: relative;
             margin: 10px 0 10px 0;
         }
-
+/*
         .sign-button .a {
             margin-right: 20px;
             text-decoration: none;
@@ -42,7 +43,7 @@
         .sign-button .a:hover {
             background-color: #ff9c00;
             transition-duration: 0.2s;
-        }
+        }*/
 
         .sign-button .a:last-child {
             position: absolute;
@@ -59,19 +60,19 @@
     </header>
     <div class="wrap">
         <div class="sign-button">
-            <a class="a" href="list?nowPage=${requestScope.paging.nowPage}">결재전체
+            <a class="a btn" href="list?nowPage=${requestScope.paging.nowPage}">결재전체
                 <i class="far fa-envelope"></i>
             </a>
-            <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=완료">완료문서
+            <a class="a btn" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=완료">완료문서
                 <i class="far fa-envelope-open"></i>
             </a>
-            <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=반려">반려문서
+            <a class="a btn" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=반려">반려문서
                 <i class="fas fa-envelope-open"></i>
             </a>
-            <a class="a" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=대기">대기문서
+            <a class="a btn" href="list?nowPage=${requestScope.paging.nowPage}&docStatus=대기">대기문서
                 <i class="fas fa-envelope"></i>
             </a>
-            <a class="a" href="detail?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&type=write">결재상신
+            <a class="a btn" href="detail?nowPage=${requestScope.paging.nowPage}&docStatus=${requestScope.docStatus}&type=write">결재상신
                 <i class="fas fa-upload"></i>
             </a>
         </div>

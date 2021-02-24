@@ -5,8 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>BitWork - Insert Form</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/button.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>
@@ -34,42 +33,6 @@
 			font-size: 25px;
 			
 		}
-		
-		
-		#add{
-			width: 100px;
-		    height: 40px;
-		    border: none;
-		    border-radius: 5px;
-		    outline: none;
-		    background-color: #3498D8;
-    		color: #ffffff;
-		}
-		
-		#cancel{
-			width: 100px;
-		    height: 40px;
-		    border: none;
-		    border-radius: 5px;
-		    outline: none;
-    		color: #ababab;
-		}
-		
-		#add:hover {
-			background-color: #ff9c00;
-		}
-		
-		#cancel:hover {
-			background-color: #ff9c00;
-			color: #7a7a7a;
-		}
-		
-		
-		
-		
-        
-        
-        
     </style>
     <script>
         function cancelAddr() {
@@ -102,8 +65,8 @@
         </div>
         <div class="form-buttons">
             <input type="hidden" name="idx" value="${requestScope.vo.addressbookIdx}">
-            <button id="add" type="submit">${empty vo ? "추가" : "변경"}</button>
-            <button id="cancel" type="button" onclick="cancelAddr()">취소</button>
+            <a id="add" class="btn" type="submit">${empty vo ? "추가" : "변경"}</a>
+            <a id="cancel" class="btn" type="button" onclick="cancelAddr()">취소</a>
         </div>
     </form>
     </div>

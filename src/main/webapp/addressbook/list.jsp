@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="/css/components/table.css">
     <link rel="stylesheet" href="/css/components/search.css">
+    <link rel="stylesheet" href="/css/button.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>
@@ -23,9 +24,9 @@
     		justify-content: space-between;
     	}
     	
-    	.add-delete .search-button {
+/*    	.add-delete .search-button {
     		width: 50px;
-    	}
+    	}*/
     	
     	.delete-button {
     		background-color: #7a7a7a;
@@ -99,7 +100,7 @@
         }
 
         function searchAddr() {
-            let name = document.querySelector(".form-buttons > input").value;
+            let name = document.querySelector("#name").value;
             location.href = "list?name=" + name;
         }
 
@@ -139,9 +140,9 @@
     <div class="wrap">
     	<div class="user-form">
     		<div class="add-delete">
-	            <button type="button" onclick="addAddr()" class="search-button">추가</button>
-	            <button type="button" onclick="deleteAddr()" 
-	                    class="search-button delete-button">삭제</button>
+	            <button type="button" onclick="addAddr()" class="btn">추가</button>
+	            <button type="button" onclick="deleteAddr()"
+	                    class="delete-button btn">삭제</button>
     		</div>
 	    	<div class="search-form">
 	            <label for="name"></label>
