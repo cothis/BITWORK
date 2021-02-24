@@ -44,10 +44,12 @@ public class LoginController extends HttpServlet {
                 CommuteVO commuteToday = CommuteDAO.getCommuteToday(vo);
                 request.getSession().setAttribute("commute", commuteToday);
                 Date joinDate = vo.getJoindate();
-                Date today = new Date();
-                long workingTime = today.getTime() - joinDate.getTime();
-                long workingDay = workingTime / 1000 / 60 / 60 / 24;
-                request.getSession().setAttribute("workingDay", workingDay);
+                if (joinDate != null) {
+                    Date today = new Date();
+                    long workingTime = today.getTime() - joinDate.getTime();
+                    long workingDay = workingTime / 1000 / 60 / 60 / 24;
+                    request.getSession().setAttribute("workingDay", workingDay);
+                }
 
                 resultMap.put("grade", vo.getGrade());
                 result = new Gson().toJson(resultMap);

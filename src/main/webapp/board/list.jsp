@@ -32,7 +32,7 @@
 			</button>
 		</form>
 		<table>
-			<thead id="thead">
+			<thead>
 				<tr>
 					<th>No</th>
 					<th>제목</th>
