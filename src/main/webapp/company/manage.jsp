@@ -60,12 +60,15 @@
     <style>
         .wrap {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            width: 1000px;
+            height: 80%;
+            margin-top: auto;
+            margin-bottom: auto;
         }
 
         .section {
-            width: 80%;
+            width: 100%;
             min-width: 800px;
             background-color: #FFFFFF;
             border-radius: 10px;
