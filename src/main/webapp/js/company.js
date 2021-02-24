@@ -55,7 +55,7 @@ $(function () {
             companyName: companyName
         };
         if (companyName) {
-            $.ajax("../member/api?command=searchCompany", {
+            $.ajax("/member/api?command=searchCompany", {
                 method: "post",
                 data: data,
                 dataType: "json",
@@ -75,8 +75,12 @@ $(function () {
                 }
             });
         } else {
-            companyName.val("").focus();
+            $companyName.val("").focus();
             alert("아이디를 입력하세요");
         }
     });
+
+    document.querySelector("#cancel").addEventListener("click", function () {
+        history.back();
+    })
 });

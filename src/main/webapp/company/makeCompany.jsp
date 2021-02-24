@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/makeCompany.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/company.js"></script>
+    <script src="/js/company.js"></script>
     <style>
         .red-important {
             border: 1px solid red !important;
             outline: none;
+        }
+
+        button[disabled] {
+            background-color: #777777;
+            color: #1e1e1e;
         }
     </style>
 </head>
