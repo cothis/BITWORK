@@ -19,6 +19,7 @@
    font-size: 15px;
    line-height: 3px;
    font-weight: 800;
+   outline: none;
 }
 
 .search-bar {
@@ -27,6 +28,7 @@
    border-radius: 50px;
    border: 1px solid #e0e4e7;
    padding-left: 13px;
+   outline: none;
 }
 .search-button {
    background-color: #00add0;
@@ -36,14 +38,14 @@
    border: none;
    color: white;
    margin-left: 5px;
+   outline: none;
+   cursor: pointer;
 }
 
 .search-button:hover {
    background-color: #ff9c00;
    transition: all 0.3s ease;
-   curser: pointer;
 }
-
 
 .table {
 	padding-left: 100px;
@@ -75,7 +77,6 @@
 .table .bold {
 	font-weight: bold;
 }
-
 
 .paging {
    padding-top: 15px;

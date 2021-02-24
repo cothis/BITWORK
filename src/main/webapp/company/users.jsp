@@ -30,6 +30,77 @@
             flex-direction: column;
             align-items: center;
         }
+
+        .transparent {
+            background: none;
+            border: none;
+            height: 40px;
+            line-height: 100%;
+        }
+
+        .invite {
+            font-weight: bold;
+            color: #16A085;
+            transition-duration: 0.2s;
+        }
+
+        .invite:hover {
+            color: #2DDCAD;
+        }
+
+        .invited {
+            color: #777777;
+            outline: none;
+        }
+
+        .invited:hover {
+            cursor: initial;
+        }
+
+        .col-40 {
+            width: 40%;
+        }
+
+        .col-20 {
+            width: 20%;
+        }
+
+        .table {
+            overflow: auto;
+        }
+
+        .apply {
+            color: #00B3DC;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .refuse {
+            color: #ff3434;
+            font-weight: bold;
+        }
+
+        .sub-title {
+            font-weight: bold;
+            color: #0e4aa7;
+        }
+
+        .left {
+            align-self: flex-start;
+        }
+
+        .applyAll {
+            color: #FC9C12;
+            background-color: #DDDDDD;
+            padding: 10px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+        }
+
+        .applyAll:hover {
+            background-color: #EEEEEE;
+            color: #FF8C00;
+        }
     </style>
     <script>
         function invite(id, button) {
@@ -112,9 +183,11 @@
                         tdName.innerText = member.name;
                         tdPosition.innerText = member.position;
                         applyBtn.innerText = "승인";
+                        applyBtn.className = "apply transparent";
                         applyBtn.type = "button";
                         applyBtn.addEventListener("click", () => gradeHandler(true, member.id));
                         refuseBtn.innerText = "거절";
+                        refuseBtn.className = "refuse transparent";
                         refuseBtn.type = "button";
                         refuseBtn.addEventListener("click", () => gradeHandler(false, member.id));
                         tdApply.appendChild(applyBtn);
@@ -163,9 +236,9 @@
             <table class="table">
                 <thead class="thead">
                     <tr>
-                        <th>아이디</th>
-                        <th>이름</th>
-                        <th>초대</th>
+                        <th class="col-40">아이디</th>
+                        <th class="col-40">이름</th>
+                        <th class="col-20">초대</th>
                     </tr>
                 </thead>
                 <tbody id="userTbody">
@@ -186,9 +259,14 @@
                 </tbody>
             </table>
         </section>
-        <section class="invite-section" id="inviteList">
-            <table id="inviteTable">
-                <thead>
+        <section class="invite-section">
+            <div class="search-form left">
+                <div class="sub-title">
+                    요청 목록
+                </div>
+            </div>
+            <table id="inviteTable" class="table">
+                <thead class="thead">
                     <tr>
                         <th>번호</th>
                         <th>아이디</th>
@@ -200,7 +278,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="5">
-                            <button type="button" id="applyAll">모두 승인</button>
+                            <button type="button" id="applyAll" class="apply applyAll">모두 승인</button>
                         </td>
                     </tr>
                 </tfoot>

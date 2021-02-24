@@ -139,7 +139,7 @@
 			    
 		    <div class="status">
 		    	<!-- <h3>이번 달 출퇴근 현황</h3> -->
-		    	<table>
+		    	<table class="content-table">
 		    		<thead>
 		    			<tr class="column">
 		    				<th>이번 달 정상출근</th>
