@@ -6,171 +6,178 @@
     <title>JSP - Hello World</title>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components/table.css">
     <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
     <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            width: 1000px;
+            height: 80%;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .row {
+            width: 100%;
+            flex-basis: 50%;
+            display: flex;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+        }
+
+        .notice {
+            width: 100%;
+            flex-basis: 100%;
+        }
+
+        .sign {
+            flex-basis: 30%;
+            margin-right: 10px;
+        }
+
+        .board {
+            flex-basis: 70%;
+        }
+
+        .sub-title {
+            display: flex;
+            font-weight: bold;
+            font-size: 20px;
+            padding-bottom: 5px;
+        }
+
+        .sub-title i {
+            line-height: inherit;
+            margin-right: 5px;
+        }
+
+        .into-page-btn {
+            margin-left: auto;
+            color: #FFFFFF;
+            text-decoration: none;
+            background-color: #39485D;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .into-page-btn:hover {
+            background-color: #00add0;
+            transition-duration: 0.1s;
+        }
+
+        .section-content {
+            height: 100%;
+            padding: 2px 0;
+            border-top: 2px solid #999696;
+            border-bottom: 2px solid #999696;
+        }
+
+        .section-list {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .list-item {
+            width: 100%;
+            flex-basis: 25%;
+            line-height: 48px;
+            text-align: center;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        .notice-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .sign-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .board-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .no-read-number {
+            margin-left: 10px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            text-align: center;
+            line-height: 30px;
+            color: #FCE5C1;
+            background-color: #FC9C12;
+        }
+
+        .notice-list-item {
+            display: flex;
+        }
+
+        .notice .board-no {
+            flex-basis: 10%
+        }
+
+        .notice .board-subject {
+            flex-basis: 35%;
+        }
+
+        .notice .board-writer-name {
+            flex-basis: 15%;
+        }
+
+        .notice .board-write-day {
+            flex-basis: 20%;
+        }
+
+        .notice .board-hit {
+            flex-basis: 20%;
+        }
+
+        .board-list-item {
+            display: flex;
+            color: #333333;
+        }
+
+        .board .board-subject {
+            flex-basis: 50%;
+        }
+
+        .board .board-writer-name {
+            flex-basis: 25%;
+        }
+
+        .board .board-write-day {
+            flex-basis: 25%;
+        }
+
+        .board-subject a {
+            text-decoration: none;
+            color: #333333;
+        }
+
+        .thead {
+            color: white;
+            font-weight: bold;
+        }
+
+    </style>
+
 </head>
-<style>
-    .wrap {
-        display: flex;
-        flex-direction: column;
-        width: 1000px;
-        height: 80%;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-
-    .row {
-        width: 100%;
-        flex-basis: 50%;
-        display: flex;
-    }
-
-    .section {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        margin-bottom: 10px;
-        background-color: #FFFFFF;
-        border-radius: 10px;
-    }
-
-    .notice {
-        width: 100%;
-        flex-basis: 100%;
-    }
-
-    .sign {
-        flex-basis: 30%;
-        margin-right: 10px;
-    }
-
-    .board {
-        flex-basis: 70%;
-    }
-
-    .sub-title {
-        display: flex;
-        font-weight: bold;
-        font-size: 20px;
-        padding-bottom: 5px;
-    }
-
-    .sub-title i {
-        line-height: inherit;
-        margin-right: 5px;
-    }
-
-    .into-page-btn {
-        margin-left: auto;
-        color: #FFFFFF;
-        text-decoration: none;
-        background-color: #39485D;
-        font-size: 20px;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .into-page-btn:hover {
-        background-color: #00add0;
-        transition-duration: 0.1s;
-    }
-
-    .section-content {
-        height: 100%;
-        padding: 2px 0;
-        border-top: 2px solid #999696;
-        border-bottom: 2px solid #999696;
-    }
-
-    .section-list {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .list-item {
-        width: 100%;
-        flex-basis: 25%;
-        line-height: 48px;
-        text-align: center;
-        border-bottom: 1px solid #d4d4d4;
-    }
-
-    .notice-list-item:last-child {
-        border-bottom: none;
-    }
-
-    .sign-list-item:last-child {
-        border-bottom: none;
-    }
-
-    .board-list-item:last-child {
-        border-bottom: none;
-    }
-
-    .no-read-number {
-        margin-left: 10px;
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        border-radius: 15px;
-        text-align: center;
-        line-height: 30px;
-        color: #FCE5C1;
-        background-color: #FC9C12;
-    }
-
-    .notice-list-item {
-        display: flex;
-    }
-
-    .notice .board-no {
-        flex-basis: 10%
-    }
-
-    .notice .board-subject {
-        flex-basis: 35%;
-    }
-
-    .notice .board-writer-name {
-        flex-basis: 15%;
-    }
-
-    .notice .board-write-day {
-        flex-basis: 20%;
-    }
-
-    .notice .board-hit {
-        flex-basis: 20%;
-    }
-
-    .board-list-item {
-        display: flex;
-        color: #333333;
-    }
-
-    .board .board-subject {
-        flex-basis: 50%;
-    }
-
-    .board .board-writer-name {
-        flex-basis: 25%;
-    }
-
-    .board .board-write-day {
-        flex-basis: 25%;
-    }
-
-    .board-subject a {
-        text-decoration: none;
-        color: #333333;
-    }
-
-</style>
 <body>
     <header class="header">
         <div class="category">Main</div>
@@ -187,7 +194,7 @@
                 </div>
                 <div class="section-content">
                     <ul class="section-list">
-                        <li class="list-item notice-list-item">
+                        <li class="list-item notice-list-item thead">
                             <span class="board-no">No.</span>
                             <span class="board-subject">제목</span>
                             <span class="board-writer-name">작성자</span>
