@@ -199,7 +199,7 @@
                 <!-- 작성일때는 세션에서 유저이름, detail일때는 글의 writerName -->
             </div>
             <div class="form-group">
-                <label for="file"><h3><i class="fas fa-file-upload"></i> 첨부파일</h3></label>
+                <h3><i class="fas fa-file-upload"></i> 첨부파일</h3>
                 <c:if test="${not empty requestScope.vo}">
                     <span class="file-name" onclick="download('${requestScope.vo.fileName}', '${requestScope.vo.oriName}')">${requestScope.vo.oriName}</span>
                 </c:if>
