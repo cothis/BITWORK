@@ -13,13 +13,16 @@ public class FindByIdCommand implements MemberCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+        try {
+            MemberDAO dao = new MemberDAO();
+            MemberVO vo = dao.findById(id);
 
-        MemberDAO dao = new MemberDAO();
-        MemberVO vo = dao.findById(id);
+            String gson = new Gson().toJson(vo);
 
-        String gson = new Gson().toJson(vo);
-
-        response.setContentType("application/json");
-        response.getWriter().write(gson);
+            response.setContentType("application/json");
+            response.getWriter().write(gson);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

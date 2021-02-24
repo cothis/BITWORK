@@ -28,40 +28,44 @@ public class CommuteListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
+		try {
+			MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
 
-		String nowPageStr = request.getParameter("nowPage");
-		int nowPage = 1;
-		if (nowPageStr != null && nowPageStr.length() > 0) {
-			nowPage = Integer.parseInt(nowPageStr);
+			String nowPageStr = request.getParameter("nowPage");
+			int nowPage = 1;
+			if (nowPageStr != null && nowPageStr.length() > 0) {
+				nowPage = Integer.parseInt(nowPageStr);
+			}
+
+			String start = request.getParameter("startDay");
+			String end = request.getParameter("endDay");
+			if (end == null || end.length() == 0) {
+				// 파라미터가 다 없을떄
+				Date _today = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/01");
+				start = sdf.format(_today);
+
+				sdf = new SimpleDateFormat("YYYY/MM/dd");
+				end = sdf.format(_today);
+
+			}
+
+			Map<String, Object> resultMap = CommuteDAO.getCommuteList(start, end, mvo.getId(), nowPage);
+
+			String searchStart = start.replaceAll("/", "-");
+			String searchEnd = end.replaceAll("/", "-");
+
+			Map<String, String> searchOption = new HashMap<>();
+			searchOption.put("start", searchStart);
+			searchOption.put("end", searchEnd);
+			request.setAttribute("searchOption", searchOption);
+			request.setAttribute("list", resultMap.get("list"));
+			request.setAttribute("paging", resultMap.get("paging"));
+
+			RequestForwarder.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		String start = request.getParameter("startDay");
-		String end = request.getParameter("endDay");
-		if (end == null || end.length() == 0) {
-			// 파라미터가 다 없을떄
-			Date _today = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/01");
-			start = sdf.format(_today);
-			
-			sdf = new SimpleDateFormat("YYYY/MM/dd");
-			end = sdf.format(_today);
-			
-		}
-
-		Map<String, Object> resultMap = CommuteDAO.getCommuteList(start, end, mvo.getId(), nowPage);
-		
-		String searchStart = start.replaceAll("/", "-");
-		String searchEnd = end.replaceAll("/", "-");
-		
-		Map<String, String> searchOption = new HashMap<>();
-		searchOption.put("start", searchStart);
-		searchOption.put("end", searchEnd);
-		request.setAttribute("searchOption", searchOption);
-		request.setAttribute("list", resultMap.get("list"));
-		request.setAttribute("paging", resultMap.get("paging"));
-
-		RequestForwarder.forward(request, response);
 	}
 	
 	@Override

@@ -127,6 +127,8 @@ public class CommuteDAO {
 		System.out.println(paging);
 		
 		List<CommuteVO> list = ss.selectList("commute.list",  paramMap);
+		System.out.println("paramMap = " + paramMap);
+		System.out.println("list = " + list);
 		for (CommuteVO comVo : list) {
 			if (comVo.getStatus().equals("0")) {
 				comVo.setStatus("정상");

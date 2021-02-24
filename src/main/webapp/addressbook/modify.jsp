@@ -9,30 +9,35 @@
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <style>
-		.wrap {
-			padding : 5px;
-			margin-top : 40px;
-			background-color: #FFFFFF;
-			width: 1000px;
-			height: 600px;
-			text-align: center;
-			border: none;
-		}
-		
-		.form-group {
-			position: relative;
-			top: 47px;
-			padding: 20px;
-			font-size: 30px;
-		}
-		
-		.form-buttons {
-			position: relative;
-			top: 55px;
-			padding: 10px;
-			font-size: 25px;
-			
-		}
+        .wrap {
+            padding: 10px;
+            margin-top: 40px;
+            background-color: #FFFFFF;
+            width: 1000px;
+            text-align: center;
+            border: none;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            padding: 20px;
+            font-size: 30px;
+            display: flex;
+        }
+
+        .form-group label {
+            flex-basis: 20%;
+            text-align: left;
+        }
+
+        .form-group input {
+            flex-basis: 60%;
+        }
+
     </style>
     <script>
         function cancelAddr() {
@@ -46,29 +51,29 @@
         <div class="title">주소록 ${empty vo ? "추가" : "변경"}</div>
     </header>
     <div class="wrap">
-    <form action="modify" method="post">
-        <div class="form-group">
-            <label for="name">&nbsp;&nbsp;이름 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="text" name="name" id="name" value="${requestScope.vo.name }">
-        </div>
-        <div class="form-group">
-            <label for="email">&nbsp;&nbsp;이메일 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="text" name="email" id="email" value="${requestScope.vo.email}">
-        </div>
-        <div class="form-group">
-            <label for="company">&nbsp;&nbsp;회사 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="text" name="company" id="company" value="${requestScope.vo.company}">
-        </div>
-        <div class="form-group">
-            <label for="phone">&nbsp;&nbsp;전화번호 :&nbsp;&nbsp;&nbsp;</label>
-            <input type="text" name="phone" id="phone" value="${requestScope.vo.phone}">
-        </div>
-        <div class="form-buttons">
-            <input type="hidden" name="idx" value="${requestScope.vo.addressbookIdx}">
-            <a id="add" class="btn" type="submit">${empty vo ? "추가" : "변경"}</a>
-            <a id="cancel" class="btn" type="button" onclick="cancelAddr()">취소</a>
-        </div>
-    </form>
+        <form action="modify" method="post" class="form">
+            <div class="form-group">
+                <label for="name">이름 :</label>
+                <input type="text" name="name" id="name" value="${requestScope.vo.name }">
+            </div>
+            <div class="form-group">
+                <label for="email">이메일 :</label>
+                <input type="text" name="email" id="email" value="${requestScope.vo.email}">
+            </div>
+            <div class="form-group">
+                <label for="company">회사 : </label>
+                <input type="text" name="company" id="company" value="${requestScope.vo.company}">
+            </div>
+            <div class="form-group">
+                <label for="phone">전화번호 : </label>
+                <input type="text" name="phone" id="phone" value="${requestScope.vo.phone}">
+            </div>
+            <div class="form-buttons">
+                <input type="hidden" name="idx" value="${requestScope.vo.addressbookIdx}">
+                <button id="add" class="btn" type="submit">${empty vo ? "추가" : "변경"}</button>
+                <button id="cancel" class="btn" type="button" onclick="cancelAddr()">취소</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>

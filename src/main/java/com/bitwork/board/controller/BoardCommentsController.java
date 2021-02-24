@@ -25,25 +25,39 @@ public class BoardCommentsController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		// 로그인된 세션 정보
-		MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
-		
-		CommentsVO cvo = new CommentsVO();
-		cvo.setMemberId(mvo.getId());
-		
-		System.out.println("전달받은 로그인 아이디 : " + cvo.getMemberId());
-		
-		cvo.setCmtContent(request.getParameter("content"));
-		cvo.setBoardIdx(Integer.parseInt(request.getParameter("b_idx")));
-		
-		
-		System.out.println("댓글 입력한거 : " + cvo);
-		int result = BoardDAO.insertCmt(cvo);
-		
-	
-		PagingVO pvo = (PagingVO) request.getSession().getAttribute("pvo");
-		response.sendRedirect("content?b_idx=" + cvo.getBoardIdx() + "&cPage=" + pvo.getNowPage());
-		 
+
+		try {
+
+			// 로그인된 세션 정보
+			MemberVO mvo = (MemberVO) request.getSession().getAttribute("user");
+
+			CommentsVO cvo = new CommentsVO();
+			cvo.setMemberId(mvo.getId());
+
+			System.out.println("전달받은 로그인 아이디 : " + cvo.getMemberId());
+
+			cvo.setCmtContent(request.getParameter("content"));
+			cvo.setBoardIdx(Integer.parseInt(request.getParameter("b_idx")));
+
+
+			System.out.println("댓글 입력한거 : " + cvo);
+			int result = BoardDAO.insertCmt(cvo);
+			System.out.println("cvo = " + cvo);
+
+
+			PagingVO pvo = (PagingVO) request.getSession().getAttribute("pvo");
+			System.out.println("pvo = " + pvo);
+			int nowPage = 1;
+			if (pvo != null) {
+				nowPage = pvo.getNowPage();
+
+			}
+
+			response.sendRedirect("content?b_idx=" + cvo.getBoardIdx() + "&cPage=" + nowPage);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

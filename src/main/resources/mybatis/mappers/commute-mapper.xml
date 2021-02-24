@@ -79,9 +79,7 @@
 				 GROUP BY MEMBER_ID
 			 ) S ON C.MEMBER_ID = S.MEMBER_ID
 		WHERE C_DATE = TO_CHAR(SYSDATE, 'YYYY/MM/DD')
-
-		union
-
+		UNION
 		SELECT C.MEMBER_ID,
 			   TO_CHAR(SYSDATE, 'YY/MM/DD') AS C_DATE,
 			   '00:00:00'                   AS ON_TIME,
