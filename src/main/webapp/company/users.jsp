@@ -152,13 +152,14 @@
         function gradeHandler(isApply, ...memberIdList) {
             let payload = {
                 isApply: isApply,
-                memberIdList: memberIdList
+                memberIdList: memberIdList.join(",")
             }
-            axios.post("../member/updateGrade", payload).then(function (res) {
-                payload.memberIdList.forEach(function (memberId) {
+            console.log(payload);
+            axios.post("/member/updateGrade", payload).then(function (res) {
+                res.data.forEach(function (memberId) {
                     document.querySelector("#memberId_" + memberId).remove();
                 })
-                alert(res.data + "건 처리되었습니다");
+                alert(res.data.length + "건 처리되었습니다");
             });
         }
 
@@ -216,6 +217,17 @@
                     makeTableRow(tbody, data);
                 });
             });
+
+            document.querySelector("#applyAll").addEventListener("click", function () {
+                let idArray = [];
+                document.querySelectorAll("#applyTbody td:nth-child(2)").forEach(function (el) {
+                    idArray.push(el.innerText);
+                });
+                console.log(idArray);
+                if (idArray.length > 0) {
+                    gradeHandler(true, idArray);
+                }
+            })
         });
     </script>
 </head>
