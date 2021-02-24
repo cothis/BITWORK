@@ -2,6 +2,8 @@ package com.bitwork.member.controller;
 
 import com.bitwork.commute.dao.CommuteDAO;
 import com.bitwork.commute.vo.CommuteVO;
+import com.bitwork.company.dao.CompanyDAO;
+import com.bitwork.company.vo.CompanyVO;
 import com.bitwork.main.controller.RequestForwarder;
 import com.bitwork.member.dao.MemberDAO;
 import com.bitwork.member.vo.MemberVO;
@@ -51,6 +53,9 @@ public class LoginController extends HttpServlet {
                     long workingDay = workingTime / 1000 / 60 / 60 / 24;
                     request.getSession().setAttribute("workingDay", workingDay);
                 }
+
+                CompanyVO company = CompanyDAO.findById(vo.getCompanyIdx());
+                request.getSession().setAttribute("company", company);
 
                 resultMap.put("grade", vo.getGrade());
                 result = new Gson().toJson(resultMap);

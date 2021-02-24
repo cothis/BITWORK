@@ -45,6 +45,7 @@ public class MainController extends HttpServlet {
                 // Sign
                 NoReadCount noReadCount = SignDAO.findNoReadCount(user);
                 request.setAttribute("noReadCount", noReadCount);
+                System.out.println("request.getRequestURI() = " + request.getRequestURI());
                 RequestForwarder.forward(request, response);
             }
         } catch (Exception e) {

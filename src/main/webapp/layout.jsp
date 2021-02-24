@@ -15,7 +15,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <h1><a href="/main">Company</a></h1>
+        <h1><a href="/main">${sessionScope.company.companyName}</a></h1>
         <ul class="nav-menu">
             <li>
                 <a href="/company/manage">인사관리</a>
