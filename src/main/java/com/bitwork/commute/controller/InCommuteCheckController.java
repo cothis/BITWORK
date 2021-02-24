@@ -46,6 +46,7 @@ public class InCommuteCheckController extends HttpServlet {
 		
 		// cDate에 넣어줄 오늘 날짜 구하기
 		CommuteVO cvo = (CommuteVO) request.getSession().getAttribute("commute");
+		cvo.setStatus(status);
 		int result = CommuteDAO.inCheck(cvo);
 
 		if (result > 0) {
