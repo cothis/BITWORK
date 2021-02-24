@@ -46,7 +46,9 @@
 				<c:forEach var="article" items="${list}">
 					<tr>
 					<c:if test="${article.status eq 0 }">
-						<td ${article.status eq 0 ? "class='blue'":""}>공지</td>
+						<td>
+							<span ${article.status eq 0 ? "class='notice'":""}>공지</span>
+						</td>
 					</c:if>
 					<c:if test="${article.status eq 1 }">
 						<td>${article.boardIdx}</td>
@@ -54,7 +56,6 @@
 						<td class="subject">
 							<a ${article.status eq 0 ? "class='bold'":""} href='content?b_idx=${article.boardIdx}&cPage=${pvo.nowPage}'>${article.subject}
 								<b>${article.cmtCount }</b>
-								<img src="/img/new.png">
 							</a>
 						</td>
 						<td>${article.name}</td>
