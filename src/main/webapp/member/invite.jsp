@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/member.css">
+    <link rel="stylesheet" href="/css/makeCompany.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/axios/0.21.1/dist/axios.min.js"></script>
     <script>
@@ -45,6 +46,11 @@
             }
         });
     </script>
+    <style>
+    .wrap {
+    	margin-top: 120px;
+    }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -53,10 +59,13 @@
     </header>
     <div class="wrap">
         <div>
-            <span id="companyName"></span>
+        	<img src="/img/invite.JPG">
+            <h3 id="companyName"></h3>
         </div>
-        <button type="button" id="accept">승인</button>
-        <button type="button" id="refuse">거절</button>
+        <div class="form-buttons">
+	        <button class="button1" type="button" id="refuse">거절</button>
+	        <button class="button2" type="button" id="accept">승인</button>
+        </div>
     </div>
 </body>
 </html>

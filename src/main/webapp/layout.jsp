@@ -60,15 +60,18 @@
             </div>
             <div class="commute">
                 <div class="today-info">
+                <div class="today-message">· TODAY ·</div>
                     <div class="today">${sessionScope.commute.CDate}</div>
-                    <div class="today-message">오늘의 근태 현황</div>
+                    
                 </div>
                 <div class="today-commute-time">
-                    <i></i>
+     				<span>출근</span>
+                    <i class="fas fa-briefcase"></i>
                     ${sessionScope.commute.onTime}
                 </div>
                 <div class="today-commute-time">
-                    <i></i>
+                	<span>퇴근</span>
+                    <i class="fas fa-home"></i>
                     ${sessionScope.commute.offTime}
                 </div>
             </div>
@@ -81,7 +84,7 @@
     </main>
 
     <footer class="footer">
-        <h1>footer 내용</h1>
+        <h1>(주)비트워크</h1>
     </footer>
     <script>
         let navMenuIcon = document.querySelector(".nav-toggle-btn");
