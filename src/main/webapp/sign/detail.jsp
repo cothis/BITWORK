@@ -25,7 +25,7 @@
     <div>
         <span>결재 서류(상신)</span>
         <span>작성 일자 : ${requestScope.date}</span>
-        <form action="write" method="post" enctype="multipart/form-data">
+        <form action="/sign/detail" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="subject">제목</label>
                 <input type="text" name="subject" id="subject"
