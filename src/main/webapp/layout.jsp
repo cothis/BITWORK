@@ -45,7 +45,11 @@
         <aside class="aside">
             <div class="profile">
                 <div class="profile-picture">
-                    <img src="/data/member/${sessionScope.user.fileName}" alt="사진">
+                    <c:set var="path" value="/profile-picture/default.png"/>
+                    <c:if test="${not empty sessionScope.user.fileName}">
+                        <c:set var="path" value="/data/member/${sessionScope.user.fileName}"/>
+                    </c:if>
+                    <img src="${path}" alt="사진">
                 </div>
                 <div class="name">
                     <span>${sessionScope.user.name}</span>
