@@ -59,6 +59,8 @@
 
     <style>
         .wrap {
+            margin: auto;
+            border-radius: 20px;
             width: 600px;
             height: 350px;
             background-color: #143455;
