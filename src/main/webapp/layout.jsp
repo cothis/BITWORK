@@ -15,7 +15,8 @@
 </head>
 <body>
     <nav class="navbar">
-        <h1><a href="/main">${sessionScope.company.companyName}</a></h1>
+        <h1><a href="/main">${not empty sessionScope.company ? sessionScope.company.companyName : "BitWork"}</a></h1>
+        <c:if test="${not empty sessionScope.company}">
         <ul class="nav-menu">
             <li>
                 <a href="/company/manage">인사관리</a>
@@ -36,6 +37,7 @@
             </li>
         </ul>
         <a class="nav-toggle-btn">|||</a>
+        </c:if>
     </nav>
     <main class="main">
         <c:if test="${not empty sessionScope.user}">
