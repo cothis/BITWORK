@@ -178,9 +178,6 @@
             <h2 class="title">작성게시판</h2>
         </div>
     </div>
-    <!--   <h2>${empty requestScope.vo ? "작성 모드" : "보기 모드"}</h2> -->
-
-
     <div class="wrap">
         <form class="form-write" action="/sign/detail" method="post" enctype="multipart/form-data">
             <span><h2>결재 서류(상신)</h2></span>
