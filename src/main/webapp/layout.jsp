@@ -31,13 +31,15 @@
         <h1><a href="/main">${not empty sessionScope.company ? sessionScope.company.companyName : "BitWork"}</a></h1>
         <c:if test="${not empty sessionScope.company}">
             <ul class="nav-menu">
-                <li>
-                    <a href="/company/manage">인사관리</a>
-                    <ul class="sub-menu">
-                        <li><a href="/company/manage">조직관리</a></li>
-                        <li><a href="/company/users">사용자관리</a></li>
-                    </ul>
-                </li>
+                <c:if test="${sessionScope.user.grade == 4}">
+                    <li>
+                        <a href="/company/manage">인사관리</a>
+                        <ul class="sub-menu">
+                            <li><a href="/company/manage">조직관리</a></li>
+                            <li><a href="/company/users">사용자관리</a></li>
+                        </ul>
+                    </li>
+                </c:if>
                 <li><a href="/board/list">게시판</a></li>
                 <li><a href="/sign/list">전자결재</a></li>
                 <li><a href="/addressbook/list">주소록</a></li>
