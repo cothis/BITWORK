@@ -123,7 +123,7 @@
             <label for="user_pw">
                 <span class="user-pw"></span>
             </label>
-            <input type="text" name="user_pw" id="user_pw" placeholder="Password를 입력하세요" class="user-input">
+            <input type="password" name="user_pw" id="user_pw" placeholder="Password를 입력하세요" class="user-input">
         </div>
         <div class="form-buttons">
             <button type="submit" class="btn primary" id="login">
