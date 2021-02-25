@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="user_pw"></label>
-                        <input type="text" name="user_pw" id="user_pw" placeholder="PASSWORD" class="search-bar"
+                        <input type="password" name="user_pw" id="user_pw" placeholder="PASSWORD" class="search-bar"
                                pattern="[A-Za-z0-9]{4,12}" title="비밀번호 입력 형식 : 영어 숫자 4~12 글자" required
                                value="${sessionScope.user.pw}">
                     </div>

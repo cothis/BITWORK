@@ -120,7 +120,7 @@ public class CommuteDAO {
 		paramMap.put("nowPage", nowPage);
 		
 		int totalCount = ss.selectOne("commute.totalCount", paramMap);
-		Paging paging = new Paging(totalCount, nowPage, 2, 2);
+		Paging paging = new Paging(totalCount, nowPage, 10, 3);
 		paramMap.put("startRow", paging.getStartRow());
 		paramMap.put("endRow", paging.getEndRow());
 		
