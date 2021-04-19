@@ -1,0 +1,70 @@
+.navbar h1 {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 35px;
+}
+
+.navbar h1 a {
+	color: white;
+	text-decoration: none;
+}
+
+.navbar h1 a:hover {
+	color: #00B3DC;
+	transition-duration: 0.2s;
+}
+
+.nav-menu {
+	display: flex;
+	position: relative;
+	right: 60px;
+}
+
+.nav-menu > li {
+	position: relative;
+	margin: 0 20px;
+}
+
+.nav-menu > li > a {
+	text-decoration: none;
+	color: #039DBE;
+}
+
+.nav-menu > li > a:hover {
+	color: #ff9c00;
+	transition-duration: 0.2s;
+}
+
+.sub-menu {
+	display: none;
+	position: absolute;
+	white-space: nowrap;
+	padding-top: 10px;
+}
+
+.sub-menu li {
+	width: 80px;
+	text-align: left;
+}
+
+.sub-menu a {
+	color: #F0F0F0;
+	font-size: 0.8em;
+	text-decoration: none;
+}
+
+.sub-menu a:hover {
+	color: #ff9c00;
+	transition-duration: 0.2s;
+}
+
+.show {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.nav-toggle-btn {
+	display: none;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}

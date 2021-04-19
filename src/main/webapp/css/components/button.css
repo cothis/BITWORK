@@ -1,0 +1,26 @@
+.btn {
+    margin-right: 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #00add0;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #ff9c00;
+    transition-duration: 0.2s;
+}
+
+.disable {
+    background-color: #999696;
+    color: #5E5E5E;
+}
+
+.small {
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    margin-left: 10px;
+}

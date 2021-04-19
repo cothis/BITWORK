@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&family=Quicksand:wght@700&display=swap');
+/* 전역 설정 */
+:root {
+    --nav-height: 100px;
+    --footer-height: 40px;
+    --aside-width: 360px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+html,
+body {
+    width: 100%;
+    min-width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+li {
+    list-style: none;
+}
+
+/* nav */
+.navbar {
+    flex-basis: var(--nav-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1B232D;
+    color: #039DBE;
+    padding-left: 20px;
+
+}
+
+/* main */
+.main {
+    height: calc(100% - var(--nav-height) - var(--footer-height));
+    display: flex;
+    width: 100%;
+    background-color: #E8ECEF;
+}
+
+/* main aside */
+
+.aside {
+    flex-basis: var(--aside-width);
+    display: block;
+    background-color: #39485D;
+    color: #FFFFFF;
+    padding: 20px;
+}
+
+/* main > #container */
+#container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.wrap {
+    margin: 0 280px;
+}
+
+/* footer */
+.footer {
+    display: flex;
+    width: 100%;
+    flex-basis: var(--footer-height);
+    background-color: #282828;
+    overflow: hidden;
+}
+
+/* header */
+.header {
+    width: 100%;
+    flex-basis: 50px;
+    padding: 20px 0 20px 280px;
+    background-color: #FFFFFF;
+    border: 1px solid #e0e4e7;
+
+}
+
+/* Element */
+.category {
+    color: #00add0;
+    font-weight: 800;
+    margin-left: 3px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.title {
+    color: #1e1e1e;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: #7562ca;
+    transition-duration: 0.3s;
+}
+
+.primary {
+    background-color: #3498D8;
+    color: #FFFFFF;
+}
+
+/* header */
+.header {
+    width: 100%;
+    flex-basis: 50px;
+    margin: 0;
+    padding-left: 280px;
+    background-color: #FFFFFF;
+}
+
+/* Element */
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: #7562ca;
+    transition-duration: 0.3s;
+}
+
+.primary {
+    background-color: #3498D8;
+    color: #FFFFFF;
+}
+
+.green {
+    background-color: #2DDCAD;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 800px) {
+
+    /* nav */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu {
+        align-self: center;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-toggle-btn {
+        display: block;
+    }
+
+    .active {
+        display: flex;
+    }
+
+    /* main */
+    #main {
+        height: auto;
+    }
+
+    /* main > aside*/
+    #aside {
+        display: none;
+    }
+
+    /* main > #container */
+    #container {
+        overflow: initial;
+    }
+}

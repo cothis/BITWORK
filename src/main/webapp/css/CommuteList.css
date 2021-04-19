@@ -1,0 +1,152 @@
+.wrap {
+	display: flex;
+	flex-direction: column;
+	padding-top: 40px;
+}
+.search-wrap {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 20px;
+}
+.search-wrap div {
+	margin-right: 15px;
+}
+
+.search-wrap div span {
+	font-size: 15px;
+	
+}
+.search-bar {
+   width: 180px;
+   height: 30px;
+   border-radius: 50px;
+   border: 1px solid #e0e4e7;
+   padding: 0 8px 0 13px;
+}
+.search-button {
+   background-color: #00add0;
+   height: 28px;
+   width: 28px;
+   border-radius: 50px;
+   border: none;
+   color: white;
+   margin-left: 5px;
+}
+
+.content-table {
+	top: 20px;
+	width: 100%;
+	border-collapse: collapse;
+	min-width: 400px; 
+	overflos: hidden;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+	text-align: center;
+}
+.content-table thead tr {
+	background-color: #39485D;
+	color: white;
+}
+.content-table th,
+.content-table td {
+	padding: 8px 15px;
+}
+.content-table th:first-child {
+    -moz-border-radius: 8px 0 0 0;
+    -webkit-border-radius: 8px 0 0 0;
+    border-radius: 8px 0 0 0;
+}
+.content-table th:last-child {
+    -moz-border-radius: 0 8px 0 0;
+    -webkit-border-radius: 0 8px 0 0;
+    border-radius: 0 8px 0 0;
+}
+.content-table tbody tr {
+	border-bottom: 1px solid lightgray;
+	background-color: white;
+}
+.content-table tbody tr:nth-of-type(even) {
+	background-color: #f2f5f7;
+}
+.content-table tbody tr:last-of-type {
+	border-bottom: 2px solid #039DBE;
+}
+.red {
+	color: tomato;
+	font-weight: bold;
+}
+.blue {
+	color: DodgerBlue;
+	font-weight: bold;
+}
+
+.content-table tbody tr.active-row {
+	font-weigth: bold;
+	color: #00add0;
+}
+.paging {
+   padding-top: 15px;
+   font-family: 'Quicksand', sans-serif;
+   list-style: none;
+   width: 100%;
+   height: 70px;
+   display: flex;
+   justify-content: center;
+}
+.paging li {
+	
+}
+
+.paging li a {
+   text-decoration: none;
+   font-weight: bold;
+   color: black;
+}
+
+.paging .disable {
+   color: silver;
+}
+
+.paging .now {
+   color: #00add0;
+   font-weight: bold;
+   height: 28px;
+   padding: 0 5px;
+   border-bottom: 2px solid #00B3DC;
+}
+.paging .other {
+	padding: 0 5px;
+}
+
+.paging li a:hover {
+   color: #ff9c00;
+}
+
+.paging li a, .paging li a:before {
+   -webkit-transition: all 0.2s ease;
+         transition: all 0.2s ease;
+}
+
+.write-btn {
+   background-color: #00add0; 
+   text-decoration: none;
+   font-weight: bold;
+   color: white;
+   font-size: 15px;
+   width: 90px;
+   height: 40px;
+   text-align: center;
+   line-height: 40px;
+   border-radius: 5px;
+   margin: 20px 0;
+   align-self: flex-end;
+}
+
+
+
+
+
+
+
+
+
+
